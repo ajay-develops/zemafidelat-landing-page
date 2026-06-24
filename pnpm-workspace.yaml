@@ -1,3 +1,7 @@
 allowBuilds:
   '@tailwindcss/oxide': true
   sharp: true
+minimumReleaseAgeExclude:
+  - framer-motion@12.41.0
+  - motion-dom@12.41.0
+  - motion@12.41.0

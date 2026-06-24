@@ -3,7 +3,7 @@
 import { Section } from "@/components/section";
 import { easeOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 export function FeatureScroll() {

@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { easeOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -33,7 +33,7 @@ function Feature({
       x: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: easeOutCubic,
         staggerChildren: 0.15,
       },
     },

@@ -5,9 +5,10 @@ import {
   LinkedInLogoIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+import type { ReactElement } from "react";
 
 interface Icon {
-  icon: JSX.Element;
+  icon: ReactElement;
   url: string;
 }
 

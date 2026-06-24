@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { easeInOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -28,11 +28,11 @@ export function Header() {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Set isInitialLoad to false after the component has mounted
-    setIsInitialLoad(false);
+    const timeoutId = window.setTimeout(() => setIsInitialLoad(false), 0);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(timeoutId);
     };
   }, []);
 

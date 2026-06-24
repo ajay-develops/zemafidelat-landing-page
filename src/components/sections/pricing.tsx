@@ -3,7 +3,7 @@
 import { Section } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import { CheckIcon, ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";

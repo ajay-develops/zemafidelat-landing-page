@@ -2,7 +2,7 @@
 
 import { easeInOutCubic } from "@/lib/animation";
 import { cn } from "@/lib/utils";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "motion/react";
 import React, { forwardRef, useRef } from "react";
 
 interface SectionProps {
