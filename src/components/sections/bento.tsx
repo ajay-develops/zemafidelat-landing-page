@@ -49,8 +49,8 @@ export function BentoGrid() {
   return (
     <Section
       id="bento"
-      title="Benefits"
-      subtitle="It does a lot of things"
+      title={siteConfig.bentoSection.title}
+      subtitle={siteConfig.bentoSection.subtitle}
       className="mx-auto max-w-screen-md px-10"
       ref={ref}
     >

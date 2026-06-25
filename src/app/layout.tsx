@@ -2,7 +2,6 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
-import { fontSans } from "@/lib/fonts";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
@@ -34,11 +33,14 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable} ${fontSans.variable}`}
+      className={cn(
+        `${GeistSans.variable} ${GeistMono.variable}`,
+        "scroll-smooth"
+      )}
     >
       <body
         className={cn(
-          "min-h-screen bg-background antialiased w-full mx-auto scroll-smooth font-sans"
+          "min-h-screen bg-background antialiased w-full mx-auto font-sans"
         )}
       >
         <ThemeProvider

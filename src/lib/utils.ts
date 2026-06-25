@@ -45,7 +45,17 @@ export function constructMetadata({
       type: "website",
       locale: "en_US",
     },
-    icons: "/favicon.ico",
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [image],
+    },
+    icons: {
+      icon: siteConfig.logo,
+      apple: siteConfig.logo,
+      shortcut: "/favicon.png",
+    },
     metadataBase: new URL(siteConfig.url),
     authors: [
       {

@@ -44,7 +44,11 @@ const Section = forwardRef<HTMLElement, SectionProps>(
     });
 
     return (
-      <section id={id || sectionId} ref={ref}>
+      <section
+        id={id || sectionId}
+        ref={ref}
+        className={cn(id || sectionId ? "scroll-mt-20" : undefined)}
+      >
         <div className={cn("sm:py-20 py-12", className)}>
           {(title || subtitle || description) && (
             <div className={cn(alignmentClass, "space-y-4 pb-10 mx-auto")}>

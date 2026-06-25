@@ -32,7 +32,7 @@ export function Hero() {
 
   return (
     <Section id="hero" className="min-h-[100vh] w-full overflow-hidden">
-      <main className="mx-auto pt-16 sm:pt-24 md:pt-32 text-center relative px-4">
+      <div className="mx-auto pt-16 sm:pt-24 md:pt-32 text-center relative px-4">
         <div className="relative">
           <motion.div
             initial={{ scale: 4.5, height: "80vh" }}
@@ -77,7 +77,7 @@ export function Hero() {
           </motion.p>
           <div
             id="download"
-            className="flex justify-center gap-4 mb-16 flex-wrap"
+            className="flex justify-center gap-4 mb-16 flex-wrap scroll-mt-20"
           >
             <motion.div
               initial={{ opacity: 0 }}
@@ -99,7 +99,7 @@ export function Hero() {
             </motion.div>
           </div>
         </div>
-        <div className="flex flex-nowrap items-center justify-center gap-4 sm:gap-8 h-auto sm:h-[500px] select-none">
+        <div className="flex flex-nowrap items-center justify-start sm:justify-center gap-4 sm:gap-8 h-auto sm:h-[500px] select-none overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 sm:px-0">
           {siteConfig.heroImages.map((src, index) => (
             <motion.img
               key={src}
@@ -112,11 +112,11 @@ export function Hero() {
               animate={{ opacity: 1, x: 0 }}
               style={{ y: yTransforms[index] }}
               transition={{ duration: 1, delay: 1 }}
-              className="w-40 sm:w-64 h-[333px] sm:h-[500px] flex-shrink-0 object-contain"
+              className="w-40 sm:w-64 h-[333px] sm:h-[500px] flex-shrink-0 object-contain snap-center"
             />
           ))}
         </div>
-      </main>
+      </div>
     </Section>
   );
 }

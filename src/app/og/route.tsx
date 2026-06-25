@@ -2,15 +2,26 @@ import { siteConfig } from "@/lib/config";
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 
+/* eslint-disable @next/next/no-img-element */
+
 export const runtime = "edge";
+
+async function loadInterSemiBold() {
+  const response = await fetch(
+    "https://cdn.jsdelivr.net/fontsource/fonts/inter@5.0.18/latin-600-normal.ttf"
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to load Inter font");
+  }
+
+  return response.arrayBuffer();
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl;
   const postTitle = searchParams.get("title") || siteConfig.description;
-  const font = fetch(
-    new URL("../../assets/fonts/Inter-SemiBold.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const fontData = await font;
+  const fontData = await loadInterSemiBold();
 
   return new ImageResponse(
     (
@@ -22,20 +33,19 @@ export async function GET(req: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#fff",
-          backgroundImage: `url(${siteConfig.url}/og.png)`,
+          background: "linear-gradient(180deg, #ffffff 0%, #f4f4f5 100%)",
+          fontFamily: "Inter",
           fontSize: 32,
           fontWeight: 600,
         }}
       >
         <div
           style={{
-            position: "relative",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            top: "125px",
+            padding: "48px",
           }}
         >
           <img
@@ -53,12 +63,13 @@ export async function GET(req: NextRequest) {
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              fontSize: "64px",
-              fontWeight: "600",
+              fontSize: "52px",
+              fontWeight: 600,
               marginTop: "24px",
               textAlign: "center",
-              width: "80%",
+              width: "85%",
               letterSpacing: "-0.05em",
+              color: "#18181b",
             }}
           >
             {postTitle}
@@ -66,10 +77,10 @@ export async function GET(req: NextRequest) {
           <div
             style={{
               display: "flex",
-              fontSize: "16px",
-              fontWeight: "500",
+              fontSize: "20px",
+              fontWeight: 500,
               marginTop: "16px",
-              color: "#808080",
+              color: "#71717a",
             }}
           >
             {siteConfig.name}
@@ -79,15 +90,13 @@ export async function GET(req: NextRequest) {
         <img
           src={`${siteConfig.url}/screenshots/dashboard.png`}
           alt={`${siteConfig.name} dashboard`}
-          width={900}
+          width={720}
           style={{
-            position: "relative",
-            bottom: -160,
-            aspectRatio: "auto",
-            border: "4px solid lightgray",
-            background: "lightgray",
+            position: "absolute",
+            bottom: -80,
+            border: "4px solid #e4e4e7",
+            background: "#f4f4f5",
             borderRadius: 20,
-            zIndex: 1,
           }}
         />
       </div>
@@ -100,6 +109,7 @@ export async function GET(req: NextRequest) {
           name: "Inter",
           data: fontData,
           style: "normal",
+          weight: 600,
         },
       ],
     }

@@ -9,7 +9,7 @@ export const testimonials = [
   },
   {
     id: 2,
-    text: "My kids each have their own profile with separate progress. It&apos;s perfect for our whole family learning together.",
+    text: "My kids each have their own profile with separate progress. It's perfect for our whole family learning together.",
     name: "Bob Brown",
     role: "Project Manager, Tech Innovations",
     image:
@@ -17,7 +17,7 @@ export const testimonials = [
   },
   {
     id: 3,
-    text: "The daily streak feature keeps me motivated. I haven&apos;t missed a day of practice in three weeks!",
+    text: "The daily streak feature keeps me motivated. I haven't missed a day of practice in three weeks!",
     name: "Charlie Davis",
     role: "Entrepreneur",
     image:
@@ -25,7 +25,7 @@ export const testimonials = [
   },
   {
     id: 4,
-    text: "Flashcards and word games make vocabulary stick. I&apos;ve learned more in a month than I did in a year of textbooks.",
+    text: "Flashcards and word games make vocabulary stick. I've learned more in a month than I did in a year of textbooks.",
     name: "Diana Evans",
     role: "Marketing Director",
     image:
@@ -57,7 +57,7 @@ export const testimonials = [
   },
   {
     id: 8,
-    text: "The daily crossword puzzle is my favorite way to review vocabulary. It&apos;s challenging and fun at the same time.",
+    text: "The daily crossword puzzle is my favorite way to review vocabulary. It's challenging and fun at the same time.",
     name: "Hannah Irving",
     role: "Digital Nomad",
     image:
@@ -89,7 +89,7 @@ export const testimonials = [
   },
   {
     id: 12,
-    text: "Setting daily learning goals has transformed my routine. Fifteen minutes a day and I&apos;m already conversational.",
+    text: "Setting daily learning goals has transformed my routine. Fifteen minutes a day and I'm already conversational.",
     name: "Laura Martinez",
     role: "Urban Planner",
     image:
@@ -113,7 +113,7 @@ export const testimonials = [
   },
   {
     id: 15,
-    text: "Best of all, it&apos;s completely free. No subscriptions, no hidden fees — just great language learning.",
+    text: "Best of all, it's completely free. No subscriptions, no hidden fees — just great language learning.",
     name: "Oscar Parker",
     role: "Remote Worker",
     image:
@@ -169,7 +169,7 @@ export const testimonials = [
   },
   {
     id: 22,
-    text: "Zema Fidelat combines lessons, games, and puzzles in one beautiful app. It&apos;s my go-to for daily practice.",
+    text: "Zema Fidelat combines lessons, games, and puzzles in one beautiful app. It's my go-to for daily practice.",
     name: "Victoria White",
     role: "Business Analyst",
     image:
@@ -193,7 +193,7 @@ export const testimonials = [
   },
   {
     id: 25,
-    text: "Free, fun, and effective — Zema Fidelat checks every box. I&apos;ve recommended it to everyone I know.",
+    text: "Free, fun, and effective — Zema Fidelat checks every box. I've recommended it to everyone I know.",
     name: "Yannick Zimmerman",
     role: "Project Manager",
     image:

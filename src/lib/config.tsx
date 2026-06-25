@@ -16,12 +16,12 @@ const APK_DOWNLOAD_URL =
 export const siteConfig = {
   name: "Zema Fidelat",
   logo: "/logo.png",
-  description: "Learn languages step by step—free on iOS and Android.",
-  heroTagline: "Learn languages step by step—free on iOS and Android.",
+  description: "Learn languages step by step—free on Android.",
+  heroTagline: "Learn languages step by step—free on Android.",
   heroDescription:
     "Master a new language with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and Fidel Make. Set goals, earn XP, build streaks, and unlock badges—all for free.",
   cta: "Download APK",
-  url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Language Learning",
     "Flashcards",
@@ -33,14 +33,22 @@ export const siteConfig = {
     "Free Language App",
   ],
   links: {
-    email: "support@zemafidelat.com",
+    email: "hello@zemafidelat.com",
     download: APK_DOWNLOAD_URL,
-    appStore: "#",
-    playStore: "#",
-    twitter: "#",
-    discord: "#",
-    github: "#",
-    instagram: "#",
+  },
+  navLinks: [
+    { href: "#features", text: "Features" },
+    { href: "#faq", text: "FAQ" },
+    { href: APK_DOWNLOAD_URL, text: "Download", external: true },
+    { href: "mailto:hello@zemafidelat.com", text: "Contact" },
+  ],
+  featureHighlightSection: {
+    title: "How it works",
+    subtitle: "Powerful features",
+  },
+  bentoSection: {
+    title: "App highlights",
+    subtitle: "It does a lot of things",
   },
   heroImages: [
     "/screenshots/dashboard.png",
@@ -257,17 +265,6 @@ export const siteConfig = {
           progress over time.
         </span>
       ),
-    },
-  ],
-  footer: [
-    {
-      id: 1,
-      menu: [
-        { href: "#features", text: "Features" },
-        { href: "#faq", text: "FAQ" },
-        { href: APK_DOWNLOAD_URL, text: "Download" },
-        { href: "#", text: "Contact" },
-      ],
     },
   ],
   testimonials,

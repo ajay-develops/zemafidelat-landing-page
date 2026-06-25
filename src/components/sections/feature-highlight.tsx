@@ -132,8 +132,8 @@ export function FeatureHighlight() {
   return (
     <Section
       id="feature-highlight"
-      title="Features"
-      subtitle="Powerful features"
+      title={siteConfig.featureHighlightSection.title}
+      subtitle={siteConfig.featureHighlightSection.subtitle}
       className="container px-10 mx-auto max-w-[var(--max-container-width)]"
       ref={containerRef}
     >
