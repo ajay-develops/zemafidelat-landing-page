@@ -10,8 +10,7 @@ import { testimonials } from "./testimonials";
 
 export const BLUR_FADE_DELAY = 0.15;
 
-const APK_DOWNLOAD_URL =
-  "https://av6uliyxue.ufs.sh/f/c9QFw8tCFbvKsqRp0F3PSF6jDe59pXtAVbaUJf0yTzEW3lBk";
+const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
   name: "Zema Fidelat",
@@ -34,12 +33,12 @@ export const siteConfig = {
   ],
   links: {
     email: "hello@zemafidelat.com",
-    download: APK_DOWNLOAD_URL,
+    download: apkDownloadUrl,
   },
   navLinks: [
     { href: "#features", text: "Features" },
     { href: "#faq", text: "FAQ" },
-    { href: APK_DOWNLOAD_URL, text: "Download", external: true },
+    { href: apkDownloadUrl, text: "Download", external: true },
     { href: "mailto:hello@zemafidelat.com", text: "Contact" },
   ],
   featureHighlightSection: {
@@ -196,7 +195,7 @@ export const siteConfig = {
   pricing: [
     {
       name: "Free Forever",
-      href: APK_DOWNLOAD_URL,
+      href: apkDownloadUrl,
       price: "$0",
       period: "forever",
       yearlyPrice: "$0",

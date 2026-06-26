@@ -24,6 +24,8 @@ cp .env.example .env.local
 
 `NEXT_PUBLIC_APP_URL` should be `https://zemafidelat.com` in production.
 
+Set `NEXT_PUBLIC_APK_DOWNLOAD_URL` to your direct APK download link (e.g. a Dropbox URL with `dl=1`).
+
 ## Screenshots
 
 App screenshots in `public/screenshots/` are generated from source images in `public/games/` and `public/other features/`:
@@ -51,4 +53,7 @@ pnpm start
 
 ## Deploy on Vercel
 
-Set `NEXT_PUBLIC_APP_URL=https://zemafidelat.com` in your Vercel project environment variables before deploying.
+Set these in your Vercel project environment variables before deploying:
+
+- `NEXT_PUBLIC_APP_URL=https://zemafidelat.com`
+- `NEXT_PUBLIC_APK_DOWNLOAD_URL` — direct link to the APK file
