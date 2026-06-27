@@ -7,9 +7,9 @@ export function Footer() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-2">
           <Icons.logo className="h-8 w-8" />
-          <h2 className="text-lg font-bold text-foreground">
+          <p className="text-lg font-bold text-foreground">
             {siteConfig.name}
-          </h2>
+          </p>
         </div>
       </div>
       <div className="flex flex-col justify-between gap-y-5 md:flex-row md:items-center">

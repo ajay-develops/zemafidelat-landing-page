@@ -33,7 +33,7 @@ export function Pricing() {
           style={{ opacity, y }}
           className="bg-muted/60 p-6 sm:p-8 rounded-3xl grid grid-rows-[auto_auto_1fr_auto] w-full"
         >
-          <h2 className="text-2xl font-semibold mb-4">{plan.name}</h2>
+          <h3 className="text-2xl font-semibold mb-4">{plan.name}</h3>
           <div className="text-4xl font-bold text-primary mb-2">
             {plan.price}
             <span className="text-sm font-normal text-muted-foreground">

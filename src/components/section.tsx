@@ -53,16 +53,16 @@ const Section = forwardRef<HTMLElement, SectionProps>(
           {(title || subtitle || description) && (
             <div className={cn(alignmentClass, "space-y-4 pb-10 mx-auto")}>
               {title && (
-                <motion.h2
+                <motion.p
                   className="text-sm text-primary text-balance font-mono font-semibold tracking-wider uppercase"
                   style={{ opacity, y }}
                 >
                   {title}
-                </motion.h2>
+                </motion.p>
               )}
 
               {subtitle && (
-                <motion.h3
+                <motion.h2
                   className={cn(
                     "mx-0 mt-4 max-w-lg text-5xl text-balance font-bold sm:max-w-none sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tighter text-foreground lowercase",
                     align === "center"
@@ -74,7 +74,7 @@ const Section = forwardRef<HTMLElement, SectionProps>(
                   style={{ opacity, y }}
                 >
                   {subtitle}
-                </motion.h3>
+                </motion.h2>
               )}
               {description && (
                 <motion.p

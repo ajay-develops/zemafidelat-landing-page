@@ -68,24 +68,24 @@ function Feature({
         variants={textVariants}
       >
         <div className="flex flex-col gap-4 max-w-sm text-center lg:text-left mx-auto">
-          <motion.h2
+          <motion.h3
             className="text-4xl md:text-5xl lg:text-6xl font-bold"
             variants={itemVariants}
           >
             {title}
-          </motion.h2>
+          </motion.h3>
           <motion.p className="text-xl md:text-2xl" variants={itemVariants}>
             {description}
           </motion.p>
           <motion.div variants={itemVariants}>
-              <Link
-                href={siteConfig.links.download}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
+            <Link
+              href={siteConfig.links.download}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
                 buttonVariants({ variant: "default", size: "lg" }),
                 "text-white rounded-full group text-lg",
-                "mx-auto lg:mx-0"
+                "mx-auto lg:mx-0 inline-flex"
               )}
             >
               {siteConfig.cta}
@@ -125,6 +125,7 @@ export function FeatureHighlight() {
       }
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [features.length]);

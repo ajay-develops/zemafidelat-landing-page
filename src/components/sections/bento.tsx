@@ -65,9 +65,9 @@ export function BentoGrid() {
             )}
           >
             <div className="flex flex-col">
-              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-foreground">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 text-foreground">
                 {bentoItem.title}
-              </h2>
+              </h3>
               <p className="text-sm sm:text-base text-foreground mb-4">
                 {bentoItem.content}
               </p>

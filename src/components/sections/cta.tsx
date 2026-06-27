@@ -142,9 +142,9 @@ export function CTA() {
               />
             </div>
             <div className="z-10 mt-4 flex flex-col items-center text-center text-black dark:text-white">
-              <h1 className="text-3xl font-bold lg:text-4xl">
+              <h2 className="text-3xl font-bold lg:text-4xl">
                 Start learning a new language today.
-              </h1>
+              </h2>
               <p className="mt-2">
                 Free Android APK. No account required to begin.
               </p>

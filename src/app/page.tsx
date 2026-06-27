@@ -10,22 +10,36 @@ import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Pricing } from "@/components/sections/pricing";
 import { Testimonials } from "@/components/sections/testimonials";
+import {
+  getHomepageMetadata,
+  getStructuredDataScript,
+} from "@/lib/structured-data";
+import { constructMetadata } from "@/lib/utils";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata(getHomepageMetadata());
 
 export default function Home() {
   return (
-    <main className="relative">
-      <Header />
-      <Hero />
-      <FeatureScroll />
-      <FeatureHighlight />
-      <BentoGrid />
-      <Benefits />
-      <Features />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
-      <Footer />
-    </main>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: getStructuredDataScript() }}
+      />
+      <main className="relative">
+        <Header />
+        <Hero />
+        <FeatureScroll />
+        <FeatureHighlight />
+        <BentoGrid />
+        <Benefits />
+        <Features />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <CTA />
+        <Footer />
+      </main>
+    </>
   );
 }

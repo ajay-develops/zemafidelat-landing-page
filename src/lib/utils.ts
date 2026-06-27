@@ -15,13 +15,17 @@ export function constructMetadata({
   title = siteConfig.name,
   description = siteConfig.description,
   image = absoluteUrl("/og"),
+  canonicalPath = "/",
   ...props
 }: {
   title?: string;
   description?: string;
   image?: string;
+  canonicalPath?: string;
   [key: string]: Metadata[keyof Metadata];
 }): Metadata {
+  const canonicalUrl = absoluteUrl(canonicalPath);
+
   return {
     title: {
       template: "%s | " + siteConfig.name,
@@ -29,10 +33,21 @@ export function constructMetadata({
     },
     description: description || siteConfig.description,
     keywords: siteConfig.keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       title,
       description,
-      url: siteConfig.url,
+      url: canonicalUrl,
       siteName: siteConfig.name,
       images: [
         {

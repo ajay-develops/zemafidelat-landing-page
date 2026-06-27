@@ -215,6 +215,8 @@ export const siteConfig = {
   faqs: [
     {
       question: "Is Zema Fidelat really free?",
+      answerText:
+        "Yes! Zema Fidelat is completely free to download and use. There are no subscriptions, in-app purchases, or hidden fees. Every feature—lessons, games, crosswords, profiles, and more—is included at no cost.",
       answer: (
         <span>
           Yes! Zema Fidelat is completely free to download and use. There are no
@@ -225,6 +227,8 @@ export const siteConfig = {
     },
     {
       question: "Can I use the app without signing up?",
+      answerText:
+        "Absolutely. You can use Zema Fidelat as a guest without creating an account. When you're ready, sign up to save your progress across devices and unlock multiple learner profiles.",
       answer: (
         <span>
           Absolutely. You can use Zema Fidelat as a guest without creating an
@@ -235,6 +239,8 @@ export const siteConfig = {
     },
     {
       question: "How do multiple profiles work?",
+      answerText:
+        "One account can hold several learner profiles—perfect for families or anyone studying more than one language. Each profile tracks its own progress, goals, streaks, and badges independently.",
       answer: (
         <span>
           One account can hold several learner profiles—perfect for families or
@@ -245,6 +251,8 @@ export const siteConfig = {
     },
     {
       question: "What learning activities are included?",
+      answerText:
+        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and Fidel Make, where you fill in letters to match the meaning of an image. A dashboard keeps everything organized.",
       answer: (
         <span>
           Each lesson includes flashcards, letter tracing, and word selection
@@ -256,6 +264,8 @@ export const siteConfig = {
     },
     {
       question: "How do streaks, XP, and badges work?",
+      answerText:
+        "Complete lessons and games to earn XP. Practice daily to build your streak, and hit milestones to unlock achievement badges. Set daily learning goals on your dashboard to stay motivated and track your progress over time.",
       answer: (
         <span>
           Complete lessons and games to earn XP. Practice daily to build your

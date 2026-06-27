@@ -57,3 +57,18 @@ Set these in your Vercel project environment variables before deploying:
 
 - `NEXT_PUBLIC_APP_URL=https://zemafidelat.com`
 - `NEXT_PUBLIC_APK_DOWNLOAD_URL` — direct link to the APK file
+
+## SEO
+
+The site ships with crawl-friendly defaults:
+
+- `/robots.txt` — allows indexing and points to the sitemap
+- `/sitemap.xml` — canonical homepage URL
+- JSON-LD structured data (WebSite, MobileApplication, FAQPage)
+- Semantic headings, JSON-LD, and canonical URLs for search engines
+
+After deploying, verify:
+
+1. **View page source** — confirm `<h1>`, section `<h2>` headings, and `application/ld+json` are present
+2. **[Google Rich Results Test](https://search.google.com/test/rich-results)** — validate FAQ and app schema
+3. **[Google Search Console](https://search.google.com/search-console)** — submit `https://zemafidelat.com/sitemap.xml`
