@@ -1,3 +1,4 @@
+import { ShowcaseProvider } from "@/components/showcase/showcase-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -49,8 +50,13 @@ export default function RootLayout({
           enableSystem={false}
         >
           {children}
-          <ThemeToggle />
-          <TailwindIndicator />
+          {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
+          <div data-showcase-hide>
+            <ThemeToggle />
+          </div>
+          <div data-showcase-hide>
+            <TailwindIndicator />
+          </div>
         </ThemeProvider>
       </body>
     </html>

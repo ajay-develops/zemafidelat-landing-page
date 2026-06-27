@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
+
 import { Section } from "@/components/section";
+import { SymmetricScrollCard } from "@/components/symmetric-scroll-card";
 import { siteConfig } from "@/lib/config";
 
 export function Testimonials() {
@@ -9,14 +12,14 @@ export function Testimonials() {
       subtitle="What our users say"
       className="container px-10 mx-auto"
     >
-      <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 py-10 overflow-visible">
         {siteConfig.testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="bg-muted/60 overflow-hidden rounded-3xl flex flex-col h-fit"
-            style={{
-              gridRow: `span ${Math.floor(testimonial.text.length / 50) + 1}`,
-            }}
+          <SymmetricScrollCard
+            key={testimonial.id}
+            index={index}
+            columns={4}
+            className="h-full"
+            contentClassName="bg-muted/60 overflow-hidden rounded-3xl flex flex-col h-full"
           >
             <div className="px-4 py-5 sm:p-6 flex-grow">
               <div className="flex items-center mb-4">
@@ -36,7 +39,7 @@ export function Testimonials() {
               </div>
               <p className="text-foreground">{testimonial.text}</p>
             </div>
-          </div>
+          </SymmetricScrollCard>
         ))}
       </div>
     </Section>

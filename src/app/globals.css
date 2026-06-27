@@ -184,3 +184,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+.showcase-mode [data-showcase-hide] {
+  display: none;
+}
+
+.showcase-overlay {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  max-width: min(24rem, calc(100vw - 3rem));
+  padding: 0.625rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--background) 92%, transparent);
+  backdrop-filter: blur(8px);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.12);
+  pointer-events: none;
+}
