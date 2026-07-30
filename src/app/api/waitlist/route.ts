@@ -1,11 +1,8 @@
+import { isSupabaseConfigured, getSupabaseAdmin } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/**
- * Part 1 stub: validates the payload so the waitlist UI can ship.
- * Part 2 will persist emails to Supabase.
- */
 export async function POST(request: Request) {
   let body: unknown;
 
@@ -30,11 +27,46 @@ export async function POST(request: Request) {
     );
   }
 
-  return NextResponse.json(
-    {
-      error:
-        "Waitlist storage is still being set up. Please try again shortly.",
-    },
-    { status: 503 }
-  );
+  if (!isSupabaseConfigured()) {
+    return NextResponse.json(
+      {
+        error:
+          "Waitlist storage is still being set up. Please try again shortly.",
+      },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const supabase = getSupabaseAdmin();
+    const { error } = await supabase.from("waitlist").insert({ email });
+
+    if (error) {
+      // Unique violation — treat as success so we don't leak who signed up.
+      if (error.code === "23505") {
+        return NextResponse.json({
+          ok: true,
+          message:
+            "You're already on the list — we'll email you when the APK is ready.",
+        });
+      }
+
+      console.error("Waitlist insert failed:", error.message);
+      return NextResponse.json(
+        { error: "Something went wrong. Please try again in a moment." },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({
+      ok: true,
+      message: "You're on the list — we'll email you when the APK is ready.",
+    });
+  } catch (error) {
+    console.error("Waitlist unexpected error:", error);
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again in a moment." },
+      { status: 500 }
+    );
+  }
 }
