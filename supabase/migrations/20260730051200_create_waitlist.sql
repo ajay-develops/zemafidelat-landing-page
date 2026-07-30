@@ -1,7 +1,7 @@
 -- Waitlist signups for the Zema Fidelat APK launch.
 create table if not exists public.waitlist (
   id uuid primary key default gen_random_uuid(),
-  name text not null,
+  name text,
   email text not null,
   created_at timestamptz not null default now(),
   constraint waitlist_email_key unique (email),
@@ -9,7 +9,11 @@ create table if not exists public.waitlist (
     email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
   ),
   constraint waitlist_name_length check (
-    char_length(btrim(name)) >= 2 and char_length(name) <= 80
+    name is null
+    or (
+      char_length(btrim(name)) >= 2
+      and char_length(name) <= 80
+    )
   )
 );
 

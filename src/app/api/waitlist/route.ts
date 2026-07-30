@@ -29,9 +29,10 @@ export async function POST(request: Request) {
       ? (body as { name: string }).name.trim().replace(/\s+/g, " ")
       : "";
 
-  if (!name || name.length < 2) {
+  // Name is optional; reject only if provided but invalid.
+  if (name.length === 1) {
     return NextResponse.json(
-      { error: "Please enter your name." },
+      { error: "Please enter a fuller name, or leave it blank." },
       { status: 400 }
     );
   }
@@ -62,7 +63,10 @@ export async function POST(request: Request) {
 
   try {
     const supabase = getSupabaseAdmin();
-    const { error } = await supabase.from("waitlist").insert({ email, name });
+    const { error } = await supabase.from("waitlist").insert({
+      email,
+      name: name || null,
+    });
 
     if (error) {
       // Unique violation — treat as success so we don't leak who signed up.

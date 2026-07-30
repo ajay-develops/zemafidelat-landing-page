@@ -44,9 +44,9 @@ export function WaitlistForm({
     const trimmedName = name.trim().replace(/\s+/g, " ");
     const trimmedEmail = email.trim().toLowerCase();
 
-    if (trimmedName.length < 2) {
+    if (trimmedName.length === 1) {
       setStatus("error");
-      setMessage("Please enter your name.");
+      setMessage("Please enter a fuller name, or leave it blank.");
       return;
     }
 
@@ -122,21 +122,20 @@ export function WaitlistForm({
       ) : null}
       <form onSubmit={handleSubmit} className="flex w-full flex-col gap-2">
         <label htmlFor="waitlist-name" className="sr-only">
-          Name
+          Name (optional)
         </label>
         <Input
           id="waitlist-name"
           type="text"
           name="name"
           autoComplete="name"
-          placeholder="Your name"
+          placeholder="Your name (optional)"
           value={name}
           onChange={(event) => {
             setName(event.target.value);
             clearError();
           }}
           disabled={status === "loading"}
-          required
           maxLength={80}
           className={cn(
             "h-11 rounded-full px-4 bg-background/80",
