@@ -2,6 +2,7 @@ import { isSupabaseConfigured, getSupabaseAdmin } from "@/lib/supabase/admin";
 import { NextResponse } from "next/server";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_NAME_LENGTH = 80;
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -19,6 +20,28 @@ export async function POST(request: Request) {
     typeof (body as { email: unknown }).email === "string"
       ? (body as { email: string }).email.trim().toLowerCase()
       : "";
+
+  const name =
+    typeof body === "object" &&
+    body !== null &&
+    "name" in body &&
+    typeof (body as { name: unknown }).name === "string"
+      ? (body as { name: string }).name.trim().replace(/\s+/g, " ")
+      : "";
+
+  if (!name || name.length < 2) {
+    return NextResponse.json(
+      { error: "Please enter your name." },
+      { status: 400 }
+    );
+  }
+
+  if (name.length > MAX_NAME_LENGTH) {
+    return NextResponse.json(
+      { error: `Name must be ${MAX_NAME_LENGTH} characters or fewer.` },
+      { status: 400 }
+    );
+  }
 
   if (!EMAIL_PATTERN.test(email)) {
     return NextResponse.json(
@@ -39,7 +62,7 @@ export async function POST(request: Request) {
 
   try {
     const supabase = getSupabaseAdmin();
-    const { error } = await supabase.from("waitlist").insert({ email });
+    const { error } = await supabase.from("waitlist").insert({ email, name });
 
     if (error) {
       // Unique violation — treat as success so we don't leak who signed up.

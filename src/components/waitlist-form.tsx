@@ -24,18 +24,33 @@ export function WaitlistForm({
   className,
   inputClassName,
   buttonClassName,
-  variant = "default",
   showHint = true,
 }: WaitlistFormProps) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
+  function clearError() {
+    if (status === "error") {
+      setStatus("idle");
+      setMessage("");
+    }
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const trimmed = email.trim().toLowerCase();
-    if (!EMAIL_PATTERN.test(trimmed)) {
+    const trimmedName = name.trim().replace(/\s+/g, " ");
+    const trimmedEmail = email.trim().toLowerCase();
+
+    if (trimmedName.length < 2) {
+      setStatus("error");
+      setMessage("Please enter your name.");
+      return;
+    }
+
+    if (!EMAIL_PATTERN.test(trimmedEmail)) {
       setStatus("error");
       setMessage("Please enter a valid email address.");
       return;
@@ -48,7 +63,7 @@ export function WaitlistForm({
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: trimmed }),
+        body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
       });
 
       const data = (await response.json().catch(() => null)) as {
@@ -69,6 +84,7 @@ export function WaitlistForm({
         data?.message ??
           "You're on the list — we'll email you when the APK is ready."
       );
+      setName("");
       setEmail("");
     } catch {
       setStatus("error");
@@ -104,56 +120,71 @@ export function WaitlistForm({
           {siteConfig.waitlistHint.replace(/^APK coming soon — /, "")}
         </p>
       ) : null}
-      <form
-        onSubmit={handleSubmit}
-        className={cn(
-          "flex w-full gap-2",
-          variant === "default" ? "flex-col sm:flex-row" : "flex-col sm:flex-row"
-        )}
-      >
-        <label htmlFor="waitlist-email" className="sr-only">
-          Email address
+      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-2">
+        <label htmlFor="waitlist-name" className="sr-only">
+          Name
         </label>
         <Input
-          id="waitlist-email"
-          type="email"
-          name="email"
-          autoComplete="email"
-          inputMode="email"
-          placeholder="you@example.com"
-          value={email}
+          id="waitlist-name"
+          type="text"
+          name="name"
+          autoComplete="name"
+          placeholder="Your name"
+          value={name}
           onChange={(event) => {
-            setEmail(event.target.value);
-            if (status === "error") {
-              setStatus("idle");
-              setMessage("");
-            }
+            setName(event.target.value);
+            clearError();
           }}
           disabled={status === "loading"}
           required
+          maxLength={80}
           className={cn(
             "h-11 rounded-full px-4 bg-background/80",
             inputClassName
           )}
         />
-        <Button
-          type="submit"
-          size="lg"
-          disabled={status === "loading"}
-          className={cn(
-            "h-11 shrink-0 rounded-full px-6 text-white",
-            buttonClassName
-          )}
-        >
-          {status === "loading" ? (
-            <>
-              <Loader2Icon className="mr-2 size-4 animate-spin" />
-              Joining…
-            </>
-          ) : (
-            siteConfig.cta
-          )}
-        </Button>
+        <div className="flex w-full flex-col gap-2 sm:flex-row">
+          <label htmlFor="waitlist-email" className="sr-only">
+            Email address
+          </label>
+          <Input
+            id="waitlist-email"
+            type="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              clearError();
+            }}
+            disabled={status === "loading"}
+            required
+            className={cn(
+              "h-11 rounded-full px-4 bg-background/80",
+              inputClassName
+            )}
+          />
+          <Button
+            type="submit"
+            size="lg"
+            disabled={status === "loading"}
+            className={cn(
+              "h-11 shrink-0 rounded-full px-6 text-white",
+              buttonClassName
+            )}
+          >
+            {status === "loading" ? (
+              <>
+                <Loader2Icon className="mr-2 size-4 animate-spin" />
+                Joining…
+              </>
+            ) : (
+              siteConfig.cta
+            )}
+          </Button>
+        </div>
       </form>
       {status === "error" && message ? (
         <p
