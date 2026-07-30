@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const headerNavLinks = siteConfig.navLinks.filter(
-  (link) => link.text !== "Download"
+  (link) => link.text !== "Waitlist"
 );
 
 export function Header() {
@@ -76,17 +76,15 @@ export function Header() {
                 {link.text}
               </a>
             ))}
-            <Link
-              href={siteConfig.links.download}
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href={siteConfig.links.waitlist}
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "h-8 text-white rounded-full group"
               )}
             >
-              {siteConfig.cta}
-            </Link>
+              {siteConfig.ctaSecondary}
+            </a>
           </nav>
           <div className="mt-2 cursor-pointer block lg:hidden">
             <MobileDrawer />

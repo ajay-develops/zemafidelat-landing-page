@@ -24,9 +24,7 @@ export function getStructuredData() {
     description: siteConfig.heroDescription,
   };
 
-  if (siteConfig.links.download) {
-    mobileApplication.downloadUrl = siteConfig.links.download;
-  }
+  // downloadUrl intentionally omitted while the APK waitlist is active.
 
   const faqPage = {
     "@type": "FAQPage",

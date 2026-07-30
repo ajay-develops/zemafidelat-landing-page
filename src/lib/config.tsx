@@ -10,6 +10,7 @@ import { testimonials } from "./testimonials";
 
 export const BLUR_FADE_DELAY = 0.15;
 
+// Kept for when the APK is ready to ship again.
 const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
@@ -19,7 +20,9 @@ export const siteConfig = {
   heroTagline: "Learn languages step by step—free on Android.",
   heroDescription:
     "Master a new language with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and Fidel Make. Set goals, earn XP, build streaks, and unlock badges—all for free.",
-  cta: "Download APK",
+  cta: "Join the waitlist",
+  ctaSecondary: "Coming soon",
+  waitlistHint: "APK coming soon — leave your email and we'll notify you.",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Language Learning",
@@ -34,11 +37,12 @@ export const siteConfig = {
   links: {
     email: "hello@zemafidelat.com",
     download: apkDownloadUrl,
+    waitlist: "#download",
   },
   navLinks: [
     { href: "#features", text: "Features" },
     { href: "#faq", text: "FAQ" },
-    { href: apkDownloadUrl, text: "Download", external: true },
+    { href: "#download", text: "Waitlist" },
     { href: "mailto:hello@zemafidelat.com", text: "Contact" },
   ],
   featureHighlightSection: {
@@ -195,7 +199,7 @@ export const siteConfig = {
   pricing: [
     {
       name: "Free Forever",
-      href: apkDownloadUrl,
+      href: "#download",
       price: "$0",
       period: "forever",
       yearlyPrice: "$0",
@@ -208,7 +212,7 @@ export const siteConfig = {
         "Guest mode—no account required to start",
       ],
       description: "Everything included. No subscriptions, no hidden fees.",
-      buttonText: "Download APK",
+      buttonText: "Join the waitlist",
       isPopular: true,
     },
   ],
