@@ -21,7 +21,7 @@ export function Footer() {
             >
               <a
                 href={link.href}
-                {...(link.external
+                {...("external" in link && link.external
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
               >

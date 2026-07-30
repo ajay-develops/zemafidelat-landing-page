@@ -2,13 +2,10 @@
 
 import { Icons } from "@/components/icons";
 import { Section } from "@/components/section";
-import { buttonVariants } from "@/components/ui/button";
+import { WaitlistForm } from "@/components/waitlist-form";
 import { easeInOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 
 const heroAnimations = [
   { x: -200, y: 100 },
@@ -75,29 +72,15 @@ export function Hero() {
           >
             {siteConfig.heroDescription}
           </motion.p>
-          <div
+          <motion.div
             id="download"
-            className="flex justify-center gap-4 mb-16 flex-wrap scroll-mt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="flex justify-center mb-16 scroll-mt-20"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1 }}
-            >
-              <Link
-                href={siteConfig.links.download}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: "default", size: "lg" }),
-                  "text-white rounded-full group px-8"
-                )}
-              >
-                {siteConfig.cta}
-                <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
-          </div>
+            <WaitlistForm />
+          </motion.div>
         </div>
         <div className="flex flex-nowrap items-center justify-start sm:justify-center gap-4 sm:gap-8 h-auto sm:h-[500px] select-none overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 sm:px-0">
           {siteConfig.heroImages.map((src, index) => (

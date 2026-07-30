@@ -1,10 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Marquee from "@/components/ui/marquee";
-import { buttonVariants } from "@/components/ui/button";
+import { WaitlistForm } from "@/components/waitlist-form";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 
 const reviews = [
   {
@@ -141,28 +139,20 @@ export function CTA() {
                 className="size-16 lg:size-24 object-contain"
               />
             </div>
-            <div className="z-10 mt-4 flex flex-col items-center text-center text-black dark:text-white">
+            <div className="z-10 mt-4 flex w-full max-w-md flex-col items-center text-center text-black dark:text-white">
               <h2 className="text-3xl font-bold lg:text-4xl">
-                Start learning a new language today.
+                Be first when the APK drops.
               </h2>
-              <p className="mt-2">
-                Free Android APK. No account required to begin.
+              <p className="mt-2 mb-4">
+                {siteConfig.waitlistHint}
               </p>
-              <Link
-                href={siteConfig.links.download}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({
-                    size: "lg",
-                    variant: "outline",
-                  }),
-                  "group mt-4 rounded-[2rem] px-6"
-                )}
-              >
-                {siteConfig.cta}
-                <ChevronRight className="ml-1 size-4 transition-all duration-300 ease-out group-hover:translate-x-1" />
-              </Link>
+              <WaitlistForm
+                showHint={false}
+                variant="compact"
+                className="w-full"
+                inputClassName="bg-background/90"
+                buttonClassName="bg-primary"
+              />
             </div>
             <div className="absolute inset-x-0 bottom-0 h-full bg-gradient-to-b from-transparent to-white to-70% dark:to-black" />
           </div>

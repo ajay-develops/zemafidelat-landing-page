@@ -7,7 +7,6 @@ import { easeOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 interface FeatureProps {
@@ -78,18 +77,16 @@ function Feature({
             {description}
           </motion.p>
           <motion.div variants={itemVariants}>
-            <Link
-              href={siteConfig.links.download}
-              target="_blank"
-              rel="noopener noreferrer"
+            <a
+              href={siteConfig.links.waitlist}
               className={cn(
                 buttonVariants({ variant: "default", size: "lg" }),
                 "text-white rounded-full group text-lg",
                 "mx-auto lg:mx-0 inline-flex"
               )}
             >
-              {siteConfig.cta}
-            </Link>
+              {siteConfig.ctaSecondary}
+            </a>
           </motion.div>
         </div>
       </motion.div>

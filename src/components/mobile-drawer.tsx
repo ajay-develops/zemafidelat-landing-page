@@ -17,7 +17,7 @@ import { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
 
 const drawerNavLinks = siteConfig.navLinks.filter(
-  (link) => link.text !== "Download"
+  (link) => link.text !== "Waitlist"
 );
 
 export function MobileDrawer() {
@@ -54,18 +54,16 @@ export function MobileDrawer() {
           ))}
         </nav>
         <DrawerFooter>
-          <Link
-            href={siteConfig.links.download}
-            target="_blank"
-            rel="noopener noreferrer"
+          <a
+            href={siteConfig.links.waitlist}
             className={cn(
               buttonVariants({ variant: "default" }),
               "text-white rounded-full group"
             )}
             onClick={() => setOpen(false)}
           >
-            {siteConfig.cta}
-          </Link>
+            {siteConfig.ctaSecondary}
+          </a>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

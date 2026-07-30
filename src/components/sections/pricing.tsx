@@ -23,7 +23,7 @@ export function Pricing() {
 
   return (
     <Section
-      title="Free Download"
+      title="Free Forever"
       subtitle="100% free, no subscriptions"
       className="container px-10 mx-auto max-w-[var(--max-container-width)]"
       ref={ref}
@@ -58,7 +58,7 @@ export function Pricing() {
             className="rounded-full text-white"
             asChild
           >
-            <Link href={siteConfig.links.download} target="_blank" rel="noopener noreferrer">
+            <Link href={plan.href}>
               {plan.buttonText}
               <ChevronRightIcon className="w-4 h-4 ml-1" />
             </Link>
