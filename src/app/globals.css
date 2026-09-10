@@ -16,6 +16,7 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-strong: var(--primary-strong);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -113,6 +114,14 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(11.439% 0.0069 261.028);
   --primary: oklch(0.645 0.2154 16.4); /* #f43f5e */
+  /*
+   * Filled buttons only. #f43f5e is the brand colour and stays that
+   * everywhere it is ink — links, icons, the /10 badge tint. But white on it
+   * measures 3.67:1, under the 4.5:1 AA needs for the 14px labels the buttons
+   * actually use. One step darker clears it at 4.63:1 and reads as the same
+   * rose, so the brand does not move to satisfy a button.
+   */
+  --primary-strong: oklch(0.5858 0.222 17.6); /* #e11d48 */
   --primary-foreground: oklch(0.98 0.01 264.7); /* #f8fafc */
   --secondary: oklch(0.96 0.005 264.7); /* #f3f4f6 */
   --secondary-foreground: oklch(11.439% 0.0069 261.028); /* #18181b */
@@ -161,6 +170,7 @@
   --popover: oklch(0.1408 0.0044 285.8); /* #09090b */
   --popover-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
   --primary: oklch(0.645 0.2154 16.4); /* #f43f5e — shared with :root */
+  --primary-strong: oklch(0.5858 0.222 17.6); /* #e11d48 */
   --primary-foreground: oklch(0.2103 0.0059 285.9); /* #18181b */
   --secondary: oklch(0.2739 0.0055 286); /* #27272a */
   --secondary-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */

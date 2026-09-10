@@ -27,7 +27,6 @@ export function CTA() {
                 variant="compact"
                 className="w-full"
                 inputClassName="bg-background/90"
-                buttonClassName="bg-primary"
               />
             </div>
           </div>

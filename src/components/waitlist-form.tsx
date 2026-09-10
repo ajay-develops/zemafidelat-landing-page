@@ -115,7 +115,7 @@ export function WaitlistForm({
     <div className={cn("w-full max-w-md mx-auto", className)}>
       {showHint ? (
         <p className="mb-3 text-sm font-medium text-muted-foreground text-center">
-          <span className="text-foreground">{siteConfig.ctaSecondary}</span>
+          <span className="text-foreground">{siteConfig.waitlistBadge}</span>
           {" — "}
           {siteConfig.waitlistHint.replace(/^APK coming soon — /, "")}
         </p>

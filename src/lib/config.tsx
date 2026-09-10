@@ -20,7 +20,16 @@ export const siteConfig = {
   heroDescription:
     "Catch on and learn Tigrinya the easy way with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and the Daily Fidel Challenge. Set goals, earn XP, build streaks, and unlock badges—all for free.",
   cta: "Join the waitlist",
-  ctaSecondary: "Coming soon",
+  /*
+   * Button label. Same words as `cta` deliberately: the header button and the
+   * form's submit sit on screen together, so two spellings of one action read
+   * as a mistake.
+   */
+  ctaSecondary: "Join the waitlist",
+  /* Lead-in for the hint line, which ctaSecondary used to supply. It has to
+     stay "Coming soon" — "Join the waitlist — leave your email and we'll
+     notify you" says the same thing twice, once as a heading for itself. */
+  waitlistBadge: "Coming soon",
   waitlistHint: "APK coming soon — leave your email and we'll notify you.",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [

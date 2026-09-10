@@ -3,37 +3,36 @@ import { siteConfig } from "@/lib/config";
 
 export function Footer() {
   return (
-    <footer className="flex flex-col gap-y-5 rounded-lg px-7 py-5 md:px-10 container">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-x-2">
-          <Icons.logo className="h-8 w-8" />
-          <p className="text-lg font-bold text-foreground">
-            {siteConfig.name}
-          </p>
-        </div>
+    <footer className="container flex flex-col items-center gap-y-5 rounded-lg px-7 py-5 text-center md:px-10">
+      <div className="flex items-center gap-x-2">
+        <Icons.logo className="h-8 w-8" />
+        <p className="text-lg font-bold text-foreground">{siteConfig.name}</p>
       </div>
-      <div className="flex flex-col justify-between gap-y-5 md:flex-row md:items-center">
-        <ul className="flex flex-col gap-x-5 gap-y-2 text-muted-foreground md:flex-row md:items-center">
-          {siteConfig.navLinks.map((link) => (
-            <li
-              key={link.text}
-              className="text-[15px]/normal font-medium text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
+
+      {/* Centred as a stack. The links and the copyright used to sit at
+          opposite ends of a justify-between row, and the wordmark hung off the
+          left edge above them. */}
+      <ul className="flex flex-col items-center gap-x-5 gap-y-2 text-muted-foreground md:flex-row">
+        {siteConfig.navLinks.map((link) => (
+          <li
+            key={link.text}
+            className="text-[15px]/normal font-medium text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
+          >
+            <a
+              href={link.href}
+              {...("external" in link && link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
             >
-              <a
-                href={link.href}
-                {...("external" in link && link.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {link.text}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center justify-between text-sm font-medium tracking-tight text-muted-foreground">
-          <p>© 2026 Zema Fidelat. All rights reserved.</p>
-        </div>
-      </div>
+              {link.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p className="text-sm font-medium tracking-tight text-muted-foreground">
+        © 2026 Zema Fidelat. All rights reserved.
+      </p>
     </footer>
   );
 }

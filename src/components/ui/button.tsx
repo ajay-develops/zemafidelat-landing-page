@@ -9,7 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        // primary-strong, not primary: white on #f43f5e is 3.67:1, under AA
+        // for the 14px labels these carry. text-white rather than
+        // text-primary-foreground, which is near-black in dark mode — every
+        // call site was already overriding it for that reason.
+        default:
+          "bg-primary-strong text-white hover:bg-primary-strong/90",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
