@@ -23,6 +23,26 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 const SOURCE_DIR = path.join(ROOT, "screenshots-src");
 const OUTPUT_DIR = path.join(ROOT, "public", "screenshots");
 
+/**
+ * WebP, not PNG. These are photographic-ish phone captures inside a frame, and
+ * PNG handles them badly — lessons.png alone was 1.79 MB against 92-278 KB for
+ * the rest, more than half the page's ~3.3 MB of screenshots, on a page a
+ * parent may open on mobile data. Quality 85 keeps UI text crisp; alpha is
+ * preserved, which the transparent frame corners need.
+ */
+const WEBP_QUALITY = 85;
+
+/**
+ * The one screenshot that also has to exist as a PNG.
+ *
+ * The OG card (src/app/og/route.tsx) is rendered by Satori, which cannot
+ * decode WebP — pointing it at the .webp did not degrade, it returned HTTP
+ * 500 ("Unsupported image type: unknown") and every social share of the site
+ * would have had no preview image at all. The page itself never loads this
+ * file, so its size costs a visitor nothing.
+ */
+const OG_PNG_SOURCE = "dashboard.png";
+
 /** Kept next to the file it produces so a re-shoot does not need archaeology. */
 const DEEP_LINKS = {
   "dashboard.png": "zema:///home",
@@ -68,7 +88,7 @@ function roundedRectMask(width, height, radius) {
 
 async function processScreenshot(file) {
   const inputPath = path.join(SOURCE_DIR, file);
-  const outputPath = path.join(OUTPUT_DIR, file);
+  const outputPath = path.join(OUTPUT_DIR, file.replace(/\.png$/, ".webp"));
 
   const { width, height } = await sharp(inputPath).metadata();
   const screenW = width;
@@ -110,11 +130,21 @@ async function processScreenshot(file) {
 
   await sharp(framed)
     .resize({ height: TARGET_HEIGHT, fit: "contain", background: "#00000000" })
-    .png({ compressionLevel: 9 })
+    .webp({ quality: WEBP_QUALITY, effort: 6 })
     .toFile(outputPath);
 
+  if (file === OG_PNG_SOURCE) {
+    await sharp(framed)
+      .resize({ height: TARGET_HEIGHT, fit: "contain", background: "#00000000" })
+      .png({ compressionLevel: 9 })
+      .toFile(path.join(OUTPUT_DIR, "dashboard-og.png"));
+  }
+
   const meta = await sharp(outputPath).metadata();
-  console.log(`${file.padEnd(20)} ${meta.width}x${meta.height}   ${DEEP_LINKS[file] ?? ""}`);
+  const kb = (fs.statSync(outputPath).size / 1024).toFixed(0);
+  console.log(
+    `${path.basename(outputPath).padEnd(22)} ${meta.width}x${meta.height}  ${kb.padStart(5)} KB   ${DEEP_LINKS[file] ?? ""}`,
+  );
 }
 
 const files = fs

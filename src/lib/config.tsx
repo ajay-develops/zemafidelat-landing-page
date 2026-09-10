@@ -64,19 +64,19 @@ export const siteConfig = {
     subtitle: "It does a lot of things",
   },
   heroImages: [
-    "/screenshots/dashboard.png",
-    "/screenshots/lessons.png",
-    "/screenshots/flashcards.png",
-    "/screenshots/word-games.png",
-    "/screenshots/crosswords.png",
+    "/screenshots/dashboard.webp",
+    "/screenshots/lessons.webp",
+    "/screenshots/flashcards.webp",
+    "/screenshots/word-games.webp",
+    "/screenshots/crosswords.webp",
   ],
   featureScroll: {
     title: "Experience",
     subtitle: "Learn your way, every day",
     images: [
-      "/screenshots/daily-goals.png",
-      "/screenshots/profiles.png",
-      "/screenshots/notifications.png",
+      "/screenshots/daily-goals.webp",
+      "/screenshots/profiles.webp",
+      "/screenshots/notifications.webp",
     ],
   },
   features: [
@@ -122,21 +122,21 @@ export const siteConfig = {
       title: "Step-by-Step Lessons",
       description:
         "Work through structured lessons with flashcards, letter tracing, and word games that build your skills gradually.",
-      imageSrc: "/screenshots/lessons.png",
+      imageSrc: "/screenshots/lessons.webp",
       direction: "rtl" as const,
     },
     {
       title: "Interactive Learning Games",
       description:
         "Practice vocabulary with flashcards, trace the fidelat to learn the Ge'ez script, and test yourself with word selection games.",
-      imageSrc: "/screenshots/trace-letters.png",
+      imageSrc: "/screenshots/trace-letters.webp",
       direction: "ltr" as const,
     },
     {
       title: "Daily Puzzles & Fidel Challenge",
       description:
         "Challenge yourself with daily crossword puzzles, and arrange the scrambled fidels to spell each day's word in the Daily Fidel Challenge.",
-      imageSrc: "/screenshots/daily-fidel.png",
+      imageSrc: "/screenshots/daily-fidel.webp",
       direction: "rtl" as const,
     },
   ],
@@ -145,7 +145,7 @@ export const siteConfig = {
       title: "Multiple Learner Profiles",
       content:
         "Create and manage multiple profiles in one account. Each learner keeps their own progress, goals, and achievements.",
-      imageSrc: "/screenshots/profiles.png",
+      imageSrc: "/screenshots/profiles.webp",
       imageAlt: "Manage profiles screen",
       fullWidth: true,
     },
@@ -153,7 +153,7 @@ export const siteConfig = {
       title: "Daily Goals & XP",
       content:
         "Set daily learning targets, earn XP as you practice, and watch your streak grow on a motivating dashboard.",
-      imageSrc: "/screenshots/daily-goals.png",
+      imageSrc: "/screenshots/daily-goals.webp",
       imageAlt: "Daily learning goals screen",
       fullWidth: false,
     },
@@ -161,7 +161,7 @@ export const siteConfig = {
       title: "Smart Reminders",
       content:
         "Stay consistent with reminder notifications that nudge you to practice and keep your learning habit on track.",
-      imageSrc: "/screenshots/notifications.png",
+      imageSrc: "/screenshots/notifications.webp",
       imageAlt: "Notifications screen",
       fullWidth: false,
     },
@@ -169,7 +169,7 @@ export const siteConfig = {
       title: "Games That Teach",
       content:
         "From flashcards and letter tracing to word games, crosswords, and the Daily Fidel Challenge—learning never feels like a chore.",
-      imageSrc: "/screenshots/crosswords.png",
+      imageSrc: "/screenshots/crosswords.webp",
       imageAlt: "Crosswords game screen",
       fullWidth: true,
     },
@@ -178,32 +178,32 @@ export const siteConfig = {
     {
       id: 1,
       text: "Structured lessons guide you from basics to fluency, one step at a time.",
-      image: "/screenshots/lessons.png",
+      image: "/screenshots/lessons.webp",
     },
     {
       id: 2,
       text: "Flashcards help you memorize vocabulary quickly with visual cues and spaced repetition.",
-      image: "/screenshots/flashcards.png",
+      image: "/screenshots/flashcards.webp",
     },
     {
       id: 3,
       text: "Letter tracing teaches you to write each fidel by following guided strokes.",
-      image: "/screenshots/trace-letters.png",
+      image: "/screenshots/trace-letters.webp",
     },
     {
       id: 4,
       text: "Word games challenge you to pick the right answer and lock in what you've learned.",
-      image: "/screenshots/word-games.png",
+      image: "/screenshots/word-games.webp",
     },
     {
       id: 5,
       text: "Daily crossword puzzles reinforce vocabulary by matching words across the grid.",
-      image: "/screenshots/crosswords.png",
+      image: "/screenshots/crosswords.webp",
     },
     {
       id: 6,
       text: "The Daily Fidel Challenge gives you a new word each day—arrange the fidels to spell it from its English clue.",
-      image: "/screenshots/daily-fidel.png",
+      image: "/screenshots/daily-fidel.webp",
     },
   ],
   pricing: [

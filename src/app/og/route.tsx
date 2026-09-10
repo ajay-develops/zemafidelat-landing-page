@@ -88,7 +88,7 @@ export async function GET(req: NextRequest) {
         </div>
 
         <img
-          src={`${siteConfig.url}/screenshots/dashboard.png`}
+          src={`${siteConfig.url}/screenshots/dashboard-og.png`}
           alt={`${siteConfig.name} dashboard`}
           width={720}
           style={{
