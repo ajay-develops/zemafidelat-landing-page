@@ -41,7 +41,11 @@ export function Hero() {
             className="mb-16 relative z-20"
             style={{ transformOrigin: "top" }}
           >
-            <div className="bg-white text-white text-xl font-bold p-3 h-20 w-20 flex items-center justify-center rounded-3xl mx-auto shadow-md border border-border">
+            {/* bg-card, not bg-white: this plate stayed white in dark mode, a bright
+                square on a #09090b page. The logo is a transparent PNG with a green
+                mark, so it reads on either surface and the border supplies the edge.
+                text-white was inherited from a template and styled nothing here. */}
+            <div className="bg-card text-xl font-bold p-3 h-20 w-20 flex items-center justify-center rounded-3xl mx-auto shadow-md border border-border">
               <Icons.logo className="w-auto h-[52px]" />
             </div>
           </motion.div>

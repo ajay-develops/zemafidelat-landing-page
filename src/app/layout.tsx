@@ -18,7 +18,10 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export const viewport: Viewport = {
-  colorScheme: "light",
+  // No colorScheme here. It was pinned to "light", which left the browser
+  // painting inputs, scrollbars and autofill in light styling even with the
+  // dark theme applied — metadata cannot see the theme, which lives as a class
+  // on <html>. globals.css sets color-scheme per theme instead.
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -44,10 +47,17 @@ export default function RootLayout({
           "min-h-screen bg-background antialiased w-full mx-auto font-sans"
         )}
       >
+        {/*
+          Follow the OS. The toggle below renders only in development
+          (theme-toggle.tsx), so with enableSystem={false} and a "light"
+          default there was no way for a visitor to reach dark mode at all —
+          the themeColor entry above already promised a dark rendering.
+        */}
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
         >
           {children}
           {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
