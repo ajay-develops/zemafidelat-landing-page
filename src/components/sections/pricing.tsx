@@ -23,7 +23,7 @@ export function Pricing() {
 
   return (
     <Section
-      title="Free Forever"
+      title="Free"
       subtitle="100% free, no subscriptions"
       className="container px-10 mx-auto max-w-[var(--max-container-width)]"
       ref={ref}

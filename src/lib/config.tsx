@@ -6,7 +6,6 @@ import {
   TrophyIcon,
   UsersIcon,
 } from "lucide-react";
-import { testimonials } from "./testimonials";
 
 export const BLUR_FADE_DELAY = 0.15;
 
@@ -16,23 +15,25 @@ const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 export const siteConfig = {
   name: "Zema Fidelat",
   logo: "/logo.png",
-  description: "Learn languages step by step—free on Android.",
-  heroTagline: "Learn languages step by step—free on Android.",
+  description: "Learn Tigrinya fidelat step by step.",
+  heroTagline: "Learn Tigrinya fidelat step by step.",
   heroDescription:
-    "Master a new language with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and Fidel Make. Set goals, earn XP, build streaks, and unlock badges—all for free.",
+    "Catch on and learn Tigrinya the easy way with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and the Daily Fidel Challenge. Set goals, earn XP, build streaks, and unlock badges—all for free.",
   cta: "Join the waitlist",
   ctaSecondary: "Coming soon",
   waitlistHint: "APK coming soon — leave your email and we'll notify you.",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
-    "Language Learning",
+    "Tigrinya",
+    "Ge'ez Alphabet",
+    "Fidel",
     "Flashcards",
-    "Fidel Make",
+    "Daily Fidel Challenge",
     "Crosswords",
     "Letter Tracing",
     "Word Games",
     "XP and Streaks",
-    "Free Language App",
+    "Free Tigrinya App",
   ],
   links: {
     email: "hello@zemafidelat.com",
@@ -103,7 +104,7 @@ export const siteConfig = {
     {
       name: "Games & Puzzles",
       description:
-        "Play flashcards, trace letters, solve word games, daily crosswords, and Fidel Make—all in one app.",
+        "Play flashcards, trace letters, solve word games, daily crosswords, and the Daily Fidel Challenge—all in one app.",
       icon: <Gamepad2Icon className="h-6 w-6" />,
     },
   ],
@@ -118,15 +119,15 @@ export const siteConfig = {
     {
       title: "Interactive Learning Games",
       description:
-        "Practice vocabulary with flashcards, trace letters to learn new scripts, and test yourself with word selection games.",
+        "Practice vocabulary with flashcards, trace the fidelat to learn the Ge'ez script, and test yourself with word selection games.",
       imageSrc: "/screenshots/trace-letters.png",
       direction: "ltr" as const,
     },
     {
-      title: "Daily Puzzles & Fidel Make",
+      title: "Daily Puzzles & Fidel Challenge",
       description:
-        "Challenge yourself with daily crossword puzzles and Fidel Make—fill in letters to match the meaning of each image.",
-      imageSrc: "/screenshots/fidel-make.png",
+        "Challenge yourself with daily crossword puzzles, and arrange the scrambled fidels to spell each day's word in the Daily Fidel Challenge.",
+      imageSrc: "/screenshots/daily-fidel.png",
       direction: "rtl" as const,
     },
   ],
@@ -158,7 +159,7 @@ export const siteConfig = {
     {
       title: "Games That Teach",
       content:
-        "From flashcards and letter tracing to word games, crosswords, and Fidel Make—learning never feels like a chore.",
+        "From flashcards and letter tracing to word games, crosswords, and the Daily Fidel Challenge—learning never feels like a chore.",
       imageSrc: "/screenshots/crosswords.png",
       imageAlt: "Crosswords game screen",
       fullWidth: true,
@@ -177,7 +178,7 @@ export const siteConfig = {
     },
     {
       id: 3,
-      text: "Letter tracing games teach you to write new scripts by following guided strokes.",
+      text: "Letter tracing teaches you to write each fidel by following guided strokes.",
       image: "/screenshots/trace-letters.png",
     },
     {
@@ -192,20 +193,20 @@ export const siteConfig = {
     },
     {
       id: 6,
-      text: "Fidel Make lets you fill in letters to spell the word that matches each image.",
-      image: "/screenshots/fidel-make.png",
+      text: "The Daily Fidel Challenge gives you a new word each day—arrange the fidels to spell it from its English clue.",
+      image: "/screenshots/daily-fidel.png",
     },
   ],
   pricing: [
     {
-      name: "Free Forever",
+      name: "Free",
       href: "#download",
       price: "$0",
       period: "forever",
       yearlyPrice: "$0",
       features: [
         "Unlimited lessons with flashcards, tracing & word games",
-        "Daily crossword puzzles and Fidel Make",
+        "Daily crossword puzzles and the Daily Fidel Challenge",
         "Multiple learner profiles with separate progress",
         "Daily goals, XP, streaks & achievement badges",
         "Progress tracking and reminder notifications",
@@ -244,11 +245,11 @@ export const siteConfig = {
     {
       question: "How do multiple profiles work?",
       answerText:
-        "One account can hold several learner profiles—perfect for families or anyone studying more than one language. Each profile tracks its own progress, goals, streaks, and badges independently.",
+        "One account can hold several learner profiles—perfect for families with more than one child learning. Each profile tracks its own progress, goals, streaks, and badges independently.",
       answer: (
         <span>
-          One account can hold several learner profiles—perfect for families or
-          anyone studying more than one language. Each profile tracks its own
+          One account can hold several learner profiles—perfect for families
+          with more than one child learning. Each profile tracks its own
           progress, goals, streaks, and badges independently.
         </span>
       ),
@@ -256,13 +257,13 @@ export const siteConfig = {
     {
       question: "What learning activities are included?",
       answerText:
-        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and Fidel Make, where you fill in letters to match the meaning of an image. A dashboard keeps everything organized.",
+        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and the Daily Fidel Challenge, where you arrange the scrambled fidels to spell the day's word. A dashboard keeps everything organized.",
       answer: (
         <span>
           Each lesson includes flashcards, letter tracing, and word selection
           games. Beyond lessons, you&apos;ll find daily crossword puzzles and
-          Fidel Make, where you fill in letters to match the meaning of an
-          image. A dashboard keeps everything organized.
+          the Daily Fidel Challenge, where you arrange the scrambled fidels to
+          spell the day&apos;s word. A dashboard keeps everything organized.
         </span>
       ),
     },
@@ -280,7 +281,6 @@ export const siteConfig = {
       ),
     },
   ],
-  testimonials,
 };
 
 export type SiteConfig = typeof siteConfig;

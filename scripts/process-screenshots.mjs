@@ -2,125 +2,134 @@ import fs from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 
+/**
+ * Device captures -> framed marketing screenshots.
+ *
+ * Sources live in screenshots-src/ and are raw `adb exec-out screencap`
+ * captures from a phone running the app. They replaced a set of template
+ * mockups that showed Spanish, Japanese and Latin-alphabet placeholder
+ * content — the client spotted "different languages" on the site.
+ *
+ * To refresh after a UI change, re-capture at the same resolution and re-run:
+ *
+ *   adb shell am start -a android.intent.action.VIEW -d "zema:///home"
+ *   adb exec-out screencap -p > screenshots-src/dashboard.png
+ *   pnpm process-screenshots
+ *
+ * The deep link for each screen is in DEEP_LINKS below.
+ */
+
 const ROOT = path.resolve(import.meta.dirname, "..");
+const SOURCE_DIR = path.join(ROOT, "screenshots-src");
 const OUTPUT_DIR = path.join(ROOT, "public", "screenshots");
 
-const SOURCES = [
-  {
-    input: "public/other features/dashboard screen.png",
-    output: "dashboard.png",
-  },
-  {
-    input: "public/other features/lessons screen.png",
-    output: "lessons.png",
-  },
-  {
-    input: "public/other features/daily learning goal screen.png",
-    output: "daily-goals.png",
-  },
-  {
-    input: "public/other features/manage profiles screen.png",
-    output: "profiles.png",
-  },
-  {
-    input: "public/other features/notifications screen.png",
-    output: "notifications.png",
-  },
-  { input: "public/games/flashcards.png", output: "flashcards.png" },
-  {
-    input: "public/games/trace the letters.png",
-    output: "trace-letters.png",
-  },
-  { input: "public/games/word games.png", output: "word-games.png" },
-  {
-    input: "public/games/crosswords screen.png",
-    output: "crosswords.png",
-  },
-  {
-    input: "public/games/fidel make screen.png",
-    output: "fidel-make.png",
-  },
-];
+/** Kept next to the file it produces so a re-shoot does not need archaeology. */
+const DEEP_LINKS = {
+  "dashboard.png": "zema:///home",
+  "lessons.png": "zema:///lessons",
+  "flashcards.png": "zema:///lessons/flashcards?level=1",
+  "trace-letters.png": "zema:///lessons/trace?level=1",
+  "word-games.png": "zema:///lessons/word-games?level=1",
+  "crosswords.png": "zema:///lessons/crossword?level=1",
+  "daily-fidel.png": "zema:///fidel-match",
+  "daily-goals.png": "zema:///settings/daily-goal",
+  "profiles.png": "zema:///profiles",
+  "notifications.png": "zema:///notifications",
+};
 
-const BLACK_THRESHOLD = 22;
+/**
+ * Rows to drop off a capture.
+ *
+ * The status bar carries the tester's own clock, battery and notification
+ * icons — nothing to do with the app, and it dates the image. Android's demo
+ * mode neutralises the clock but not third-party notification icons, so it is
+ * cropped instead. The gesture pill goes for the same reason.
+ *
+ * Measured on the 1080x2400 captures: status glyphs end at y=80.
+ */
+const CROP_TOP = 100;
+const CROP_BOTTOM = 70;
 
-function removeEdgeBlackBackground(data, width, height, channels) {
-  const visited = new Uint8Array(width * height);
-  const queue = [];
+/** Bezel as a fraction of screen width, and corner radius as a fraction of outer width. */
+const BEZEL_RATIO = 0.024;
+const RADIUS_RATIO = 0.085;
+const BEZEL_COLOR = "#24262c";
+/** Output height, matching what the previous mockups rendered at. */
+const TARGET_HEIGHT = 1686;
 
-  const isBlack = (x, y) => {
-    const i = (y * width + x) * channels;
-    return (
-      data[i] <= BLACK_THRESHOLD &&
-      data[i + 1] <= BLACK_THRESHOLD &&
-      data[i + 2] <= BLACK_THRESHOLD
-    );
-  };
-
-  for (let x = 0; x < width; x++) {
-    for (const y of [0, height - 1]) {
-      if (isBlack(x, y)) queue.push(x, y);
-    }
-  }
-
-  for (let y = 1; y < height - 1; y++) {
-    for (const x of [0, width - 1]) {
-      if (isBlack(x, y)) queue.push(x, y);
-    }
-  }
-
-  let removed = 0;
-
-  while (queue.length > 0) {
-    const y = queue.pop();
-    const x = queue.pop();
-    const idx = y * width + x;
-
-    if (visited[idx] || !isBlack(x, y)) continue;
-
-    visited[idx] = 1;
-    data[idx * channels + 3] = 0;
-    removed++;
-
-    if (x > 0) queue.push(x - 1, y);
-    if (x < width - 1) queue.push(x + 1, y);
-    if (y > 0) queue.push(x, y - 1);
-    if (y < height - 1) queue.push(x, y + 1);
-  }
-
-  return removed;
+function roundedRectMask(width, height, radius) {
+  return Buffer.from(
+    `<svg width="${width}" height="${height}">
+       <rect x="0" y="0" width="${width}" height="${height}"
+             rx="${radius}" ry="${radius}" fill="#fff"/>
+     </svg>`
+  );
 }
 
-async function processScreenshot({ input, output }) {
-  const inputPath = path.join(ROOT, input);
-  const outputPath = path.join(OUTPUT_DIR, output);
+async function processScreenshot(file) {
+  const inputPath = path.join(SOURCE_DIR, file);
+  const outputPath = path.join(OUTPUT_DIR, file);
 
-  const trimmed = await sharp(inputPath)
-    .trim({ threshold: 15 })
-    .ensureAlpha()
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+  const { width, height } = await sharp(inputPath).metadata();
+  const screenW = width;
+  const screenH = height - CROP_TOP - CROP_BOTTOM;
 
-  const pixels = Buffer.from(trimmed.data);
-  const removed = removeEdgeBlackBackground(
-    pixels,
-    trimmed.info.width,
-    trimmed.info.height,
-    trimmed.info.channels
-  );
+  if (screenH <= 0) {
+    throw new Error(`${file}: capture is too short to crop (${width}x${height})`);
+  }
 
-  await sharp(pixels, { raw: trimmed.info }).png().toFile(outputPath);
+  const bezel = Math.round(screenW * BEZEL_RATIO);
+  const outerW = screenW + bezel * 2;
+  const outerH = screenH + bezel * 2;
+  const outerR = Math.round(outerW * RADIUS_RATIO);
+  // Concentric, so the bezel reads as an even band rather than pooling in the corners.
+  const screenR = Math.max(0, outerR - bezel);
+
+  const screen = await sharp(inputPath)
+    .extract({ left: 0, top: CROP_TOP, width: screenW, height: screenH })
+    .composite([
+      { input: roundedRectMask(screenW, screenH, screenR), blend: "dest-in" },
+    ])
+    .png()
+    .toBuffer();
+
+  const framed = await sharp({
+    create: {
+      width: outerW,
+      height: outerH,
+      channels: 4,
+      background: BEZEL_COLOR,
+    },
+  })
+    .composite([
+      { input: roundedRectMask(outerW, outerH, outerR), blend: "dest-in" },
+      { input: screen, left: bezel, top: bezel },
+    ])
+    .png()
+    .toBuffer();
+
+  await sharp(framed)
+    .resize({ height: TARGET_HEIGHT, fit: "contain", background: "#00000000" })
+    .png({ compressionLevel: 9 })
+    .toFile(outputPath);
 
   const meta = await sharp(outputPath).metadata();
-  console.log(
-    `${output}: ${meta.width}x${meta.height}, removed ${removed} background pixels`
-  );
+  console.log(`${file.padEnd(20)} ${meta.width}x${meta.height}   ${DEEP_LINKS[file] ?? ""}`);
+}
+
+const files = fs
+  .readdirSync(SOURCE_DIR)
+  .filter((f) => f.endsWith(".png"))
+  .sort();
+
+if (files.length === 0) {
+  throw new Error(`No captures found in ${SOURCE_DIR}`);
 }
 
 fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-for (const source of SOURCES) {
-  await processScreenshot(source);
+for (const file of files) {
+  await processScreenshot(file);
 }
 
-console.log(`\nProcessed ${SOURCES.length} screenshots into ${OUTPUT_DIR}`);
+console.log(`\nFramed ${files.length} screenshots into ${OUTPUT_DIR}`);

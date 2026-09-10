@@ -9,7 +9,6 @@ import { Footer } from "@/components/sections/footer";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
 import { Pricing } from "@/components/sections/pricing";
-import { Testimonials } from "@/components/sections/testimonials";
 import {
   getHomepageMetadata,
   getStructuredDataScript,
@@ -34,7 +33,6 @@ export default function Home() {
         <BentoGrid />
         <Benefits />
         <Features />
-        <Testimonials />
         <Pricing />
         <FAQ />
         <CTA />

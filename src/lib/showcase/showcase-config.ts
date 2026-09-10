@@ -52,10 +52,6 @@ export const showcaseStops: ShowcaseStop[] = [
     label: "Features",
   },
   {
-    selector: "#testimonials",
-    label: "Testimonials",
-  },
-  {
     selector: "#free-download",
     label: "Download",
   },
