@@ -178,8 +178,16 @@
   --muted-foreground: oklch(0.7118 0.0129 286.1); /* #a1a1aa */
   --accent: oklch(0.2739 0.0055 286); /* #27272a */
   --accent-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  --destructive: oklch(0.5054 0.1905 27.5); /* #b91c1c */
-  --destructive-foreground: oklch(0.9705 0.0129 17.4); /* #fef2f2 */
+  /*
+   * Lighter than the light theme's red, not darker. #b91c1c is a red-700 built
+   * for white backgrounds; as `text-destructive` on #09090b it measured
+   * 3.07:1, so the waitlist form's error messages were barely readable in the
+   * one place a user most needs to read them. rose-400 gives 7.39:1 and keeps
+   * the brand's hue family. Its foreground flips dark to match: the pairing
+   * has to survive `bg-destructive text-destructive-foreground` too.
+   */
+  --destructive: oklch(0.7192 0.169 13.4); /* #fb7185 */
+  --destructive-foreground: oklch(0.2103 0.0059 285.9); /* #18181b */
   --border: oklch(0.2739 0.0055 286); /* #27272a */
   --input: oklch(0.2739 0.0055 286); /* #27272a */
   --ring: oklch(0.839 0.01 264.7);
