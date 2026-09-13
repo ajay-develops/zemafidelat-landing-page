@@ -135,7 +135,7 @@ export const siteConfig = {
     {
       title: "Daily Puzzles & Fidel Challenge",
       description:
-        "Challenge yourself with daily crossword puzzles, and arrange the scrambled fidels to spell each day's word in the Daily Fidel Challenge.",
+        "Challenge yourself with daily crossword puzzles, and spell each day's word in the Daily Fidel Challenge by arranging its scrambled fidels, with a picture and an English clue to go on.",
       imageSrc: "/screenshots/daily-fidel.webp",
       direction: "rtl" as const,
     },
@@ -202,7 +202,7 @@ export const siteConfig = {
     },
     {
       id: 6,
-      text: "The Daily Fidel Challenge gives you a new word each day—arrange the fidels to spell it from its English clue.",
+      text: "The Daily Fidel Challenge gives you a new word each day—arrange the fidels to spell it from its picture and English clue.",
       image: "/screenshots/daily-fidel.webp",
     },
   ],
@@ -266,13 +266,14 @@ export const siteConfig = {
     {
       question: "What learning activities are included?",
       answerText:
-        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and the Daily Fidel Challenge, where you arrange the scrambled fidels to spell the day's word. A dashboard keeps everything organized.",
+        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and the Daily Fidel Challenge, where you arrange the scrambled fidels to spell the day's word from its picture and English clue. A dashboard keeps everything organized.",
       answer: (
         <span>
           Each lesson includes flashcards, letter tracing, and word selection
           games. Beyond lessons, you&apos;ll find daily crossword puzzles and
           the Daily Fidel Challenge, where you arrange the scrambled fidels to
-          spell the day&apos;s word. A dashboard keeps everything organized.
+          spell the day&apos;s word from its picture and English clue. A
+          dashboard keeps everything organized.
         </span>
       ),
     },
