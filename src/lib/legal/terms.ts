@@ -142,7 +142,7 @@ export const termsAndConditions = {
               ],
             },
             "**Your content.** Names and photos you add stay yours. You allow us to store and display them as needed to run Zema Fidelat for you, for example to show a learner's picture and to restore it on another device.",
-            "**Uploaded photos are not private.** Anyone can find and view them, as the Privacy Policy explains. If you don't want that, use a built-in picture.",
+            "**Uploaded photos.** Only your account can see your uploaded photos in Zema Fidelat, but each photo file can be opened by anyone who has its web address, as the Privacy Policy explains. If you'd rather not upload one, use a built-in picture.",
             "**Feedback.** If you send us ideas or suggestions, we may use them without owing you anything.",
           ],
         },

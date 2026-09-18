@@ -33,7 +33,7 @@ export const privacyPolicy = {
             "You can use the app as a guest without an account. Guest information stays on the device.",
             "There are no ads, no in-app purchases, no chat or contact between users, and no analytics or tracking tools. We do not sell personal information.",
             "The app does not record audio and does not use the camera.",
-            "**Uploaded photos are not private.** Anyone on the internet can get a list of all uploaded profile photos from our server and view them, without an account. To avoid this, use one of the app's built-in pictures instead (section 6).",
+            "**Uploaded photos:** only your account can see the photos you upload. Each photo file sits at a long, random web address that we don't publish, but anyone who is given that address can open it. If you'd rather not upload a photo, use one of the app's built-in pictures (section 6).",
             "You can delete a learner profile or your whole account in the app. You can also ask us by email to delete your account.",
           ],
         },
@@ -296,9 +296,8 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "Uploaded photos are stored as publicly readable files. They are not protected by a password.",
-            "Our server gives a list of all uploaded profile photos to anyone who asks, without logging in. The list includes each photo's web address, file name and upload time, so anyone can find and view uploaded photos.",
-            "The list does not say which learner or account a photo belongs to.",
+            "Only your account, and our administrators, can see your uploaded photos through our server. Other accounts, and people who are not logged in, cannot list them or look them up.",
+            "Each photo file is stored at a long, random web address and is not protected by a password. We don't publish or share these addresses, but anyone who is given one can open that photo.",
             "The app has no features that show one family's profiles to another family.",
           ],
         },
@@ -631,7 +630,7 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "Anyone can find and view uploaded photos (section 6).",
+            "An uploaded photo can be opened by anyone who has its web address (section 6).",
             "Anyone using the device can tap a Share button and send an image of a learner's progress to other apps or people (section 9).",
           ],
         },
@@ -802,7 +801,7 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "anyone can find and view uploaded photos (section 6);",
+            "an uploaded photo can be opened by anyone who has its web address (section 6);",
             "the parent question is not a lock (section 16).",
           ],
         },
