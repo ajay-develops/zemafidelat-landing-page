@@ -7,6 +7,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+/**
+ * The nav links point at homepage sections ("#faq"), which only exist on the
+ * homepage. Other pages pass "/" so the same links lead back there ("/#faq").
+ */
+export function withAnchorBase(href: string, anchorBase = "") {
+  return href.startsWith("#") ? `${anchorBase}${href}` : href;
+}
+
 export function absoluteUrl(path: string) {
   return `${process.env.NEXT_PUBLIC_APP_URL || siteConfig.url}${path}`;
 }

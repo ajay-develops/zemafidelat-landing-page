@@ -5,7 +5,7 @@ import { MobileDrawer } from "@/components/mobile-drawer";
 import { buttonVariants } from "@/components/ui/button";
 import { easeInOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
+import { cn, withAnchorBase } from "@/lib/utils";
 import { AnimatePresence, motion, useAnimation } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -14,7 +14,12 @@ const headerNavLinks = siteConfig.navLinks.filter(
   (link) => link.text !== "Waitlist"
 );
 
-export function Header() {
+type HeaderProps = {
+  /** "/" on pages other than the homepage, so section links lead back to it. */
+  anchorBase?: string;
+};
+
+export function Header({ anchorBase = "" }: HeaderProps) {
   const [addBorder, setAddBorder] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
   const controls = useAnimation();
@@ -70,14 +75,14 @@ export function Header() {
             {headerNavLinks.map((link) => (
               <a
                 key={link.text}
-                href={link.href}
+                href={withAnchorBase(link.href, anchorBase)}
                 className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {link.text}
               </a>
             ))}
             <a
-              href={siteConfig.links.waitlist}
+              href={withAnchorBase(siteConfig.links.waitlist, anchorBase)}
               className={cn(
                 buttonVariants({ variant: "default" }),
                 "h-8 text-white rounded-full group"
@@ -87,7 +92,7 @@ export function Header() {
             </a>
           </nav>
           <div className="mt-2 cursor-pointer block lg:hidden">
-            <MobileDrawer />
+            <MobileDrawer anchorBase={anchorBase} />
           </div>
         </div>
         <motion.hr

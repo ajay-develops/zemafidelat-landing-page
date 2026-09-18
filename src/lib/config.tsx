@@ -55,6 +55,11 @@ export const siteConfig = {
     { href: "#download", text: "Waitlist" },
     { href: "mailto:hello@zemafidelat.com", text: "Contact" },
   ],
+  legalLinks: [
+    { href: "/privacy", text: "Privacy Policy" },
+    { href: "/terms", text: "Terms & Conditions" },
+    { href: "/delete-account", text: "Delete your account" },
+  ],
   featureHighlightSection: {
     title: "How it works",
     subtitle: "Powerful features",

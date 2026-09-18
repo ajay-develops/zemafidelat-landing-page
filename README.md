@@ -63,7 +63,7 @@ Set these in your Vercel project environment variables before deploying:
 The site ships with crawl-friendly defaults:
 
 - `/robots.txt` — allows indexing and points to the sitemap
-- `/sitemap.xml` — canonical homepage URL
+- `/sitemap.xml` — canonical homepage URL, plus `/privacy`, `/terms` and `/delete-account`
 - JSON-LD structured data (WebSite, MobileApplication, FAQPage)
 - Semantic headings, JSON-LD, and canonical URLs for search engines
 

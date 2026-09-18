@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { siteConfig } from "@/lib/config";
-import { cn } from "@/lib/utils";
+import { cn, withAnchorBase } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
@@ -20,7 +20,7 @@ const drawerNavLinks = siteConfig.navLinks.filter(
   (link) => link.text !== "Waitlist"
 );
 
-export function MobileDrawer() {
+export function MobileDrawer({ anchorBase = "" }: { anchorBase?: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -45,7 +45,7 @@ export function MobileDrawer() {
           {drawerNavLinks.map((link) => (
             <a
               key={link.text}
-              href={link.href}
+              href={withAnchorBase(link.href, anchorBase)}
               className="text-lg font-medium text-foreground"
               onClick={() => setOpen(false)}
             >
@@ -55,7 +55,7 @@ export function MobileDrawer() {
         </nav>
         <DrawerFooter>
           <a
-            href={siteConfig.links.waitlist}
+            href={withAnchorBase(siteConfig.links.waitlist, anchorBase)}
             className={cn(
               buttonVariants({ variant: "default" }),
               "text-white rounded-full group"
