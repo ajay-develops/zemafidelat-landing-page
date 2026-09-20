@@ -1,7 +1,6 @@
 import { ShowcaseProvider } from "@/components/showcase/showcase-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { siteConfig } from "@/lib/config";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
@@ -48,10 +47,8 @@ export default function RootLayout({
         )}
       >
         {/*
-          Follow the OS. The toggle below renders only in development
-          (theme-toggle.tsx), so with enableSystem={false} and a "light"
-          default there was no way for a visitor to reach dark mode at all —
-          the themeColor entry above already promised a dark rendering.
+          Follow the OS until the visitor picks a side with the switch in the
+          header (components/theme-toggle.tsx); next-themes then remembers it.
         */}
         <ThemeProvider
           attribute="class"
@@ -61,9 +58,6 @@ export default function RootLayout({
         >
           {children}
           {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
-          <div data-showcase-hide>
-            <ThemeToggle />
-          </div>
           <div data-showcase-hide>
             <TailwindIndicator />
           </div>

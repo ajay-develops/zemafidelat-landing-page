@@ -2,6 +2,7 @@
 
 import { Icons } from "@/components/icons";
 import { MobileDrawer } from "@/components/mobile-drawer";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { buttonVariants } from "@/components/ui/button";
 import { easeInOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
@@ -90,9 +91,14 @@ export function Header({ anchorBase = "" }: HeaderProps) {
             >
               {siteConfig.ctaSecondary}
             </a>
+            <ThemeToggle />
           </nav>
-          <div className="mt-2 cursor-pointer block lg:hidden">
-            <MobileDrawer anchorBase={anchorBase} />
+          {/* On phones the switch sits next to the menu, so it takes no taps to reach. */}
+          <div className="flex items-center gap-1 lg:hidden">
+            <ThemeToggle />
+            <div className="cursor-pointer">
+              <MobileDrawer anchorBase={anchorBase} />
+            </div>
           </div>
         </div>
         <motion.hr
