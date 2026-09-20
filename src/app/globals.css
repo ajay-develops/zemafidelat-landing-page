@@ -221,6 +221,59 @@
   }
 }
 
+/*
+ * The light/dark switch, animated.
+ *
+ * Everything below is scoped to `.theme-wipe`, which theme-toggle.tsx puts on
+ * <html> for the length of one switch and takes off again. That keeps it off
+ * any other view transition, and means none of it runs — or costs anything —
+ * until the visitor actually presses the button. The centre and radius of the
+ * circle come from the button's position, set as inline custom properties on
+ * <html>; the view-transition pseudo-elements inherit from there.
+ */
+:root.theme-wipe::view-transition-old(root),
+:root.theme-wipe::view-transition-new(root) {
+  /* Drop the browser's default cross-fade; the circle below does the work. */
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+:root.theme-wipe::view-transition-old(root) {
+  z-index: 1;
+}
+
+/*
+ * The old theme stays put underneath and the new one is clipped in over it, so
+ * the whole page changes in one pass — text, images, gradients and all — with
+ * only the clip-path animating.
+ */
+:root.theme-wipe::view-transition-new(root) {
+  z-index: 2;
+  /*
+   * A circle's area grows with the square of its radius, so an ease-out curve
+   * here reads as a snap followed by a crawl — measured at 90ms of 500ms, an
+   * ease-out quint had already covered 63% of the screen. This curve keeps the
+   * edge moving at a readable pace the whole way across.
+   */
+  animation: theme-wipe-in 520ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes theme-wipe-in {
+  from {
+    clip-path: circle(0px at var(--wipe-x, 50%) var(--wipe-y, 0));
+  }
+  to {
+    clip-path: circle(var(--wipe-r, 150vmax) at var(--wipe-x, 50%)
+      var(--wipe-y, 0));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root.theme-wipe::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 .showcase-mode [data-showcase-hide] {
   display: none;
 }

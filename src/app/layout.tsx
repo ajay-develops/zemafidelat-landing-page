@@ -49,13 +49,13 @@ export default function RootLayout({
         {/*
           Follow the OS until the visitor picks a side with the switch in the
           header (components/theme-toggle.tsx); next-themes then remembers it.
+
+          No disableTransitionOnChange: that prop force-disables every CSS
+          transition on the page for the frame the theme changes, which is the
+          exact frame the switch animates in. Nothing transitions on load
+          anyway — the blocking script sets the class before the first paint.
         */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
           {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
           <div data-showcase-hide>
