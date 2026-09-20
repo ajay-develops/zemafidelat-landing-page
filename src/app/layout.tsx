@@ -4,16 +4,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/config";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { fontMono, fontSans } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = constructMetadata({
+  // Icons come from constructMetadata, which points them at logoIcon; setting
+  // them here too would override it and is one more place to forget.
   title: `${siteConfig.name} | ${siteConfig.description}`,
-  icons: {
-    icon: siteConfig.logo,
-    apple: siteConfig.logo,
-  },
 });
 
 export const viewport: Viewport = {
@@ -37,7 +34,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        `${GeistSans.variable} ${GeistMono.variable}`,
+        `${fontSans.variable} ${fontMono.variable}`,
         "scroll-smooth"
       )}
     >

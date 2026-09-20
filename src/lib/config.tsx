@@ -14,7 +14,20 @@ const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
   name: "Zema Fidelat",
+  /*
+   * Three sizes of one mark, because one file cannot serve all three jobs.
+   *
+   * `logo` is the 2356px original and is only read server-side, by the OG card
+   * — Satori cannot decode WebP. `logoUi` is what the page shows; the original
+   * was 108 KB to paint a 32px header icon, the heaviest file on the site.
+   * `logoIcon` is the favicon and apple-touch-icon, which browsers fetch on
+   * every visit and which platforms want as PNG.
+   *
+   * Regenerate the derivatives with `pnpm process-logo` after changing logo.png.
+   */
   logo: "/logo.png",
+  logoUi: "/logo-256.webp",
+  logoIcon: "/logo-icon.png",
   description: "Learn Tigrinya fidelat step by step.",
   heroTagline: "Learn Tigrinya fidelat step by step.",
   heroDescription:

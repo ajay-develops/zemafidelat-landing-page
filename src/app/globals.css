@@ -274,6 +274,77 @@
   }
 }
 
+/*
+ * The hero intro.
+ *
+ * This used to be four JS animations, which cannot begin until React has
+ * hydrated. On a throttled phone that is seconds away, and the headline and
+ * the paragraph sat at opacity 0 until it happened — so the paragraph, the
+ * page's Largest Contentful Paint, landed at 4.4s. In CSS they start at the
+ * first paint instead, and the text is eligible to be "painted" from its
+ * first frame because nothing delays these.
+ *
+ * The logo scales. It used to animate `height`, from 80vh to 10vh, and height
+ * is layout: for 1.8 seconds it dragged the whole page up underneath itself,
+ * which the browser recorded as 39 separate layout shifts — every bit of this
+ * page's measured CLS. A transform moves nothing around it.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-zoom {
+    /* From the top, so it grows down over the page rather than off-screen. */
+    transform-origin: top;
+    animation: hero-zoom 1.4s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  /*
+   * Movement only, no fade. The browser does not count an element as painted
+   * while it is transparent, and the headline and paragraph are what it
+   * measures this page by — fading them in, even with no delay, kept them out
+   * of the running and left a decorative logo as the largest paint.
+   */
+  .hero-rise {
+    animation: hero-slide 0.6s ease-out both;
+  }
+
+  /*
+   * Only for things that are not the LCP candidate. A delay means opacity 0
+   * until it elapses, and an element at opacity 0 is not counted as painted —
+   * which is exactly how the old hero lost its LCP.
+   */
+  .hero-rise-late {
+    animation: hero-rise 0.6s ease-out 0.25s both;
+  }
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(4.5);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes hero-slide {
+  from {
+    transform: translateY(-12px);
+  }
+  to {
+    transform: none;
+  }
+}
+
 .showcase-mode [data-showcase-hide] {
   display: none;
 }

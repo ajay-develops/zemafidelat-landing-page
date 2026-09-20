@@ -77,6 +77,20 @@ const BEZEL_COLOR = "#24262c";
 /** Output height, matching what the previous mockups rendered at. */
 const TARGET_HEIGHT = 1686;
 
+/**
+ * Extra widths, for the `srcset` every screenshot is served with.
+ *
+ * Nothing on the site draws one of these wider than about 300 CSS px — the
+ * hero row is 160px on a phone — so the full 836px file is three to five times
+ * the pixels a phone can show. Lighthouse measured 431 KB of that on mobile,
+ * on a page whose whole job is to load fast for a parent on mobile data.
+ *
+ * 300 covers a 1x phone, 600 a 2x one, and the full-size file stays in the set
+ * for 3x screens and desktop. The browser picks; it never downloads more than
+ * one of them.
+ */
+const RESPONSIVE_WIDTHS = [300, 600];
+
 function roundedRectMask(width, height, radius) {
   return Buffer.from(
     `<svg width="${width}" height="${height}">
@@ -145,6 +159,18 @@ async function processScreenshot(file) {
   console.log(
     `${path.basename(outputPath).padEnd(22)} ${meta.width}x${meta.height}  ${kb.padStart(5)} KB   ${DEEP_LINKS[file] ?? ""}`,
   );
+
+  for (const width of RESPONSIVE_WIDTHS) {
+    const smallPath = outputPath.replace(/\.webp$/, `-${width}.webp`);
+    await sharp(outputPath)
+      .resize({ width })
+      .webp({ quality: WEBP_QUALITY, effort: 6 })
+      .toFile(smallPath);
+    const smallKb = (fs.statSync(smallPath).size / 1024).toFixed(0);
+    console.log(
+      `${"".padEnd(22)} ${String(width).padStart(4)}w    ${smallKb.padStart(5)} KB`,
+    );
+  }
 }
 
 const files = fs

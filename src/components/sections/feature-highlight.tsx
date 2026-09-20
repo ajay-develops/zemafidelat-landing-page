@@ -8,6 +8,7 @@ import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { screenshotProps } from "@/lib/screenshots";
 
 interface FeatureProps {
   title: string;
@@ -92,7 +93,7 @@ function Feature({
       </motion.div>
       <div className="w-full lg:w-1/2">
         <img
-          src={imageSrc}
+          {...screenshotProps(imageSrc, "300px")}
           alt={title}
           className="w-full max-w-[300px] mx-auto"
         />

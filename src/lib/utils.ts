@@ -75,8 +75,12 @@ export function constructMetadata({
       images: [image],
     },
     icons: {
-      icon: siteConfig.logo,
-      apple: siteConfig.logo,
+      // logoIcon (180px PNG), not the 2356px original. Browsers fetch the
+      // favicon on every visit, so pointing it at the full logo cost every
+      // visitor 108 KB — more than any other file on the page — to draw a mark
+      // a few pixels wide in a tab.
+      icon: siteConfig.logoIcon,
+      apple: siteConfig.logoIcon,
       shortcut: "/favicon.png",
     },
     metadataBase: new URL(siteConfig.url),

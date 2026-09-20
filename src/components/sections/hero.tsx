@@ -3,8 +3,8 @@
 import { Icons } from "@/components/icons";
 import { Section } from "@/components/section";
 import { WaitlistForm } from "@/components/waitlist-form";
-import { easeInOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
+import { screenshotProps } from "@/lib/screenshots";
 import { motion, useScroll, useTransform } from "motion/react";
 
 const heroAnimations = [
@@ -31,66 +31,50 @@ export function Hero() {
     <Section id="hero" className="min-h-[100vh] w-full overflow-hidden">
       <div className="mx-auto pt-16 sm:pt-24 md:pt-32 text-center relative px-4">
         <div className="relative">
-          <motion.div
-            initial={{ scale: 4.5, height: "80vh" }}
-            animate={{ scale: 1, height: "10vh" }}
-            transition={{
-              scale: { delay: 0, duration: 1.8, ease: easeInOutCubic },
-              height: { delay: 0, duration: 1.8, ease: easeInOutCubic },
-            }}
-            className="mb-16 relative z-20"
-            style={{ transformOrigin: "top" }}
-          >
+          {/* The box keeps its final height the whole time and the plate
+              inside scales, so the zoom plays over the page instead of
+              resizing a container that shoves everything below it down. */}
+          <div className="mb-16 relative z-20 h-[10vh]">
             {/* bg-card, not bg-white: this plate stayed white in dark mode, a bright
                 square on a #09090b page. The logo is a transparent PNG with a green
                 mark, so it reads on either surface and the border supplies the edge.
                 text-white was inherited from a template and styled nothing here. */}
-            <div className="bg-card text-xl font-bold p-3 h-20 w-20 flex items-center justify-center rounded-3xl mx-auto shadow-md border border-border">
-              <Icons.logo className="w-auto h-[52px]" />
+            <div className="hero-zoom bg-card text-xl font-bold p-3 h-20 w-20 flex items-center justify-center rounded-3xl mx-auto shadow-md border border-border">
+              <Icons.logo className="w-auto h-[52px]" priority />
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="absolute inset-0 top-20 z-10"
-          >
+          </div>
+          <div className="hero-rise-late absolute inset-0 top-20 z-10">
             {siteConfig.name}
-          </motion.div>
+          </div>
         </div>
 
         <div className="max-w-5xl mx-auto">
-          <motion.h1
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: easeInOutCubic }}
-            className="text-5xl font-bold mb-4 tracking-tighter"
-          >
+          {/* No delay on these two: the paragraph is what the browser measures
+              as this page's largest paint, and an element still at opacity 0
+              does not count as painted. */}
+          <h1 className="hero-rise text-5xl font-bold mb-4 tracking-tighter">
             {siteConfig.heroTagline}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7, ease: easeInOutCubic }}
-            className="max-w-2xl mx-auto text-xl mb-8 font-medium text-balance"
-          >
+          </h1>
+          <p className="hero-rise max-w-2xl mx-auto text-xl mb-8 font-medium text-balance">
             {siteConfig.heroDescription}
-          </motion.p>
-          <motion.div
+          </p>
+          <div
             id="download"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="flex justify-center mb-16 scroll-mt-20"
+            className="hero-rise-late flex justify-center mb-16 scroll-mt-20"
           >
             <WaitlistForm />
-          </motion.div>
+          </div>
         </div>
         <div className="flex flex-nowrap items-center justify-start sm:justify-center gap-4 sm:gap-8 h-auto sm:h-[500px] select-none overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-4 sm:px-0">
           {siteConfig.heroImages.map((src, index) => (
             <motion.img
               key={src}
-              src={src}
+              // 160px on a phone, 256px from sm up — a fraction of the 836px
+              // file these used to pull down five times over. Lazy, not eager:
+              // this row sits below the fold on a phone, and marking the first
+              // few eager made the browser preload them, competing with the
+              // font and logo that the visible part of the hero waits on.
+              {...screenshotProps(src, "(min-width: 640px) 256px, 160px")}
               alt={`${siteConfig.name} screenshot ${index + 1}`}
               initial={{
                 opacity: 0,

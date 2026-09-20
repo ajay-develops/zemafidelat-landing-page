@@ -5,6 +5,7 @@ import { easeOutCubic } from "@/lib/animation";
 import { siteConfig } from "@/lib/config";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { screenshotProps } from "@/lib/screenshots";
 
 export function FeatureScroll() {
   const phone1Ref = useRef(null);
@@ -52,7 +53,10 @@ export function FeatureScroll() {
           <motion.img
             key={src}
             ref={refs[index]}
-            src={src}
+            // h-auto with no intrinsic size meant the browser reserved no space
+            // for these until they arrived, and the page jumped. This was the
+            // largest single layout shift Lighthouse measured.
+            {...screenshotProps(src, "(min-width: 640px) 300px, 250px")}
             alt={`${siteConfig.name} feature ${index + 1}`}
             className="w-full h-auto -z-10 max-w-[250px] sm:max-w-[300px] mx-auto object-contain"
             style={{ y: yTransforms[index] }}

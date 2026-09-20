@@ -7,6 +7,7 @@ import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { screenshotProps } from "@/lib/screenshots";
 
 export function BentoGrid() {
   const ref = useRef(null);
@@ -79,7 +80,12 @@ export function BentoGrid() {
               )}
             >
               <img
-                src={bentoItem.imageSrc}
+                // Height-capped at 256px, 384px from sm up; object-contain
+                // makes the painted width about half that.
+                {...screenshotProps(
+                  bentoItem.imageSrc,
+                  "(min-width: 640px) 190px, 127px"
+                )}
                 alt={bentoItem.imageAlt}
                 className="w-full h-64 sm:h-96 object-contain object-bottom mx-auto"
               />

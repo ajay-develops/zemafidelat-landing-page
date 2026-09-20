@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/config";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRef } from "react";
+import { screenshotProps } from "@/lib/screenshots";
 
 export function Benefits() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,9 @@ export function Benefits() {
           >
             <div className="h-[500px] relative rounded-xl overflow-hidden">
               <img
-                src={benefit.image}
+                // object-contain in a 500px-tall box, so the painted width is
+                // about 248px whatever the column does.
+                {...screenshotProps(benefit.image, "248px")}
                 alt={benefit.text}
                 className="absolute inset-0 w-full h-full object-contain object-center transition-all duration-500 ease-out"
               />

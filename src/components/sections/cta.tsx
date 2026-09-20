@@ -10,8 +10,12 @@ export function CTA() {
           <div className="relative flex w-full max-w-[1000px] flex-col items-center justify-center overflow-hidden rounded-[2rem] border p-10 py-14">
             <div className="z-10 mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32 flex items-center justify-center">
               <img
-                src={siteConfig.logo}
+                src={siteConfig.logoUi}
                 alt={siteConfig.name}
+                width={256}
+                height={205}
+                loading="lazy"
+                decoding="async"
                 className="size-16 lg:size-24 object-contain"
               />
             </div>

@@ -6,11 +6,20 @@ type IconProps = React.HTMLAttributes<SVGElement> & {
 };
 
 export const Icons = {
-  logo: ({ className, ...props }: IconProps) => (
+  logo: ({ className, priority, ...props }: IconProps & { priority?: boolean }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={siteConfig.logo}
+      src={siteConfig.logoUi}
       alt={siteConfig.name}
+      // The hero blows this up to fill the screen, which makes it the largest
+      // thing the browser paints. Left at default priority it queued behind
+      // the rest of the page and was discovered 765ms late on a throttled
+      // phone, dragging the whole page's LCP with it.
+      fetchPriority={priority ? "high" : undefined}
+      // Intrinsic size of logo-256.webp. Without it the browser cannot reserve
+      // the space before the file arrives, and the header lurches on load.
+      width={256}
+      height={205}
       className={cn("h-8 w-8 object-contain", className)}
       {...(props as React.ImgHTMLAttributes<HTMLImageElement>)}
     />
