@@ -10,7 +10,7 @@ import type { LegalDocument } from "@/lib/legal/types";
 export const privacyPolicy = {
   title: "Zema Fidelat Privacy Policy",
   effectiveDate: "18 September 2026",
-  lastUpdated: "18 September 2026",
+  lastUpdated: "13 October 2026",
   updatedAt: "2026-09-18",
   intro: [
     {
@@ -57,7 +57,6 @@ export const privacyPolicy = {
           items: [
             "**Full name and email address** (required): to run the account, log in and send password-reset emails.",
             "**Password** (required): stored only as a salted hash.",
-            "**Phone number** (optional): no feature uses it. Change or remove it in **Settings > Edit Account Info**.",
           ],
         },
         {
@@ -353,7 +352,7 @@ export const privacyPolicy = {
           items: [
             "**Correct:** **Settings > Edit Account Info**, **Change Password**, **Daily Goal**, or **Edit Profile**.",
             "**Delete:** section 14.",
-            "**Withdraw consent:** turn off reminders, remove photo access in device settings, remove your phone number, or leave the waitlist.",
+            "**Withdraw consent:** turn off reminders, remove photo access in device settings, or leave the waitlist.",
             "**Copies and anything else:** email us, ideally from the account's email address so we can confirm it's yours. You may also be able to complain to your local data protection authority.",
           ],
         },
