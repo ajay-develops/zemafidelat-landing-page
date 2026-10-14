@@ -1,5 +1,5 @@
 import { DecorGlyph } from "@/components/decor-glyph";
-import { LearningPathPhone, TracePhone } from "@/components/mockups";
+import { Screenshot } from "@/components/screenshot";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { siteConfig } from "@/lib/config";
 import { CheckIcon } from "lucide-react";
@@ -72,15 +72,23 @@ export function Hero() {
           </ul>
         </div>
 
-        <div
-          role="img"
-          aria-label="The Zema Fidelat app: a learning path of fidel letters, and a screen for tracing the letter ሀ"
-          className="hero-rise-late relative mx-auto aspect-square w-full max-w-[34rem]"
-        >
+        <div className="hero-rise-late relative mx-auto aspect-square w-full max-w-[34rem]">
           {/* Inside the box, so it is never cut off by the band's edge. */}
           <div className="absolute inset-[6%] rounded-full bg-leaf/15" aria-hidden />
-          <LearningPathPhone className="absolute left-[6%] top-[3%] w-[44%] -rotate-6" />
-          <TracePhone className="absolute right-[6%] top-[10%] w-[44%] rotate-[7deg]" />
+          <Screenshot
+            name="lessons"
+            alt="The learning path: lesson stops along a trail through the forest"
+            sizes="(min-width: 1024px) 230px, 42vw"
+            eager
+            className="absolute left-[7%] top-[3%] w-[42%] -rotate-6"
+          />
+          <Screenshot
+            name="dashboard"
+            alt="The home dashboard: today's stats, and cards for lessons, flashcards, letters and tracing"
+            sizes="(min-width: 1024px) 230px, 42vw"
+            eager
+            className="absolute right-[7%] top-[11%] w-[42%] rotate-6"
+          />
         </div>
       </div>
     </section>

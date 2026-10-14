@@ -8,6 +8,10 @@
  */
 const fidelCount = 224;
 const lessonCount = 32;
+/* Also from the app: LEVEL_XP_THRESHOLDS has 32 levels, achievements-content
+   lists 18 badges, DAILY_LEARNING_GOAL_OPTIONS runs 5–25 minutes. */
+const levelCount = 32;
+const badgeCount = 18;
 
 // Kept for when the app ships; the page shows the waitlist until then.
 const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
@@ -56,7 +60,8 @@ export const siteConfig = {
   },
   navLinks: [
     { href: "#how-it-works", text: "How it works" },
-    { href: "#games", text: "Games" },
+    { href: "#features", text: "Features" },
+    { href: "#families", text: "For families" },
     { href: "#story", text: "Our story" },
     { href: "#faq", text: "FAQ" },
   ],
@@ -106,7 +111,7 @@ export const siteConfig = {
       },
       {
         title: "Play",
-        text: "Word games, a daily crossword and the Daily Fidel Challenge keep it fun every day.",
+        text: "Word games, daily word matching and the Daily Fidel Challenge keep it fun every day.",
         tone: "sky",
       },
     ],
@@ -116,42 +121,168 @@ export const siteConfig = {
     eyebrow: "Daily Fidel Challenge",
     title: "One new word. Every single day.",
     text: "Look at the picture, read the English clue, then unscramble the fidelat to spell the word. It takes a minute — and it sticks.",
-    chips: ["Picture clues", "Hints when you're stuck", "Daily crossword too"],
+    chips: ["Picture clues", "Hints when you're stuck", "A new word every day"],
   },
 
-  games: {
-    eyebrow: "Games that teach",
-    title: "Learning that feels like playing",
-    text: "Flashcards, tracing, word games and crosswords all feed the same progress — so every minute counts toward reading fluently.",
-    cards: {
-      flashcards: { title: "Flashcards", text: "Tap to flip — “house”" },
-      tracing: { title: "Letter tracing", text: "Guided strokes for every fidel" },
-      wordMatch: { title: "Word match", text: "Pick the right meaning" },
-      crossword: { title: "Daily crossword", text: "A fresh grid every morning" },
-    },
+  /* The swipeable tour: every screen is a real capture (screenshots-src). */
+  gallery: {
+    eyebrow: "Take a look inside",
+    title: "The whole app, screen by screen",
+    text: "Swipe through the real app — every screen here is a screenshot from a phone.",
+    screens: [
+      { name: "dashboard", caption: "Your dashboard" },
+      { name: "lessons", caption: "Learning path" },
+      { name: "letters", caption: `All ${fidelCount} fidelat` },
+      { name: "flashcards", caption: "Flashcards" },
+      { name: "trace-letters", caption: "Tracing" },
+      { name: "word-games", caption: "Word games" },
+      { name: "crosswords", caption: "Word matching" },
+      { name: "daily-fidel", caption: "Daily challenge" },
+      { name: "achievements", caption: "Badges" },
+      { name: "daily-goals", caption: "Daily goal" },
+    ],
   },
+
+  /*
+   * One row each: copy beside real screenshots, alternating sides.
+   * `shots` are file names in public/screenshots, with their alt text.
+   */
+  featureRows: [
+    {
+      id: "lessons",
+      eyebrow: "Lessons",
+      title: `${lessonCount} lessons. Every letter. In order.`,
+      text: "Each lesson teaches one fidel family — all seven forms of a letter — then practises it four ways before moving on.",
+      bullets: [
+        "Flashcards, tracing, word games and word matching in every lesson",
+        `A letter chart of all ${fidelCount} fidelat, each one with its sound`,
+        "A learning path that shows how far you've come — and lets you share it",
+      ],
+      shots: [{ name: "letters", alt: `The letter chart: all ${fidelCount} fidelat, grouped by lesson` }],
+      surface: "white",
+    },
+    {
+      id: "hear-it",
+      eyebrow: "Hear it",
+      title: "Hear every letter and word, said out loud",
+      text: "Tap the speaker on any letter or word to hear it — recorded by a real voice, never a robot.",
+      bullets: [
+        "A pronunciation guide under every word",
+        "Pictures that show what each word means",
+        "Mark a card “I know this” or “Need more practice” — the app keeps the pile for you",
+      ],
+      shots: [
+        { name: "flashcards", alt: "A flashcard showing the Tigrinya word for lemon, with its pronunciation" },
+        { name: "flashcard-back", alt: "The back of the flashcard: a picture of lemons and the word Lemon" },
+      ],
+      surface: "mint",
+    },
+    {
+      id: "write-it",
+      eyebrow: "Write it",
+      title: "Learn to write, stroke by stroke",
+      text: "A little plane flies the path of each stroke. Follow it with your finger until the letter is yours.",
+      bullets: [
+        `Guided strokes for all ${fidelCount} fidelat`,
+        "Letters you find hard collect in a “Need more practice” list",
+        "Hear the letter while you trace it",
+      ],
+      shots: [{ name: "trace-letters", alt: "Tracing the letter ሀ: a plane marks the start of a dotted stroke path" }],
+      surface: "white",
+    },
+    {
+      id: "play-it",
+      eyebrow: "Play it",
+      title: "Games that check what stuck",
+      text: "See the picture, pick the Tigrinya word. Match words with their meanings. Every level can be replayed.",
+      bullets: [
+        "Word games with pictures and audio for every lesson",
+        "Word matching to pair words with their meaning",
+        "Missed questions come back until you get them",
+      ],
+      shots: [
+        { name: "word-games", alt: "A word game: a picture of a house fly and four Tigrinya words to choose from" },
+        { name: "crosswords", alt: "Word matching: Tigrinya words to pair with their English meanings" },
+      ],
+      surface: "cream",
+    },
+  ],
 
   habits: {
     eyebrow: "Stay motivated",
     title: "Built for habits, not homework",
+    shots: [
+      { name: "achievements", alt: "The achievements screen with badges like First Lesson and 7 Day Streak" },
+      { name: "levels", alt: "All levels: from Level 1 Beginner upward, with the XP each needs" },
+      { name: "daily-goals", alt: "Setting a daily learning goal of 15 minutes" },
+    ],
     cards: {
       streaks: {
+        value: "7",
+        unit: "day streak",
         title: "Streaks",
         text: "Keep the flame alive with a little practice every day.",
       },
       goals: {
+        value: "15",
+        unit: "min goal",
         title: "Daily goals & XP",
-        text: "Pick your pace and earn XP for every activity.",
+        text: "Pick 5 to 25 minutes a day and earn XP for every activity.",
       },
       badges: {
+        value: String(badgeCount),
+        unit: "badges",
         title: "Badges",
         text: "Unlock achievements like Word Explorer and Quiz Master.",
       },
-      profiles: {
-        title: "Family profiles",
-        text: "One account, a profile for every learner at home.",
+      levels: {
+        value: String(levelCount),
+        unit: "levels",
+        title: "Levels",
+        text: "Climb from Beginner to Master as your XP grows.",
       },
     },
+  },
+
+  /* Laid out like a feature row (feature-row.tsx). */
+  families: {
+    id: "families",
+    surface: "mint",
+    eyebrow: "For families",
+    title: "One app for the whole family",
+    text: "Every child gets their own profile, with their own progress, goals and badges — and you stay in charge.",
+    bullets: [
+      "A profile for every learner, each with a friendly animal avatar",
+      "Parent lock: kids can't switch profiles or open settings without you",
+      "Start as a guest straight away; add a free account to back up progress",
+      "Reminders that nudge you when it's time to practise",
+    ],
+    shots: [{ name: "profiles", alt: "Who's learning? Four profiles with animal avatars, and Add Profile" }],
+  },
+
+  /* The complete list. Icons are lucide names, mapped in feature-list.tsx. */
+  featureList: {
+    eyebrow: "Everything in the app",
+    title: "All of this, free",
+    text: "No subscriptions, no ads and no hidden fees — every feature below is included.",
+    items: [
+      { icon: "lessons", title: `${lessonCount} step-by-step lessons`, text: "One fidel family at a time, in order, from ሀ to ቨ." },
+      { icon: "letters", title: `All ${fidelCount} fidelat, with sound`, text: "A full letter chart — tap any letter to hear it." },
+      { icon: "voice", title: "Real recorded voices", text: "Every letter and word is spoken by a person, never a robot." },
+      { icon: "flashcards", title: "Picture flashcards", text: "Word on the front, picture and meaning on the back." },
+      { icon: "tracing", title: "Letter tracing", text: "Follow the path stroke by stroke to learn to write." },
+      { icon: "games", title: "Word games", text: "See the picture, pick the right Tigrinya word." },
+      { icon: "matching", title: "Word matching", text: "Pair each word with its meaning." },
+      { icon: "daily", title: "Daily Fidel Challenge", text: "A new word every day, with hints when you're stuck." },
+      { icon: "xp", title: `XP and ${levelCount} levels`, text: "Every activity earns XP, from Beginner to Master." },
+      { icon: "badges", title: `${badgeCount} badges`, text: "From First Letter to Word Explorer and Quiz Master." },
+      { icon: "streaks", title: "Streaks & daily goals", text: "Pick 5 to 25 minutes a day and keep the streak alive." },
+      { icon: "reminders", title: "Learning reminders", text: "A gentle nudge when it's time to practise." },
+      { icon: "profiles", title: "Family profiles", text: "A profile for every learner, each with its own progress." },
+      { icon: "lock", title: "Parent lock", text: "Kids can't switch profiles or open settings without you." },
+      { icon: "guest", title: "No account needed", text: "Start as a guest; add a free account to back up progress." },
+      { icon: "share", title: "Share progress", text: "Share your learning journey and new badges." },
+    ],
   },
 
   story: {
@@ -188,6 +319,11 @@ export const siteConfig = {
       question: "Is it good for kids?",
       answer:
         "Yes. Letter tracing, picture clues and short games are made for young learners, and each child gets their own profile with their own progress.",
+    },
+    {
+      question: "Can my child hear how words are said?",
+      answer:
+        "Yes. Every letter and word has a real recording — tap the speaker to hear it.",
     },
     {
       question: "How do family profiles work?",

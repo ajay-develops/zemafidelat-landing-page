@@ -47,14 +47,17 @@ const OG_PNG_SOURCE = "dashboard.png";
 const DEEP_LINKS = {
   "dashboard.png": "zema:///home",
   "lessons.png": "zema:///lessons",
-  "flashcards.png": "zema:///lessons/flashcards?level=1",
-  "trace-letters.png": "zema:///lessons/trace?level=1",
-  "word-games.png": "zema:///lessons/word-games?level=1",
-  "crosswords.png": "zema:///lessons/crossword?level=1",
+  "letters.png": "zema:///letters",
+  "flashcards.png": "zema:///flashcards → I Know These",
+  "flashcard-back.png": "zema:///flashcards → I Know These, card tapped",
+  "trace-letters.png": "zema:///traces → Unlocked Letters → ሀ",
+  "word-games.png": "zema:///word-games → Unlocked Levels → Level 1, answer selected",
+  "crosswords.png": "zema:///crosswords → Unlocked Levels → Level 1",
   "daily-fidel.png": "zema:///fidel-match",
+  "achievements.png": "zema:///profile/achievements",
+  "levels.png": "zema:///profile/levels",
   "daily-goals.png": "zema:///settings/daily-goal",
   "profiles.png": "zema:///profiles",
-  "notifications.png": "zema:///notifications",
 };
 
 /**
@@ -73,7 +76,8 @@ const CROP_BOTTOM = 70;
 /** Bezel as a fraction of screen width, and corner radius as a fraction of outer width. */
 const BEZEL_RATIO = 0.024;
 const RADIUS_RATIO = 0.085;
-const BEZEL_COLOR = "#24262c";
+// The redesign's forest (--forest), so real screenshots match the drawn phones.
+const BEZEL_COLOR = "#0e3b2a";
 /** Output height, matching what the previous mockups rendered at. */
 const TARGET_HEIGHT = 1686;
 
