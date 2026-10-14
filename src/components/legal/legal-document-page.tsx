@@ -163,7 +163,7 @@ export function LegalDocumentPage({
 
       <article className="mx-auto w-full max-w-3xl px-6 pb-16 pt-10 text-base leading-7 text-muted-foreground sm:pt-16">
         <header className="border-b pb-8">
-          <h1 className="text-balance text-4xl font-bold tracking-tighter text-foreground sm:text-5xl">
+          <h1 className="font-display text-balance text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl">
             {content.title}
           </h1>
           <div className="mt-4 space-y-1 text-sm">
@@ -238,7 +238,7 @@ export function LegalDocumentPage({
         })}
       </article>
 
-      <Footer anchorBase="/" />
+      <Footer />
     </main>
   );
 }

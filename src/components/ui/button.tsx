@@ -9,10 +9,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // primary-strong, not primary: white on #f43f5e is 3.67:1, under AA
-        // for the 14px labels these carry. text-white rather than
-        // text-primary-foreground, which is near-black in dark mode — every
-        // call site was already overriding it for that reason.
+        // White on the deep green measures 5.1:1 (see globals.css).
         default:
           "bg-primary-strong text-white hover:bg-primary-strong/90",
         destructive:

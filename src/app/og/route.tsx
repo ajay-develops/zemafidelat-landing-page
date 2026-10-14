@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(180deg, #ffffff 0%, #f4f4f5 100%)",
+          background: "linear-gradient(180deg, #eaf7e6 0%, #ffffff 100%)",
           fontFamily: "Inter",
           fontSize: 32,
           fontWeight: 600,
@@ -69,7 +69,7 @@ export async function GET(req: NextRequest) {
               textAlign: "center",
               width: "85%",
               letterSpacing: "-0.05em",
-              color: "#18181b",
+              color: "#0e3b2a",
             }}
           >
             {postTitle}
@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
               fontSize: "20px",
               fontWeight: 500,
               marginTop: "16px",
-              color: "#71717a",
+              color: "#46604f",
             }}
           >
             {siteConfig.name}
@@ -94,8 +94,8 @@ export async function GET(req: NextRequest) {
           style={{
             position: "absolute",
             bottom: -80,
-            border: "4px solid #e4e4e7",
-            background: "#f4f4f5",
+            border: "6px solid #0e3b2a",
+            background: "#ffffff",
             borderRadius: 20,
           }}
         />

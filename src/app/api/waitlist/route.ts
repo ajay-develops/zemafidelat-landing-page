@@ -74,7 +74,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
           ok: true,
           message:
-            "You're already on the list — we'll email you when the APK is ready.",
+            "You'd already signed up — we'll email you the day the app is out.",
         });
       }
 
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
-      message: "You're on the list — we'll email you when the APK is ready.",
+      message: "We'll email you the day the app is out.",
     });
   } catch (error) {
     console.error("Waitlist unexpected error:", error);

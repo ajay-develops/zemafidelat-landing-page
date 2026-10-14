@@ -12,57 +12,57 @@ import {
 } from "@/components/ui/drawer";
 import { siteConfig } from "@/lib/config";
 import { cn, withAnchorBase } from "@/lib/utils";
+import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
-import { IoMenuSharp } from "react-icons/io5";
-
-const drawerNavLinks = siteConfig.navLinks.filter(
-  (link) => link.text !== "Waitlist"
-);
 
 export function MobileDrawer({ anchorBase = "" }: { anchorBase?: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger aria-label="Open menu">
-        <IoMenuSharp className="text-2xl" />
+      <DrawerTrigger
+        aria-label="Open menu"
+        className="flex size-11 items-center justify-center rounded-full text-foreground transition-colors hover:bg-forest/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <MenuIcon className="size-6" aria-hidden />
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="px-6">
           <DrawerTitle className="sr-only">Navigation menu</DrawerTitle>
           <Link
             href="/"
-            title="brand-logo"
-            className="relative flex items-center space-x-2"
+            className="flex items-center gap-2"
             onClick={() => setOpen(false)}
           >
-            <Icons.logo className="w-auto h-[40px]" />
-            <span className="font-bold text-xl">{siteConfig.name}</span>
+            <Icons.logo className="h-9 w-auto" decorative />
+            <span className="font-display text-xl font-bold">
+              {siteConfig.name}
+            </span>
           </Link>
         </DrawerHeader>
-        <nav className="flex flex-col gap-4 px-6 pb-4">
-          {drawerNavLinks.map((link) => (
+        <nav aria-label="Main" className="flex flex-col px-6 pb-2">
+          {siteConfig.navLinks.map((link) => (
             <a
-              key={link.text}
+              key={link.href}
               href={withAnchorBase(link.href, anchorBase)}
-              className="text-lg font-medium text-foreground"
+              className="py-3 text-lg font-medium text-foreground"
               onClick={() => setOpen(false)}
             >
               {link.text}
             </a>
           ))}
         </nav>
-        <DrawerFooter>
+        <DrawerFooter className="px-6 pb-8">
           <a
             href={withAnchorBase(siteConfig.links.waitlist, anchorBase)}
             className={cn(
               buttonVariants({ variant: "default" }),
-              "text-white rounded-full group"
+              "h-12 rounded-full text-base font-bold"
             )}
             onClick={() => setOpen(false)}
           >
-            {siteConfig.ctaSecondary}
+            {siteConfig.cta}
           </a>
         </DrawerFooter>
       </DrawerContent>

@@ -9,23 +9,25 @@ import { siteConfig } from "@/lib/config";
 
 export function FAQ() {
   return (
-    <Section
-      id="faq"
-      title="FAQ"
-      subtitle="Frequently Asked Questions"
-      className="container px-10 mx-auto max-w-[var(--max-container-width)]"
-    >
+    <Section id="faq" eyebrow={siteConfig.faqEyebrow} title={siteConfig.faqTitle}>
       <Accordion
         type="single"
         collapsible
-        className="w-full max-w-2xl mx-auto py-10"
+        defaultValue="item-0"
+        className="mx-auto max-w-3xl space-y-3"
       >
         {siteConfig.faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index}`}>
-            <AccordionTrigger className="text-left hover:no-underline">
+          <AccordionItem
+            key={faq.question}
+            value={`item-${index}`}
+            className="rounded-2xl border-0 bg-muted px-6 transition-colors data-[state=open]:bg-mint"
+          >
+            <AccordionTrigger className="py-5 text-left text-base font-bold text-foreground hover:no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-muted rounded-sm">
               {faq.question}
             </AccordionTrigger>
-            <AccordionContent>{faq.answer}</AccordionContent>
+            <AccordionContent className="pb-5 text-base leading-relaxed text-muted-foreground">
+              {faq.answer}
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
