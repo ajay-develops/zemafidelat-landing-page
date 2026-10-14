@@ -6,15 +6,22 @@ type IconProps = React.HTMLAttributes<SVGElement> & {
 };
 
 export const Icons = {
-  logo: ({ className, priority, ...props }: IconProps & { priority?: boolean }) => (
+  logo: ({
+    className,
+    priority,
+    decorative,
+    ...props
+  }: IconProps & {
+    priority?: boolean;
+    /** Beside the written name, where alt text would read the name twice. */
+    decorative?: boolean;
+  }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={siteConfig.logoUi}
-      alt={siteConfig.name}
-      // The hero blows this up to fill the screen, which makes it the largest
-      // thing the browser paints. Left at default priority it queued behind
-      // the rest of the page and was discovered 765ms late on a throttled
-      // phone, dragging the whole page's LCP with it.
+      alt={decorative ? "" : siteConfig.name}
+      // The header's logo is above the fold on every page; let it jump the
+      // queue rather than wait behind the images below.
       fetchPriority={priority ? "high" : undefined}
       // Intrinsic size of logo-256.webp. Without it the browser cannot reserve
       // the space before the file arrives, and the header lurches on load.

@@ -1,58 +1,35 @@
 import { Icons } from "@/components/icons";
 import { siteConfig } from "@/lib/config";
-import { withAnchorBase } from "@/lib/utils";
 import Link from "next/link";
 
-type FooterProps = {
-  /** "/" on pages other than the homepage, so section links lead back to it. */
-  anchorBase?: string;
-};
-
-export function Footer({ anchorBase = "" }: FooterProps) {
+export function Footer() {
   return (
-    <footer className="container flex flex-col items-center gap-y-5 rounded-lg px-7 py-5 text-center md:px-10">
-      <div className="flex items-center gap-x-2">
-        <Icons.logo className="h-8 w-8" />
-        <p className="text-lg font-bold text-foreground">{siteConfig.name}</p>
+    <footer className="bg-forest text-white">
+      <div className="mx-auto flex w-full max-w-[var(--max-container-width)] flex-col gap-6 px-4 py-10 sm:px-6 md:flex-row md:items-center md:justify-between">
+        <div className="space-y-2">
+          <Link href="/" className="inline-flex items-center gap-2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf-pale">
+            <Icons.logo className="h-7 w-auto" decorative />
+            <span className="font-display text-lg font-bold">{siteConfig.name}</span>
+          </Link>
+          <p className="text-sm text-white/70">
+            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+          </p>
+        </div>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-x-6 gap-y-3">
+            {siteConfig.footerLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="rounded-sm text-sm text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-leaf-pale"
+                >
+                  {link.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
-
-      {/* Centred as a stack. The links and the copyright used to sit at
-          opposite ends of a justify-between row, and the wordmark hung off the
-          left edge above them. */}
-      <ul className="flex flex-col items-center gap-x-5 gap-y-2 text-muted-foreground md:flex-row">
-        {siteConfig.navLinks.map((link) => (
-          <li
-            key={link.text}
-            className="text-[15px]/normal font-medium text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
-          >
-            <a
-              href={withAnchorBase(link.href, anchorBase)}
-              {...("external" in link && link.external
-                ? { target: "_blank", rel: "noopener noreferrer" }
-                : {})}
-            >
-              {link.text}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <nav aria-label="Legal">
-        <ul className="flex flex-col items-center gap-x-5 gap-y-2 md:flex-row">
-          {siteConfig.legalLinks.map((link) => (
-            <li
-              key={link.href}
-              className="text-sm font-medium text-muted-foreground transition-all duration-100 ease-linear hover:text-foreground hover:underline hover:underline-offset-4"
-            >
-              <Link href={link.href}>{link.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-
-      <p className="text-sm font-medium tracking-tight text-muted-foreground">
-        © 2026 Zema Fidelat. All rights reserved.
-      </p>
     </footer>
   );
 }

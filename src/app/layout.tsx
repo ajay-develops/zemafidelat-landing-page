@@ -1,10 +1,9 @@
 import { ShowcaseProvider } from "@/components/showcase/showcase-provider";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/config";
+import { fontDisplay, fontEthiopic, fontSans } from "@/lib/fonts";
 import { cn, constructMetadata } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
-import { fontMono, fontSans } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = constructMetadata({
@@ -14,14 +13,9 @@ export const metadata: Metadata = constructMetadata({
 });
 
 export const viewport: Viewport = {
-  // No colorScheme here. It was pinned to "light", which left the browser
-  // painting inputs, scrollbars and autofill in light styling even with the
-  // dark theme applied — metadata cannot see the theme, which lives as a class
-  // on <html>. globals.css sets color-scheme per theme instead.
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  // The hero's mint (--mint in globals.css), so the browser chrome runs into
+  // the page on phones. Metadata cannot read CSS variables, hence the copy.
+  themeColor: "#eaf7e6",
 };
 
 export default function RootLayout({
@@ -32,33 +26,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={cn(
-        `${fontSans.variable} ${fontMono.variable}`,
+        fontSans.variable,
+        fontDisplay.variable,
+        fontEthiopic.variable,
         "scroll-smooth"
       )}
     >
-      <body
-        className={cn(
-          "min-h-screen bg-background antialiased w-full mx-auto font-sans"
-        )}
-      >
-        {/*
-          Follow the OS until the visitor picks a side with the switch in the
-          header (components/theme-toggle.tsx); next-themes then remembers it.
-
-          No disableTransitionOnChange: that prop force-disables every CSS
-          transition on the page for the frame the theme changes, which is the
-          exact frame the switch animates in. Nothing transitions on load
-          anyway — the blocking script sets the class before the first paint.
-        */}
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-          {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
-          <div data-showcase-hide>
-            <TailwindIndicator />
-          </div>
-        </ThemeProvider>
+      <body className="min-h-screen w-full bg-background font-sans text-foreground antialiased">
+        {children}
+        {process.env.NODE_ENV === "development" ? <ShowcaseProvider /> : null}
+        <div data-showcase-hide>
+          <TailwindIndicator />
+        </div>
       </body>
     </html>
   );

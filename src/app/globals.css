@@ -1,8 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -27,22 +25,28 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Brand palette — the 2026 redesign. Named by what they are, so a section
+     can say "cream" instead of guessing which shadcn role a tint maps to. */
+  --color-forest: var(--forest);
+  --color-forest-soft: var(--forest-soft);
+  --color-leaf: var(--leaf);
+  --color-leaf-pale: var(--leaf-pale);
+  --color-leaf-ink: var(--leaf-ink);
+  --color-mint: var(--mint);
+  --color-cream: var(--cream);
+  --color-sky: var(--sky);
+  --color-sky-strong: var(--sky-strong);
+  --color-sun: var(--sun);
+  --color-amber: var(--amber);
+  --color-coral: var(--coral);
+  --color-peach: var(--peach);
+
+  --font-sans: var(--font-dm-sans), var(--font-noto-ethiopic), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-noto-ethiopic),
+    ui-sans-serif, system-ui, sans-serif;
+  --font-ethiopic: var(--font-noto-ethiopic), ui-sans-serif, sans-serif;
   --max-container-width: 1200px;
 
   --animate-marquee: marquee var(--duration) linear infinite;
@@ -106,112 +110,60 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0); /* #fff */
-  --foreground: oklch(11.439% 0.0069 261.028); /* #0d0c0f */
-  --card: oklch(1 0 0); /* #fff */
-  --card-foreground: oklch(11.439% 0.0069 261.028);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(11.439% 0.0069 261.028);
-  --primary: oklch(0.645 0.2154 16.4); /* #f43f5e */
   /*
-   * Filled buttons only. #f43f5e is the brand colour and stays that
-   * everywhere it is ink — links, icons, the /10 badge tint. But white on it
-   * measures 3.67:1, under the 4.5:1 AA needs for the 14px labels the buttons
-   * actually use. One step darker clears it at 4.63:1 and reads as the same
-   * rose, so the brand does not move to satisfy a button.
-   */
-  --primary-strong: oklch(0.5858 0.222 17.6); /* #e11d48 */
-  --primary-foreground: oklch(0.98 0.01 264.7); /* #f8fafc */
-  --secondary: oklch(0.96 0.005 264.7); /* #f3f4f6 */
-  --secondary-foreground: oklch(11.439% 0.0069 261.028); /* #18181b */
-  --muted: oklch(0.9703 0 0); /* #f8fafc */
-  --muted-foreground: oklch(0.6 0.02 264.7); /* #64748b */
-  --accent: oklch(0.96 0.005 264.7); /* #f3f4f6 */
-  --accent-foreground: oklch(11.439% 0.0069 261.028);
-  --destructive: oklch(0.645 0.2154 16.4); /* #f43f5e */
-  --destructive-foreground: oklch(0.98 0.01 264.7);
-  --border: oklch(0.914 0.032 264.7); /* #e5e7eb */
-  --input: oklch(0.914 0.032 264.7);
-  --ring: oklch(11.439% 0.0069 261.028);
-  --radius: 0.5rem;
-  --chart-1: oklch(0.76 0.18 49.2); /* #ffb86b */
-  --chart-2: oklch(0.52 0.14 182.5); /* #1abc9c */
-  --chart-3: oklch(0.38 0.08 210); /* #34495e */
-  --chart-4: oklch(0.75 0.19 99.2); /* #ffe066 */
-  --chart-5: oklch(0.72 0.21 69.2); /* #ffd166 */
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  /*
-   * Lightness here is OKLCH L (perceptual, ~CIE L*), NOT the hex byte as a
-   * fraction of 255. That confusion is what broke this block: #09090b became
-   * oklch(0.039 …) from 0x09/255, when its actual L is 0.1408. The error is
-   * invisible at the light end — #f3f4f6 is 0.953 as a byte fraction and
-   * 0.967 as L — which is why the light theme looked fine while every dark
-   * surface collapsed to black: background #000001, card #000001, muted
-   * #030304, border #0c0d0f. Nothing was distinguishable from anything else.
+   * Light only (decided 2026-10-14 with the redesign): the client's design has
+   * no dark version, so the old switch and .dark block went with it.
    *
-   * The hex in each comment is the intended colour and the value is derived
-   * from it. Convert properly if you change one.
+   * Contrast of the pairings the page uses, measured as WCAG ratios:
+   *   forest on white 12.5 · on mint 11.3 · on cream 11.6 · on leaf 5.8
+   *   white on primary 5.1 · primary on mint 4.6 · primary on cream 4.7
+   *   muted-foreground on white 6.9 · on mint 6.2 · on cream 6.4 · on sky 6.1
+   *   amber on cream 5.5 · leaf-pale on forest 8.4 · sun on forest-soft 6.6
+   *   coral on white 3.7 — only for the 30px streak numeral, which is large
+   *   text; never for body copy
    */
-  --background: oklch(0.1408 0.0044 285.8); /* #09090b */
-  --foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  --card: oklch(0.1408 0.0044 285.8); /* #09090b */
-  --card-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  --popover: oklch(0.1408 0.0044 285.8); /* #09090b */
-  --popover-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  --primary: oklch(0.645 0.2154 16.4); /* #f43f5e — shared with :root */
-  --primary-strong: oklch(0.5858 0.222 17.6); /* #e11d48 */
-  --primary-foreground: oklch(0.2103 0.0059 285.9); /* #18181b */
-  --secondary: oklch(0.2739 0.0055 286); /* #27272a */
-  --secondary-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  --muted: oklch(0.2103 0.0059 285.9); /* #18181b */
-  --muted-foreground: oklch(0.7118 0.0129 286.1); /* #a1a1aa */
-  --accent: oklch(0.2739 0.0055 286); /* #27272a */
-  --accent-foreground: oklch(0.9842 0.0034 247.9); /* #f8fafc */
-  /*
-   * Lighter than the light theme's red, not darker. #b91c1c is a red-700 built
-   * for white backgrounds; as `text-destructive` on #09090b it measured
-   * 3.07:1, so the waitlist form's error messages were barely readable in the
-   * one place a user most needs to read them. rose-400 gives 7.39:1 and keeps
-   * the brand's hue family. Its foreground flips dark to match: the pairing
-   * has to survive `bg-destructive text-destructive-foreground` too.
-   */
-  --destructive: oklch(0.7192 0.169 13.4); /* #fb7185 */
-  --destructive-foreground: oklch(0.2103 0.0059 285.9); /* #18181b */
-  --border: oklch(0.2739 0.0055 286); /* #27272a */
-  --input: oklch(0.2739 0.0055 286); /* #27272a */
-  --ring: oklch(0.839 0.01 264.7);
-  --chart-1: oklch(0.7 0.18 264.7);
-  --chart-2: oklch(0.6 0.14 182.5);
-  --chart-3: oklch(0.55 0.19 99.2);
-  --chart-4: oklch(0.6 0.19 299.2);
-  --chart-5: oklch(0.55 0.21 339.2);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --radius: 0.75rem;
+  --background: #ffffff;
+  --foreground: #0e3b2a;
+  --card: #ffffff;
+  --card-foreground: #0e3b2a;
+  --popover: #ffffff;
+  --popover-foreground: #0e3b2a;
+  /* The deep green of every filled button and link. */
+  --primary: #1b7f35;
+  --primary-strong: #1b7f35;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f7f4;
+  --secondary-foreground: #0e3b2a;
+  --muted: #f3f7f4;
+  --muted-foreground: #46604f;
+  --accent: #eaf7e6;
+  --accent-foreground: #0e3b2a;
+  --destructive: #c62828;
+  --destructive-foreground: #ffffff;
+  --border: #dcebdc;
+  --input: #bfe3c2;
+  --ring: #1b7f35;
+
+  --forest: #0e3b2a;
+  --forest-soft: #164a36;
+  --leaf: #4cc93b;
+  --leaf-pale: #a6e39b;
+  /* Ge'ez letters drawn as faded decoration on leaf surfaces. */
+  --leaf-ink: #6bd45b;
+  --mint: #eaf7e6;
+  --cream: #fef6df;
+  --sky: #e3f4fc;
+  --sky-strong: #7ccbf2;
+  --sun: #ffc83d;
+  --amber: #865c00;
+  --coral: #e5533f;
+  --peach: #ffd2bb;
 }
 
 @layer base {
   :root {
     color-scheme: light;
-  }
-  .dark {
-    color-scheme: dark;
   }
   * {
     @apply border-border outline-ring/50;
@@ -222,80 +174,12 @@
 }
 
 /*
- * The light/dark switch, animated.
- *
- * Everything below is scoped to `.theme-wipe`, which theme-toggle.tsx puts on
- * <html> for the length of one switch and takes off again. That keeps it off
- * any other view transition, and means none of it runs — or costs anything —
- * until the visitor actually presses the button. The centre and radius of the
- * circle come from the button's position, set as inline custom properties on
- * <html>; the view-transition pseudo-elements inherit from there.
- */
-:root.theme-wipe::view-transition-old(root),
-:root.theme-wipe::view-transition-new(root) {
-  /* Drop the browser's default cross-fade; the circle below does the work. */
-  animation: none;
-  mix-blend-mode: normal;
-}
-
-:root.theme-wipe::view-transition-old(root) {
-  z-index: 1;
-}
-
-/*
- * The old theme stays put underneath and the new one is clipped in over it, so
- * the whole page changes in one pass — text, images, gradients and all — with
- * only the clip-path animating.
- */
-:root.theme-wipe::view-transition-new(root) {
-  z-index: 2;
-  /*
-   * A circle's area grows with the square of its radius, so an ease-out curve
-   * here reads as a snap followed by a crawl — measured at 90ms of 500ms, an
-   * ease-out quint had already covered 63% of the screen. This curve keeps the
-   * edge moving at a readable pace the whole way across.
-   */
-  animation: theme-wipe-in 520ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes theme-wipe-in {
-  from {
-    clip-path: circle(0px at var(--wipe-x, 50%) var(--wipe-y, 0));
-  }
-  to {
-    clip-path: circle(var(--wipe-r, 150vmax) at var(--wipe-x, 50%)
-      var(--wipe-y, 0));
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  :root.theme-wipe::view-transition-new(root) {
-    animation: none;
-  }
-}
-
-/*
  * The hero intro.
  *
- * This used to be four JS animations, which cannot begin until React has
- * hydrated. On a throttled phone that is seconds away, and the headline and
- * the paragraph sat at opacity 0 until it happened — so the paragraph, the
- * page's Largest Contentful Paint, landed at 4.4s. In CSS they start at the
- * first paint instead, and the text is eligible to be "painted" from its
- * first frame because nothing delays these.
- *
- * The logo scales. It used to animate `height`, from 80vh to 10vh, and height
- * is layout: for 1.8 seconds it dragged the whole page up underneath itself,
- * which the browser recorded as 39 separate layout shifts — every bit of this
- * page's measured CLS. A transform moves nothing around it.
+ * CSS, not JS: these start at the first paint instead of after hydration, so
+ * the headline — the page's Largest Contentful Paint — is never held back.
  */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-zoom {
-    /* From the top, so it grows down over the page rather than off-screen. */
-    transform-origin: top;
-    animation: hero-zoom 1.4s cubic-bezier(0.65, 0, 0.35, 1) both;
-  }
-
   /*
    * Movement only, no fade. The browser does not count an element as painted
    * while it is transparent, and the headline and paragraph are what it
@@ -313,15 +197,6 @@
    */
   .hero-rise-late {
     animation: hero-rise 0.6s ease-out 0.25s both;
-  }
-}
-
-@keyframes hero-zoom {
-  from {
-    transform: scale(4.5);
-  }
-  to {
-    transform: none;
   }
 }
 

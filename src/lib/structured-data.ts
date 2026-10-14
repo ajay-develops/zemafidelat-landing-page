@@ -14,7 +14,7 @@ export function getStructuredData() {
     "@type": "MobileApplication",
     "@id": `${siteConfig.url}/#app`,
     name: siteConfig.name,
-    operatingSystem: "Android",
+    operatingSystem: "Android, iOS",
     applicationCategory: "EducationalApplication",
     offers: {
       "@type": "Offer",
@@ -24,7 +24,7 @@ export function getStructuredData() {
     description: siteConfig.heroDescription,
   };
 
-  // downloadUrl intentionally omitted while the APK waitlist is active.
+  // downloadUrl intentionally omitted while the waitlist is active.
 
   const faqPage = {
     "@type": "FAQPage",
@@ -34,7 +34,7 @@ export function getStructuredData() {
       name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answerText,
+        text: faq.answer,
       },
     })),
   };

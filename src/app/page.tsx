@@ -1,14 +1,14 @@
-import { Benefits } from "@/components/sections/benefits";
-import { BentoGrid } from "@/components/sections/bento";
 import { CTA } from "@/components/sections/cta";
+import { DailyChallenge } from "@/components/sections/daily-challenge";
 import { FAQ } from "@/components/sections/faq";
-import { FeatureHighlight } from "@/components/sections/feature-highlight";
-import { FeatureScroll } from "@/components/sections/feature-scroll";
-import { Features } from "@/components/sections/features";
+import { FidelBand } from "@/components/sections/fidel-band";
 import { Footer } from "@/components/sections/footer";
+import { Games } from "@/components/sections/games";
+import { Habits } from "@/components/sections/habits";
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
-import { Pricing } from "@/components/sections/pricing";
+import { HowItWorks } from "@/components/sections/how-it-works";
+import { Story } from "@/components/sections/story";
 import {
   getHomepageMetadata,
   getStructuredDataScript,
@@ -25,19 +25,19 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: getStructuredDataScript() }}
       />
-      <main className="relative">
-        <Header />
+      <Header />
+      <main>
         <Hero />
-        <FeatureScroll />
-        <FeatureHighlight />
-        <BentoGrid />
-        <Benefits />
-        <Features />
-        <Pricing />
+        <FidelBand />
+        <HowItWorks />
+        <DailyChallenge />
+        <Games />
+        <Habits />
+        <Story />
         <FAQ />
         <CTA />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

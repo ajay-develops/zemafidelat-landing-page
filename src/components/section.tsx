@@ -3,103 +3,153 @@
 import { easeInOutCubic } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { motion, useScroll, useTransform } from "motion/react";
-import React, { forwardRef, useRef } from "react";
+import React, { useRef } from "react";
 
-interface SectionProps {
-  id?: string;
-  title?: string;
-  subtitle?: string;
+/*
+ * The eyebrow's colour depends on the surface it sits on — the design uses
+ * green on white, amber on cream and pale leaf on forest — so it is named by
+ * surface, and every pairing here is measured in globals.css.
+ */
+const eyebrowTone = {
+  white: "text-primary",
+  cream: "text-amber",
+  forest: "text-leaf-pale",
+} as const;
+
+const titleTone = {
+  white: "text-foreground",
+  cream: "text-foreground",
+  forest: "text-white",
+} as const;
+
+export type SectionTone = keyof typeof eyebrowTone;
+
+type SectionHeadingProps = {
+  eyebrow?: string;
+  title: string;
   description?: string;
-  children?: React.ReactNode;
+  align?: "left" | "center";
+  tone?: SectionTone;
   className?: string;
-  align?: "left" | "center" | "right";
+};
+
+/**
+ * Eyebrow, heading and lead paragraph, the way every section of the page
+ * writes them. `Section` uses it for its centred header; the split sections
+ * (copy beside a picture) put it in their own column.
+ */
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+  align = "left",
+  tone = "white",
+  className,
+}: SectionHeadingProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.05, 0.15], [0, 0, 1], {
+    ease: easeInOutCubic,
+  });
+  const y = useTransform(scrollYProgress, [0, 0.05, 0.15], [24, 24, 0], {
+    ease: easeInOutCubic,
+  });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ opacity, y }}
+      className={cn(
+        "space-y-4",
+        align === "center" ? "mx-auto text-center" : "text-left",
+        className
+      )}
+    >
+      {eyebrow ? (
+        <p
+          className={cn(
+            "text-xs font-bold uppercase tracking-[0.18em]",
+            eyebrowTone[tone]
+          )}
+        >
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2
+        className={cn(
+          "font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-balance md:text-5xl",
+          align === "center" ? "mx-auto max-w-3xl" : "max-w-xl",
+          titleTone[tone]
+        )}
+      >
+        {title}
+      </h2>
+      {description ? (
+        <p
+          className={cn(
+            "text-lg leading-relaxed text-pretty",
+            tone === "forest" ? "text-white/85" : "text-muted-foreground",
+            align === "center" ? "mx-auto max-w-2xl" : "max-w-xl"
+          )}
+        >
+          {description}
+        </p>
+      ) : null}
+    </motion.div>
+  );
 }
 
-const Section = forwardRef<HTMLElement, SectionProps>(
-  (
-    { id, title, subtitle, description, children, className, align },
-    forwardedRef
-  ) => {
-    const internalRef = useRef<HTMLElement>(null);
-    const ref = forwardedRef || internalRef;
+type SectionProps = {
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  tone?: SectionTone;
+  /** Classes for the full-bleed band — its background. */
+  className?: string;
+  /** Classes for the centred column inside it. */
+  containerClassName?: string;
+  children?: React.ReactNode;
+};
 
-    const sectionId = title ? title.toLowerCase().replace(/\s+/g, "-") : id;
-    const alignmentClass =
-      align === "left"
-        ? "text-left"
-        : align === "right"
-        ? "text-right"
-        : "text-center";
-
-    const { scrollYProgress } = useScroll({
-      target: ref as React.RefObject<HTMLElement>,
-      offset: ["start end", "end start"],
-    });
-
-    const opacity = useTransform(scrollYProgress, [0, 0.05, 0.1], [0, 0, 1], {
-      ease: easeInOutCubic,
-    });
-    const y = useTransform(scrollYProgress, [0, 0.05, 0.1], [30, 30, 0], {
-      ease: easeInOutCubic,
-    });
-
-    return (
-      <section
-        id={id || sectionId}
-        ref={ref}
-        className={cn(id || sectionId ? "scroll-mt-20" : undefined)}
+/**
+ * One band of the landing page: a full-width background, the page's centred
+ * column inside it, and an optional centred heading. The vertical rhythm is
+ * the same in every band, so sections only choose their surface.
+ */
+export function Section({
+  id,
+  eyebrow,
+  title,
+  description,
+  tone = "white",
+  className,
+  containerClassName,
+  children,
+}: SectionProps) {
+  return (
+    <section id={id} className={cn("scroll-mt-16", className)}>
+      <div
+        className={cn(
+          "mx-auto w-full max-w-[var(--max-container-width)] px-4 py-16 sm:px-6 md:py-24",
+          containerClassName
+        )}
       >
-        <div className={cn("sm:py-20 py-12", className)}>
-          {(title || subtitle || description) && (
-            <div className={cn(alignmentClass, "space-y-4 pb-10 mx-auto")}>
-              {title && (
-                <motion.p
-                  className="text-sm text-primary text-balance font-mono font-semibold tracking-wider uppercase"
-                  style={{ opacity, y }}
-                >
-                  {title}
-                </motion.p>
-              )}
-
-              {subtitle && (
-                <motion.h2
-                  className={cn(
-                    "mx-0 mt-4 max-w-lg text-5xl text-balance font-bold sm:max-w-none sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tighter text-foreground lowercase",
-                    align === "center"
-                      ? "mx-auto"
-                      : align === "right"
-                      ? "ml-auto"
-                      : ""
-                  )}
-                  style={{ opacity, y }}
-                >
-                  {subtitle}
-                </motion.h2>
-              )}
-              {description && (
-                <motion.p
-                  className={cn(
-                    "mt-6 text-lg leading-8 text-muted-foreground text-balance max-w-2xl",
-                    align === "center"
-                      ? "mx-auto"
-                      : align === "right"
-                      ? "ml-auto"
-                      : ""
-                  )}
-                  style={{ opacity, y }}
-                >
-                  {description}
-                </motion.p>
-              )}
-            </div>
-          )}
-          {children}
-        </div>
-      </section>
-    );
-  }
-);
-
-Section.displayName = "Section";
-
-export { Section };
+        {title ? (
+          <SectionHeading
+            eyebrow={eyebrow}
+            title={title}
+            description={description}
+            tone={tone}
+            align="center"
+            className="mb-12 md:mb-14"
+          />
+        ) : null}
+        {children}
+      </div>
+    </section>
+  );
+}

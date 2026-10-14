@@ -25,46 +25,13 @@ export type ShowcaseStop = {
 };
 
 export const showcaseStops: ShowcaseStop[] = [
-  {
-    selector: "#hero",
-    label: "Hero",
-    endPauseMs: 2000,
-  },
-  {
-    selector: "#feature-scroll",
-    label: "Experience",
-  },
-  {
-    selector: "#feature-highlight",
-    label: "How it works",
-  },
-  {
-    selector: "#bento",
-    label: "Features grid",
-  },
-  {
-    selector: "#benefits",
-    label: "Benefits",
-    startPauseMs: 3000,
-  },
-  {
-    selector: "#features",
-    label: "Features",
-  },
-  {
-    selector: "#free-download",
-    label: "Download",
-  },
-  {
-    selector: "#faq",
-    label: "FAQ",
-  },
-  {
-    selector: "#cta",
-    label: "Call to action",
-  },
-  {
-    selector: "footer",
-    label: "Footer",
-  },
+  { selector: "#hero", label: "Hero", endPauseMs: 2000 },
+  { selector: "#how-it-works", label: "How it works" },
+  { selector: "#daily-challenge", label: "Daily Fidel Challenge" },
+  { selector: "#games", label: "Games" },
+  { selector: "#habits", label: "Stay motivated" },
+  { selector: "#story", label: "Our story" },
+  { selector: "#faq", label: "FAQ" },
+  { selector: "#waitlist", label: "Waitlist" },
+  { selector: "footer", label: "Footer" },
 ];

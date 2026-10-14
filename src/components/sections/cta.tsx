@@ -1,39 +1,43 @@
-/* eslint-disable @next/next/no-img-element */
+import { DecorGlyph } from "@/components/decor-glyph";
 import { WaitlistForm } from "@/components/waitlist-form";
 import { siteConfig } from "@/lib/config";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
+
+const { waitlist } = siteConfig;
 
 export function CTA() {
   return (
-    <section id="cta">
-      <div className="py-14">
-        <div className="container flex w-full flex-col items-center justify-center p-4 mx-auto max-w-[var(--max-container-width)]">
-          <div className="relative flex w-full max-w-[1000px] flex-col items-center justify-center overflow-hidden rounded-[2rem] border p-10 py-14">
-            <div className="z-10 mx-auto size-24 rounded-[2rem] border bg-white/10 p-3 shadow-2xl backdrop-blur-md dark:bg-black/10 lg:size-32 flex items-center justify-center">
-              <img
-                src={siteConfig.logoUi}
-                alt={siteConfig.name}
-                width={256}
-                height={205}
-                loading="lazy"
-                decoding="async"
-                className="size-16 lg:size-24 object-contain"
-              />
-            </div>
-            <div className="z-10 mt-4 flex w-full max-w-md flex-col items-center text-center text-black dark:text-white">
-              <h2 className="text-3xl font-bold lg:text-4xl">
-                Be first when the APK drops.
-              </h2>
-              <p className="mt-2 mb-4">
-                {siteConfig.waitlistHint}
-              </p>
-              <WaitlistForm
-                showHint={false}
-                variant="compact"
-                className="w-full"
-                inputClassName="bg-background/90"
-              />
-            </div>
-          </div>
+    <section id="waitlist" className="scroll-mt-16 px-4 pb-16 sm:px-6 md:pb-24">
+      <div className="relative mx-auto max-w-[var(--max-container-width)] overflow-hidden rounded-[2rem] bg-leaf px-6 py-16 text-center md:py-20">
+        <DecorGlyph
+          glyph="ፊ"
+          surface="leaf"
+          rotate={-10}
+          className="left-[5%] top-[12%] hidden text-[7rem] lg:block"
+        />
+        <DecorGlyph
+          glyph="ደ"
+          surface="leaf"
+          rotate={8}
+          className="bottom-[10%] right-[5%] hidden text-[7rem] lg:block"
+        />
+        <div className="relative mx-auto max-w-xl">
+          <h2 className="font-display text-4xl leading-[1.05] font-extrabold tracking-tight text-balance text-forest md:text-5xl">
+            {waitlist.title}
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-lg text-pretty text-forest">
+            {waitlist.text}
+          </p>
+          <WaitlistForm surface="leaf" className="mx-auto mt-8" />
+          {/* Words, not a badge: a store badge that goes nowhere reads as a
+              broken button. */}
+          <p className="mt-6 flex items-center justify-center gap-2 text-sm font-semibold text-forest">
+            <span className="flex shrink-0 gap-1">
+              <FaGooglePlay className="size-4" aria-hidden />
+              <FaApple className="size-4" aria-hidden />
+            </span>
+            <span className="text-balance">{waitlist.stores}</span>
+          </p>
         </div>
       </div>
     </section>

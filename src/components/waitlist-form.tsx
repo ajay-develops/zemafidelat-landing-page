@@ -5,15 +5,18 @@ import { Input } from "@/components/ui/input";
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { CheckCircle2Icon, Loader2Icon } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useId, useRef, useState } from "react";
 
 type WaitlistFormProps = {
+  /**
+   * The surface the form sits on. `mint` is the hero: an outlined field and the
+   * green button. `leaf` is the bright green card at the bottom: a borderless
+   * white field and the forest button, since a green button would vanish there.
+   */
+  surface?: "mint" | "leaf";
+  /** A line under the form, e.g. the hero's "no spam" promise. */
+  note?: string;
   className?: string;
-  inputClassName?: string;
-  buttonClassName?: string;
-  /** Compact layout for denser sections like the bottom CTA. */
-  variant?: "default" | "compact";
-  showHint?: boolean;
 };
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -21,15 +24,26 @@ type Status = "idle" | "loading" | "success" | "error";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function WaitlistForm({
+  surface = "mint",
+  note,
   className,
-  inputClassName,
-  buttonClassName,
-  showHint = true,
 }: WaitlistFormProps) {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
+  // Two forms on one page; each needs its own ids for label and error.
+  const id = useId();
+  const emailId = `${id}-email`;
+  const errorId = `${id}-error`;
+  const onLeaf = surface === "leaf";
+  const successRef = useRef<HTMLDivElement>(null);
+
+  // The form (and the focused field) disappears on success. Move focus to the
+  // message, so keyboard users are not dropped to the top of the page and
+  // screen readers read the confirmation.
+  useEffect(() => {
+    if (status === "success") successRef.current?.focus();
+  }, [status]);
 
   function clearError() {
     if (status === "error") {
@@ -41,14 +55,7 @@ export function WaitlistForm({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const trimmedName = name.trim().replace(/\s+/g, " ");
     const trimmedEmail = email.trim().toLowerCase();
-
-    if (trimmedName.length === 1) {
-      setStatus("error");
-      setMessage("Please enter a fuller name, or leave it blank.");
-      return;
-    }
 
     if (!EMAIL_PATTERN.test(trimmedEmail)) {
       setStatus("error");
@@ -63,7 +70,7 @@ export function WaitlistForm({
       const response = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: trimmedName, email: trimmedEmail }),
+        body: JSON.stringify({ email: trimmedEmail }),
       });
 
       const data = (await response.json().catch(() => null)) as {
@@ -80,11 +87,7 @@ export function WaitlistForm({
       }
 
       setStatus("success");
-      setMessage(
-        data?.message ??
-          "You're on the list — we'll email you when the APK is ready."
-      );
-      setName("");
+      setMessage(data?.message ?? siteConfig.waitlist.success);
       setEmail("");
     } catch {
       setStatus("error");
@@ -95,104 +98,101 @@ export function WaitlistForm({
   if (status === "success") {
     return (
       <div
+        ref={successRef}
+        tabIndex={-1}
         className={cn(
-          "flex flex-col items-center gap-2 text-center",
+          "flex flex-col gap-2 outline-none",
+          onLeaf ? "items-center text-center" : "items-start",
           className
         )}
         role="status"
         aria-live="polite"
       >
-        <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">
-          <CheckCircle2Icon className="size-4 shrink-0" />
+        <div
+          className={cn(
+            "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold",
+            onLeaf ? "bg-forest text-white" : "bg-primary text-white"
+          )}
+        >
+          <CheckCircle2Icon className="size-4 shrink-0" aria-hidden />
           You&apos;re on the list
         </div>
-        <p className="max-w-md text-sm text-muted-foreground">{message}</p>
+        <p className="text-sm text-pretty text-foreground">{message}</p>
       </div>
     );
   }
 
+  const hasError = status === "error" && message !== "";
+
   return (
-    <div className={cn("w-full max-w-md mx-auto", className)}>
-      {showHint ? (
-        <p className="mb-3 text-sm font-medium text-muted-foreground text-center">
-          <span className="text-foreground">{siteConfig.waitlistBadge}</span>
-          {" — "}
-          {siteConfig.waitlistHint.replace(/^APK coming soon — /, "")}
-        </p>
-      ) : null}
-      <form onSubmit={handleSubmit} className="flex w-full flex-col gap-2">
-        <label htmlFor="waitlist-name" className="sr-only">
-          Name (optional)
+    <div className={cn("w-full max-w-md", className)}>
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="flex w-full flex-col gap-3 sm:flex-row"
+      >
+        <label htmlFor={emailId} className="sr-only">
+          Email address
         </label>
         <Input
-          id="waitlist-name"
-          type="text"
-          name="name"
-          autoComplete="name"
-          placeholder="Your name (optional)"
-          value={name}
+          id={emailId}
+          type="email"
+          name="email"
+          autoComplete="email"
+          inputMode="email"
+          placeholder="you@example.com"
+          value={email}
           onChange={(event) => {
-            setName(event.target.value);
+            setEmail(event.target.value);
             clearError();
           }}
           disabled={status === "loading"}
-          maxLength={80}
+          required
+          aria-invalid={hasError || undefined}
+          aria-describedby={hasError ? errorId : undefined}
           className={cn(
-            "h-11 rounded-full px-4 bg-background/80",
-            inputClassName
+            "h-12 min-w-0 flex-1 rounded-full bg-white px-5 text-base text-foreground",
+            onLeaf
+              ? "border-transparent focus-visible:ring-forest focus-visible:ring-offset-leaf"
+              : "border-2 border-input focus-visible:ring-offset-mint",
+            hasError && "border-destructive"
           )}
         />
-        <div className="flex w-full flex-col gap-2 sm:flex-row">
-          <label htmlFor="waitlist-email" className="sr-only">
-            Email address
-          </label>
-          <Input
-            id="waitlist-email"
-            type="email"
-            name="email"
-            autoComplete="email"
-            inputMode="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(event) => {
-              setEmail(event.target.value);
-              clearError();
-            }}
-            disabled={status === "loading"}
-            required
-            className={cn(
-              "h-11 rounded-full px-4 bg-background/80",
-              inputClassName
-            )}
-          />
-          <Button
-            type="submit"
-            size="lg"
-            disabled={status === "loading"}
-            className={cn(
-              "h-11 shrink-0 rounded-full px-6 text-white",
-              buttonClassName
-            )}
-          >
-            {status === "loading" ? (
-              <>
-                <Loader2Icon className="mr-2 size-4 animate-spin" />
-                Joining…
-              </>
-            ) : (
-              siteConfig.cta
-            )}
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          disabled={status === "loading"}
+          className={cn(
+            "h-12 shrink-0 rounded-full px-6 text-base font-bold",
+            onLeaf
+              ? "bg-forest hover:bg-forest/90 focus-visible:ring-forest focus-visible:ring-offset-leaf"
+              : "shadow-[0_4px_0_0_var(--forest)] active:translate-y-0.5 active:shadow-[0_2px_0_0_var(--forest)] focus-visible:ring-offset-mint"
+          )}
+        >
+          {status === "loading" ? (
+            <>
+              <Loader2Icon className="mr-2 size-4 animate-spin" aria-hidden />
+              Joining…
+            </>
+          ) : (
+            siteConfig.cta
+          )}
+        </Button>
       </form>
-      {status === "error" && message ? (
+      {hasError ? (
         <p
-          className="mt-2 text-center text-sm text-destructive"
+          id={errorId}
+          className={cn(
+            "mt-3 text-sm font-medium",
+            // Red on the bright green card is unreadable (under 3:1), so the
+            // error there is forest, in bold.
+            onLeaf ? "font-bold text-forest" : "text-destructive"
+          )}
           role="alert"
-          aria-live="polite"
         >
           {message}
         </p>
+      ) : note ? (
+        <p className="mt-3 text-sm text-muted-foreground">{note}</p>
       ) : null}
     </div>
   );

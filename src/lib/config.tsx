@@ -1,15 +1,15 @@
-import {
-  BellIcon,
-  BookOpenIcon,
-  Gamepad2Icon,
-  TargetIcon,
-  TrophyIcon,
-  UsersIcon,
-} from "lucide-react";
+/*
+ * Everything the landing page says, in one place.
+ *
+ * Numbers that describe the app come from the app itself
+ * (zema-frontend/src/constants/active-lessons.ts, read 2026-10-14):
+ * ACTIVE_LETTER_COUNT is 224 and ACTIVE_LESSON_COUNT is 32. Update them here
+ * if the curriculum changes — the design's "200+" and "[N]" were placeholders.
+ */
+const fidelCount = 224;
+const lessonCount = 32;
 
-export const BLUR_FADE_DELAY = 0.15;
-
-// Kept for when the APK is ready to ship again.
+// Kept for when the app ships; the page shows the waitlist until then.
 const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
@@ -18,297 +18,196 @@ export const siteConfig = {
    * Three sizes of one mark, because one file cannot serve all three jobs.
    *
    * `logo` is the 2356px original and is only read server-side, by the OG card
-   * — Satori cannot decode WebP. `logoUi` is what the page shows; the original
-   * was 108 KB to paint a 32px header icon, the heaviest file on the site.
-   * `logoIcon` is the favicon and apple-touch-icon, which browsers fetch on
-   * every visit and which platforms want as PNG.
+   * — Satori cannot decode WebP. `logoUi` is what the page shows. `logoIcon`
+   * is the favicon and apple-touch-icon, which platforms want as PNG.
    *
    * Regenerate the derivatives with `pnpm process-logo` after changing logo.png.
    */
   logo: "/logo.png",
   logoUi: "/logo-256.webp",
   logoIcon: "/logo-icon.png",
-  description: "Learn Tigrinya fidelat step by step.",
-  heroTagline: "Learn Tigrinya fidelat step by step.",
+  description: "Learn to read & write Tigrinya fidel in 10 minutes a day.",
+  /* For search results and link previews; the hero shows `hero.lead`. */
   heroDescription:
-    "Catch on and learn Tigrinya the easy way with interactive lessons, flashcards, letter tracing, word games, daily crosswords, and the Daily Fidel Challenge. Set goals, earn XP, build streaks, and unlock badges—all for free.",
-  cta: "Join the waitlist",
+    "Bite-sized lessons, letter tracing, word games and a new puzzle every day — so you or your kids can finally read Tigrinya. Free on Android and iPhone.",
   /*
-   * Button label. Same words as `cta` deliberately: the header button and the
-   * form's submit sit on screen together, so two spellings of one action read
-   * as a mistake.
+   * One label for the one action. The header button and the hero's submit
+   * are on screen together, so two spellings of it ("Get early access" in the
+   * design's hero) read as two different things.
    */
-  ctaSecondary: "Join the waitlist",
-  /* Lead-in for the hint line, which ctaSecondary used to supply. It has to
-     stay "Coming soon" — "Join the waitlist — leave your email and we'll
-     notify you" says the same thing twice, once as a heading for itself. */
-  waitlistBadge: "Coming soon",
-  waitlistHint: "APK coming soon — leave your email and we'll notify you.",
+  cta: "Join the waitlist",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Tigrinya",
     "Ge'ez Alphabet",
     "Fidel",
+    "Learn Tigrinya",
+    "Tigrinya for kids",
     "Flashcards",
     "Daily Fidel Challenge",
     "Crosswords",
     "Letter Tracing",
-    "Word Games",
-    "XP and Streaks",
     "Free Tigrinya App",
   ],
   links: {
     email: "hello@zemafidelat.com",
     download: apkDownloadUrl,
-    waitlist: "#download",
+    waitlist: "#waitlist",
   },
   navLinks: [
-    { href: "#features", text: "Features" },
+    { href: "#how-it-works", text: "How it works" },
+    { href: "#games", text: "Games" },
+    { href: "#story", text: "Our story" },
     { href: "#faq", text: "FAQ" },
-    { href: "#download", text: "Waitlist" },
-    { href: "mailto:hello@zemafidelat.com", text: "Contact" },
   ],
-  legalLinks: [
+  footerLinks: [
+    { href: "mailto:hello@zemafidelat.com", text: "Contact" },
     { href: "/privacy", text: "Privacy Policy" },
-    { href: "/terms", text: "Terms & Conditions" },
+    { href: "/terms", text: "Terms" },
     { href: "/delete-account", text: "Delete your account" },
   ],
-  featureHighlightSection: {
-    title: "How it works",
-    subtitle: "Powerful features",
-  },
-  bentoSection: {
-    title: "App highlights",
-    subtitle: "It does a lot of things",
-  },
-  heroImages: [
-    "/screenshots/dashboard.webp",
-    "/screenshots/lessons.webp",
-    "/screenshots/flashcards.webp",
-    "/screenshots/word-games.webp",
-    "/screenshots/crosswords.webp",
-  ],
-  featureScroll: {
-    title: "Experience",
-    subtitle: "Learn your way, every day",
-    images: [
-      "/screenshots/daily-goals.webp",
-      "/screenshots/profiles.webp",
-      "/screenshots/notifications.webp",
+
+  hero: {
+    /* Two parts, so a narrow screen wraps at the dot, not mid-phrase. */
+    badge: ["Coming soon to Android & iPhone", "100% free"],
+    /* The headline is split so the Ge'ez word can carry its own colour. */
+    titleStart: "Learn to read & write",
+    titleFidel: "ፊደል",
+    titleEnd: "in 10 minutes a day.",
+    lead: "Bite-sized lessons, letter tracing, word games and a new puzzle every day — so you or your kids can finally read Tigrinya.",
+    note: "No spam, one email when the app drops.",
+    ticks: [
+      "No account needed",
+      "Profiles for the whole family",
+      `All ${fidelCount} fidelat`,
     ],
   },
-  features: [
-    {
-      name: "Sign Up or Try as Guest",
-      description:
-        "Create an account, sign in, or jump straight in as a guest—no login required to start learning.",
-      icon: <BookOpenIcon className="h-6 w-6" />,
-    },
-    {
-      name: "Multiple Profiles",
-      description:
-        "Manage several learner profiles under one account, each with its own progress and achievements.",
-      icon: <UsersIcon className="h-6 w-6" />,
-    },
-    {
-      name: "Daily Learning Goals",
-      description:
-        "Set personalized daily goals and track your minutes, lessons, and streaks on your dashboard.",
-      icon: <TargetIcon className="h-6 w-6" />,
-    },
-    {
-      name: "XP, Streaks & Badges",
-      description:
-        "Earn XP with every activity, keep your learning streak alive, and unlock achievement badges.",
-      icon: <TrophyIcon className="h-6 w-6" />,
-    },
-    {
-      name: "Progress & Reminders",
-      description:
-        "Follow your progress across lessons and get reminder notifications so you never miss a session.",
-      icon: <BellIcon className="h-6 w-6" />,
-    },
-    {
-      name: "Games & Puzzles",
-      description:
-        "Play flashcards, trace letters, solve word games, daily crosswords, and the Daily Fidel Challenge—all in one app.",
-      icon: <Gamepad2Icon className="h-6 w-6" />,
-    },
+
+  /* The scrolling band under the hero: the first three fidel families. */
+  fidelBand: [
+    ["ሀ", "ሁ", "ሂ", "ሃ", "ሄ", "ህ", "ሆ"],
+    ["ለ", "ሉ", "ሊ", "ላ", "ሌ", "ል", "ሎ"],
+    ["መ", "ሙ", "ሚ", "ማ", "ሜ", "ም", "ሞ"],
   ],
-  featureHighlight: [
-    {
-      title: "Step-by-Step Lessons",
-      description:
-        "Work through structured lessons with flashcards, letter tracing, and word games that build your skills gradually.",
-      imageSrc: "/screenshots/lessons.webp",
-      direction: "rtl" as const,
+
+  howItWorks: {
+    eyebrow: "How it works",
+    title: "From your first letter to your first sentence",
+    steps: [
+      {
+        title: "Learn",
+        text: "Short lessons introduce each fidel family with sound, pictures and everyday words.",
+        tone: "leaf",
+      },
+      {
+        title: "Practice",
+        text: "Trace every letter stroke by stroke and lock in vocabulary with smart flashcards.",
+        tone: "sun",
+      },
+      {
+        title: "Play",
+        text: "Word games, a daily crossword and the Daily Fidel Challenge keep it fun every day.",
+        tone: "sky",
+      },
+    ],
+  },
+
+  dailyChallenge: {
+    eyebrow: "Daily Fidel Challenge",
+    title: "One new word. Every single day.",
+    text: "Look at the picture, read the English clue, then unscramble the fidelat to spell the word. It takes a minute — and it sticks.",
+    chips: ["Picture clues", "Hints when you're stuck", "Daily crossword too"],
+  },
+
+  games: {
+    eyebrow: "Games that teach",
+    title: "Learning that feels like playing",
+    text: "Flashcards, tracing, word games and crosswords all feed the same progress — so every minute counts toward reading fluently.",
+    cards: {
+      flashcards: { title: "Flashcards", text: "Tap to flip — “house”" },
+      tracing: { title: "Letter tracing", text: "Guided strokes for every fidel" },
+      wordMatch: { title: "Word match", text: "Pick the right meaning" },
+      crossword: { title: "Daily crossword", text: "A fresh grid every morning" },
     },
-    {
-      title: "Interactive Learning Games",
-      description:
-        "Practice vocabulary with flashcards, trace the fidelat to learn the Ge'ez script, and test yourself with word selection games.",
-      imageSrc: "/screenshots/trace-letters.webp",
-      direction: "ltr" as const,
+  },
+
+  habits: {
+    eyebrow: "Stay motivated",
+    title: "Built for habits, not homework",
+    cards: {
+      streaks: {
+        title: "Streaks",
+        text: "Keep the flame alive with a little practice every day.",
+      },
+      goals: {
+        title: "Daily goals & XP",
+        text: "Pick your pace and earn XP for every activity.",
+      },
+      badges: {
+        title: "Badges",
+        text: "Unlock achievements like Word Explorer and Quiz Master.",
+      },
+      profiles: {
+        title: "Family profiles",
+        text: "One account, a profile for every learner at home.",
+      },
     },
-    {
-      title: "Daily Puzzles & Fidel Challenge",
-      description:
-        "Challenge yourself with daily crossword puzzles, and spell each day's word in the Daily Fidel Challenge by arranging its scrambled fidels, with a picture and an English clue to go on.",
-      imageSrc: "/screenshots/daily-fidel.webp",
-      direction: "rtl" as const,
-    },
-  ],
-  bento: [
-    {
-      title: "Multiple Learner Profiles",
-      content:
-        "Create and manage multiple profiles in one account. Each learner keeps their own progress, goals, and achievements.",
-      imageSrc: "/screenshots/profiles.webp",
-      imageAlt: "Manage profiles screen",
-      fullWidth: true,
-    },
-    {
-      title: "Daily Goals & XP",
-      content:
-        "Set daily learning targets, earn XP as you practice, and watch your streak grow on a motivating dashboard.",
-      imageSrc: "/screenshots/daily-goals.webp",
-      imageAlt: "Daily learning goals screen",
-      fullWidth: false,
-    },
-    {
-      title: "Smart Reminders",
-      content:
-        "Stay consistent with reminder notifications that nudge you to practice and keep your learning habit on track.",
-      imageSrc: "/screenshots/notifications.webp",
-      imageAlt: "Notifications screen",
-      fullWidth: false,
-    },
-    {
-      title: "Games That Teach",
-      content:
-        "From flashcards and letter tracing to word games, crosswords, and the Daily Fidel Challenge—learning never feels like a chore.",
-      imageSrc: "/screenshots/crosswords.webp",
-      imageAlt: "Crosswords game screen",
-      fullWidth: true,
-    },
-  ],
-  benefits: [
-    {
-      id: 1,
-      text: "Structured lessons guide you from basics to fluency, one step at a time.",
-      image: "/screenshots/lessons.webp",
-    },
-    {
-      id: 2,
-      text: "Flashcards help you memorize vocabulary quickly with visual cues and spaced repetition.",
-      image: "/screenshots/flashcards.webp",
-    },
-    {
-      id: 3,
-      text: "Letter tracing teaches you to write each fidel by following guided strokes.",
-      image: "/screenshots/trace-letters.webp",
-    },
-    {
-      id: 4,
-      text: "Word games challenge you to pick the right answer and lock in what you've learned.",
-      image: "/screenshots/word-games.webp",
-    },
-    {
-      id: 5,
-      text: "Daily crossword puzzles reinforce vocabulary by matching words across the grid.",
-      image: "/screenshots/crosswords.webp",
-    },
-    {
-      id: 6,
-      text: "The Daily Fidel Challenge gives you a new word each day—arrange the fidels to spell it from its picture and English clue.",
-      image: "/screenshots/daily-fidel.webp",
-    },
-  ],
-  pricing: [
-    {
-      name: "Free",
-      href: "#download",
-      price: "$0",
-      period: "forever",
-      yearlyPrice: "$0",
-      features: [
-        "Unlimited lessons with flashcards, tracing & word games",
-        "Daily crossword puzzles and the Daily Fidel Challenge",
-        "Multiple learner profiles with separate progress",
-        "Daily goals, XP, streaks & achievement badges",
-        "Progress tracking and reminder notifications",
-        "Guest mode—no account required to start",
-      ],
-      description: "Everything included. No subscriptions, no hidden fees.",
-      buttonText: "Join the waitlist",
-      isPopular: true,
-    },
-  ],
+  },
+
+  story: {
+    eyebrow: "Why we built this",
+    title: "So the next generation can read our language.",
+    /*
+     * Neutral on purpose: the design left a placeholder for the founder's own
+     * story and name, and none has been supplied. Replace this paragraph — and
+     * add an attribution line — when the client sends theirs.
+     */
+    text: "Tigrinya is spoken by millions, but most apps skip its script. Zema Fidelat makes the fidel something kids and parents pick up together — a few minutes, a few letters, every day.",
+    stats: [
+      { value: String(fidelCount), label: "fidelat to master" },
+      { value: "$0", label: "forever, no ads" },
+      { value: String(lessonCount), label: "lessons at launch" },
+      { value: "10", label: "minutes a day" },
+    ],
+  },
+
+  faqEyebrow: "FAQ",
+  faqTitle: "Questions? We've got answers.",
   faqs: [
     {
       question: "Is Zema Fidelat really free?",
-      answerText:
-        "Yes! Zema Fidelat is completely free to download and use. There are no subscriptions, in-app purchases, or hidden fees. Every feature—lessons, games, crosswords, profiles, and more—is included at no cost.",
-      answer: (
-        <span>
-          Yes! Zema Fidelat is completely free to download and use. There are no
-          subscriptions, in-app purchases, or hidden fees. Every feature—lessons,
-          games, crosswords, profiles, and more—is included at no cost.
-        </span>
-      ),
+      answer:
+        "Yes. Every lesson, game and puzzle is free — no subscriptions, no ads and no hidden fees.",
     },
     {
       question: "Can I use the app without signing up?",
-      answerText:
-        "Absolutely. You can use Zema Fidelat as a guest without creating an account. When you're ready, sign up to save your progress across devices and unlock multiple learner profiles.",
-      answer: (
-        <span>
-          Absolutely. You can use Zema Fidelat as a guest without creating an
-          account. When you&apos;re ready, sign up to save your progress across
-          devices and unlock multiple learner profiles.
-        </span>
-      ),
+      answer:
+        "Yes. Start as a guest straight away. Create a free account whenever you want to back up your progress and use it on another device.",
     },
     {
-      question: "How do multiple profiles work?",
-      answerText:
-        "One account can hold several learner profiles—perfect for families with more than one child learning. Each profile tracks its own progress, goals, streaks, and badges independently.",
-      answer: (
-        <span>
-          One account can hold several learner profiles—perfect for families
-          with more than one child learning. Each profile tracks its own
-          progress, goals, streaks, and badges independently.
-        </span>
-      ),
+      question: "Is it good for kids?",
+      answer:
+        "Yes. Letter tracing, picture clues and short games are made for young learners, and each child gets their own profile with their own progress.",
     },
     {
-      question: "What learning activities are included?",
-      answerText:
-        "Each lesson includes flashcards, letter tracing, and word selection games. Beyond lessons, you'll find daily crossword puzzles and the Daily Fidel Challenge, where you arrange the scrambled fidels to spell the day's word from its picture and English clue. A dashboard keeps everything organized.",
-      answer: (
-        <span>
-          Each lesson includes flashcards, letter tracing, and word selection
-          games. Beyond lessons, you&apos;ll find daily crossword puzzles and
-          the Daily Fidel Challenge, where you arrange the scrambled fidels to
-          spell the day&apos;s word from its picture and English clue. A
-          dashboard keeps everything organized.
-        </span>
-      ),
+      question: "How do family profiles work?",
+      answer:
+        "One account holds a profile for every learner at home. Each profile keeps its own lessons, goals, streaks and badges.",
     },
     {
-      question: "How do streaks, XP, and badges work?",
-      answerText:
-        "Complete lessons and games to earn XP. Practice daily to build your streak, and hit milestones to unlock achievement badges. Set daily learning goals on your dashboard to stay motivated and track your progress over time.",
-      answer: (
-        <span>
-          Complete lessons and games to earn XP. Practice daily to build your
-          streak, and hit milestones to unlock achievement badges. Set daily
-          learning goals on your dashboard to stay motivated and track your
-          progress over time.
-        </span>
-      ),
+      question: "When is it coming to iPhone?",
+      answer:
+        "At about the same time as Android. Join the waitlist and we'll email you the day it's out.",
     },
   ],
+
+  waitlist: {
+    title: "Be first when the app drops.",
+    text: "Leave your email and we'll send one message the day Zema Fidelat lands on Android and iPhone.",
+    stores: "Coming to Google Play & the App Store",
+    /* Under the "You're on the list" pill; the API sends the same words. */
+    success: "We'll email you the day the app is out.",
+  },
 };
 
 export type SiteConfig = typeof siteConfig;
