@@ -24,7 +24,7 @@ export function Habits() {
             alt={shot.alt}
             sizes="(min-width: 768px) 230px, 30vw"
             className={cn(
-              "max-w-[14.5rem]",
+              "min-w-0 max-w-[14.5rem] flex-1",
               index === 0 && "-rotate-3",
               index === 1 && "mt-10",
               index === 2 && "rotate-3"
@@ -37,14 +37,15 @@ export function Habits() {
           const card = habits.cards[key];
           return (
             <li key={key} className="rounded-3xl border-2 border-border bg-white p-6">
-              {/* A fixed slot, so the titles line up across the row. */}
-              <div aria-hidden className="flex h-12 items-baseline gap-1.5 pt-1">
+              {/* A fixed slot, so the titles line up across the row. Not
+                  hidden: "18 badges" is information, not decoration. */}
+              <div className="flex h-12 items-baseline gap-1.5 pt-1">
                 <span className={cn("font-display text-4xl leading-none font-extrabold", statColour[key])}>
                   {card.value}
                 </span>
                 <span className="font-bold text-foreground">{card.unit}</span>
               </div>
-              <h3 className="mt-4 text-lg font-bold text-foreground">{card.title}</h3>
+              <h3 className="mt-4 font-bold text-foreground">{card.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{card.text}</p>
             </li>
           );

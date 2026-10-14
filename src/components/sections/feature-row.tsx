@@ -77,7 +77,9 @@ export function FeatureRow({
               alt={shot.alt}
               sizes={pair ? "(min-width: 1024px) 260px, 45vw" : "(min-width: 1024px) 272px, 70vw"}
               className={cn(
-                "max-w-[16.25rem]",
+                // min-w-0: a flex item will not shrink below its intrinsic
+                // width otherwise, and two 260px phones spilled out at 1024.
+                "min-w-0 max-w-[16.25rem] flex-1",
                 // A pair steps down and leans apart, like two phones on a table.
                 pair && (index === 0 ? "-rotate-3" : "mt-12 rotate-3"),
                 !pair && "rotate-2"

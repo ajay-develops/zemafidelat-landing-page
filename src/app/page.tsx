@@ -40,7 +40,7 @@ export default function Home() {
         <FeatureRow row={hearIt} />
         <FeatureRow row={writeIt} flip />
         {/* Shares the cream band with the Daily Fidel Challenge below. */}
-        <FeatureRow row={playIt} containerClassName="md:pb-12" />
+        <FeatureRow row={playIt} containerClassName="pb-8 md:pb-12" />
         <DailyChallenge />
         <Habits />
         <FeatureRow row={siteConfig.families} flip />

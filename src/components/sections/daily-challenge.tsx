@@ -11,7 +11,7 @@ export function DailyChallenge() {
       className="bg-cream"
       // It shares the cream band with "Play it" above; half the usual space
       // between them, or the band reads as two.
-      containerClassName="md:pt-12"
+      containerClassName="pt-8 md:pt-12"
     >
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div>
