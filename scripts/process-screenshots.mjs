@@ -33,7 +33,8 @@ const OUTPUT_DIR = path.join(ROOT, "public", "screenshots");
 const WEBP_QUALITY = 85;
 
 /**
- * The one screenshot that also has to exist as a PNG.
+ * The screenshots that also have to exist as PNG — the two phones the hero
+ * shows, which the OG card repeats.
  *
  * The OG card (src/app/og/route.tsx) is rendered by Satori, which cannot
  * decode WebP — pointing it at the .webp did not degrade, it returned HTTP
@@ -41,7 +42,7 @@ const WEBP_QUALITY = 85;
  * would have had no preview image at all. The page itself never loads this
  * file, so its size costs a visitor nothing.
  */
-const OG_PNG_SOURCE = "dashboard.png";
+const OG_PNG_SOURCES = ["dashboard.png", "lessons.png"];
 
 /** Kept next to the file it produces so a re-shoot does not need archaeology. */
 const DEEP_LINKS = {
@@ -151,11 +152,11 @@ async function processScreenshot(file) {
     .webp({ quality: WEBP_QUALITY, effort: 6 })
     .toFile(outputPath);
 
-  if (file === OG_PNG_SOURCE) {
+  if (OG_PNG_SOURCES.includes(file)) {
     await sharp(framed)
       .resize({ height: TARGET_HEIGHT, fit: "contain", background: "#00000000" })
       .png({ compressionLevel: 9 })
-      .toFile(path.join(OUTPUT_DIR, "dashboard-og.png"));
+      .toFile(path.join(OUTPUT_DIR, file.replace(".png", "-og.png")));
   }
 
   const meta = await sharp(outputPath).metadata();
