@@ -43,7 +43,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Tigrinya",
-    "Ge'ez Alphabet",
+    "Tigrinya Alphabet",
     "Fidel",
     "Learn Tigrinya",
     "Tigrinya for kids",
@@ -75,7 +75,7 @@ export const siteConfig = {
   hero: {
     /* Two parts, so a narrow screen wraps at the dot, not mid-phrase. */
     badge: ["Coming soon to Android & iPhone", "100% free"],
-    /* The headline is split so the Ge'ez word can carry its own colour. */
+    /* The headline is split so the Tigrinya word can carry its own colour. */
     titleStart: "Learn to read & write",
     titleFidel: "ፊደል",
     titleEnd: "in 10 minutes a day.",

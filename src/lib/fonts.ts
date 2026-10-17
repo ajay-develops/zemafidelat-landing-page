@@ -5,9 +5,9 @@ import { Bricolage_Grotesque, DM_Sans, Noto_Sans_Ethiopic } from "next/font/goog
  *
  * - Bricolage Grotesque for headings, DM Sans for everything else — the pair
  *   the client's design is set in.
- * - Noto Sans Ethiopic for Ge'ez. Neither Latin face has Ethiopic glyphs, so
+ * - Noto Sans Ethiopic for Tigrinya. Neither Latin face has Ethiopic glyphs, so
  *   it sits second in both stacks (globals.css) and the browser reaches for it
- *   per character. Its subset is unicode-ranged, so a page without Ge'ez never
+ *   per character. Its subset is unicode-ranged, so a page without Tigrinya never
  *   downloads it.
  *
  * All three are preloaded: the hero headline is the page's largest paint, and

@@ -24,7 +24,7 @@ export const termsAndConditions = {
         {
           type: "bullets",
           items: [
-            "Zema Fidelat, an app for learning the Tigrinya (Ge'ez) alphabet;",
+            "Zema Fidelat, an app for learning the Tigrinya alphabet;",
             "our account web pages at app.zemafidelat.com.",
           ],
         },
@@ -51,7 +51,7 @@ export const termsAndConditions = {
       blocks: [
         {
           type: "paragraph",
-          text: "Zema Fidelat teaches the Tigrinya (Ge'ez) alphabet, called fidel. It includes:",
+          text: "Zema Fidelat teaches the Tigrinya alphabet, called fidel. It includes:",
         },
         {
           type: "bullets",

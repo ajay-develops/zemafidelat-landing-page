@@ -16,7 +16,7 @@ export const deleteAccountGuide = {
     {
       type: "paragraph",
       text:
-        "This page is for Zema Fidelat: Learn Tigrinya, an app for learning the Tigrinya (Ge'ez) alphabet. It explains how to delete a Zema Fidelat account and the information linked to it. You can do it in the app, or by email if you no longer have the app.",
+        "This page is for Zema Fidelat: Learn Tigrinya, an app for learning the Tigrinya alphabet. It explains how to delete a Zema Fidelat account and the information linked to it. You can do it in the app, or by email if you no longer have the app.",
     },
   ],
   sections: [

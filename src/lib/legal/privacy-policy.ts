@@ -27,7 +27,7 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "Zema Fidelat is an app for learning the Tigrinya (Ge'ez) alphabet.",
+            "Zema Fidelat is an app for learning the Tigrinya alphabet.",
             "An account needs the account holder's full name, email address and password. Each learner profile has a name, a picture and an optional age.",
             "Account progress is copied to our servers. Guest data stays on the device.",
             "No ads, purchases, chat or contact between users, analytics or tracking. We do not sell personal information. The app does not record audio or use the camera.",

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * A large faded Ge'ez letter, scattered as decoration in the hero and the
+ * A large faded Tigrinya letter, scattered as decoration in the hero and the
  * waitlist card. Position and size come from `className`; the colour is a pale
  * tint of the surface it sits on.
  *

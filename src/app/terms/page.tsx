@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = getLegalPageMetadata({
   title: "Terms & Conditions",
   description:
-    "The rules for using Zema Fidelat, an app for learning the Tigrinya (Ge'ez) alphabet, and its account web pages.",
+    "The rules for using Zema Fidelat, an app for learning the Tigrinya alphabet, and its account web pages.",
   path: "/terms",
 });
 
