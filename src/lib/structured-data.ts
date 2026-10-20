@@ -24,7 +24,7 @@ export function getStructuredData() {
     description: siteConfig.heroDescription,
   };
 
-  // downloadUrl intentionally omitted while the waitlist is active.
+  // downloadUrl omitted until the app is in the stores.
 
   const faqPage = {
     "@type": "FAQPage",

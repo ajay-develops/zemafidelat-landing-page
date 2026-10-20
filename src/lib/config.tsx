@@ -13,7 +13,7 @@ const lessonCount = 32;
 const levelCount = 32;
 const badgeCount = 18;
 
-// Kept for when the app ships; the page shows the waitlist until then.
+// Kept for when the app ships; the page shows a launch notice until then.
 const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
@@ -35,12 +35,9 @@ export const siteConfig = {
   heroDescription:
     // Switch the last sentence back to "Free on Android and iPhone." on launch day.
     "Bite-sized lessons, letter tracing, word games and a new puzzle every day, so you or your kids can finally read Tigrinya. Coming soon, free, to Android and iPhone.",
-  /*
-   * One label for the one action. The header button and the hero's submit
-   * are on screen together, so two spellings of it ("Get early access" in the
-   * design's hero) read as two different things.
-   */
-  cta: "Join the waitlist",
+  /* The header button. It scrolls to the launch notice; on launch day it
+     becomes the store links. */
+  cta: "Coming soon",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Tigrinya",
@@ -57,7 +54,7 @@ export const siteConfig = {
   links: {
     email: "hello@zemafidelat.com",
     download: apkDownloadUrl,
-    waitlist: "#waitlist",
+    launch: "#coming-soon",
   },
   navLinks: [
     { href: "#how-it-works", text: "How it works" },
@@ -81,7 +78,6 @@ export const siteConfig = {
     titleFidel: "ፊደል",
     titleEnd: "in 10 minutes a day.",
     lead: "Bite-sized lessons, letter tracing, word games and a new puzzle every day — so you or your kids can finally read Tigrinya.",
-    note: "No spam, one email when the app drops.",
     ticks: [
       "No account needed",
       "Profiles for the whole family",
@@ -359,16 +355,15 @@ export const siteConfig = {
     {
       question: "When does the app launch?",
       answer:
-        "We're aiming for November 2026 on Google Play and the App Store at the same time. Join the waitlist and we'll send one email the day it's out.",
+        "We're aiming for November 2026, on Google Play and the App Store at the same time.",
     },
   ],
 
-  waitlist: {
-    title: "Be first when the app drops.",
-    text: "Leave your email and we'll send one message the day Zema Fidelat lands on Android and iPhone.",
-    stores: "Coming to Google Play & the App Store",
-    /* Under the "You're on the list" pill; the API sends the same words. */
-    success: "We'll email you the day the app is out.",
+  /* The bottom band until launch day, when it becomes the store buttons. */
+  launch: {
+    title: "Coming November 2026.",
+    text: "Zema Fidelat lands on Android and iPhone at the same time, free for the whole family.",
+    stores: "Google Play & the App Store",
   },
 };
 

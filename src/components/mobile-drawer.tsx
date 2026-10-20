@@ -55,7 +55,7 @@ export function MobileDrawer({ anchorBase = "" }: { anchorBase?: string }) {
         </nav>
         <DrawerFooter className="px-6 pb-8">
           <a
-            href={withAnchorBase(siteConfig.links.waitlist, anchorBase)}
+            href={withAnchorBase(siteConfig.links.launch, anchorBase)}
             className={cn(
               buttonVariants({ variant: "default" }),
               "h-12 rounded-full text-base font-bold"

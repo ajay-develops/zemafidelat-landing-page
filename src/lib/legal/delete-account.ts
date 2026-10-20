@@ -95,8 +95,7 @@ export const deleteAccountGuide = {
           type: "bullets",
           items: [
             "the subject line **Delete my account**;",
-            "the **email address of the Zema Fidelat account** you want deleted;",
-            "if you also joined the waitlist on zemafidelat.com and want that sign-up removed, a note saying so.",
+            "the **email address of the Zema Fidelat account** you want deleted.",
           ],
         },
         {
@@ -149,13 +148,11 @@ export const deleteAccountGuide = {
                 "**Our providers' records.** Our providers keep some copies under their own rules:",
               items: [
                 "password-reset emails already sent stay in your inbox and in our email provider's records;",
-                "hosting request logs for our server are currently kept for no more than one day;",
-                "database backups, which are overwritten after a short period under our provider's settings.",
+                "hosting request logs for our server are currently kept for no more than one day.",
               ],
             },
             "**Emails you sent us.** They stay in our mailbox unless you ask us to delete them.",
             "**Anything shared with the Share buttons.** We cannot reach copies you sent to other apps or people.",
-            "**Your waitlist sign-up** on zemafidelat.com. It is kept separately from your account, so ask us to remove it.",
           ],
         },
       ],

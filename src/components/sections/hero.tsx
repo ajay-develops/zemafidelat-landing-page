@@ -1,6 +1,5 @@
 import { DecorGlyph } from "@/components/decor-glyph";
 import { Screenshot } from "@/components/screenshot";
-import { WaitlistForm } from "@/components/waitlist-form";
 import { siteConfig } from "@/lib/config";
 import { CheckIcon } from "lucide-react";
 
@@ -58,8 +57,7 @@ export function Hero() {
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted-foreground md:text-xl">
             {hero.lead}
           </p>
-          <WaitlistForm surface="mint" note={hero.note} className="mt-8" />
-          <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
             {hero.ticks.map((tick) => (
               <li
                 key={tick}

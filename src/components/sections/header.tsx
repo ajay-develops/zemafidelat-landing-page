@@ -58,7 +58,7 @@ export function Header({ anchorBase = "" }: HeaderProps) {
             </a>
           ))}
           <a
-            href={withAnchorBase(siteConfig.links.waitlist, anchorBase)}
+            href={withAnchorBase(siteConfig.links.launch, anchorBase)}
             className={cn(
               buttonVariants({ variant: "default" }),
               "h-10 rounded-full px-5 font-bold"

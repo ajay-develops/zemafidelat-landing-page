@@ -187,7 +187,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "We use information to run Zema Fidelat: accounts, logins and password resets; recording and confirming parental consent; profiles and progress sync; reminders; share images; replying to emails; security, such as locking an account after failed logins; warning account holders before an inactive account is deleted; and emailing the website waitlist once when the app is available on Android and iPhone.",
+            "We use information to run Zema Fidelat: accounts, logins and password resets; recording and confirming parental consent; profiles and progress sync; reminders; share images; replying to emails; security, such as locking an account after failed logins; and warning account holders before an inactive account is deleted.",
         },
         {
           type: "paragraph",
@@ -208,7 +208,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "We use a small number of service providers to run Zema Fidelat: cloud hosting, a database, email delivery and the website waitlist. They process information only on our instructions, under contracts that limit their use of it. They may log technical details such as your IP address and device type, and may process information in the United States and other countries, whose laws may differ from yours.",
+            "We use a small number of service providers to run Zema Fidelat: cloud hosting, a database and email delivery. They process information only on our instructions, under contracts that limit their use of it. They may log technical details such as your IP address and device type, and may process information in the United States and other countries, whose laws may differ from yours.",
         },
         {
           type: "paragraph",
@@ -226,8 +226,7 @@ export const privacyPolicy = {
           items: [
             "**Account, profiles and progress:** until you delete them, or after 24 months without the account being used (signing in or syncing progress). We email the account holder 30 days before deleting an inactive account; signing in keeps it.",
             "**Login sessions:** 30 days after last use, or immediately on logout. Password-reset links expire after 1 hour.",
-            "**Hosting logs:** at most one day. **Database backups:** kept only for a short period under our provider's settings, then overwritten.",
-            "**Waitlist sign-ups:** until the launch email is sent plus 12 months, or sooner if you ask.",
+            "**Hosting logs:** at most one day. **Database backups:** we don't keep any, so deleted information can't be restored.",
             "**Emails you send us:** up to 24 months.",
           ],
         },
@@ -303,7 +302,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Settings on your device until the app is uninstalled (section 5), provider logs and backups until they expire (section 12), and anything already shared. Uninstalling the app removes guest data.",
+            "Settings on your device until the app is uninstalled (section 5), provider logs until they expire (section 12), and anything already shared. Uninstalling the app removes guest data.",
         },
       ],
     },
@@ -325,7 +324,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "**zemafidelat.com** sets no cookies, uses no analytics or advertising tools, and embeds nothing from other companies. The waitlist stores your email address, a name if you give one, and the sign-up date with our waitlist provider; email us to be removed.",
+            "**zemafidelat.com** sets no cookies, uses no analytics or advertising tools, and embeds nothing from other companies.",
         },
         {
           type: "paragraph",
@@ -348,7 +347,7 @@ export const privacyPolicy = {
           items: [
             "**Correct:** **Settings > Edit Account Info**, **Change Password**, **Daily Goal**, or **Edit Profile**.",
             "**Delete:** section 14.",
-            "**Withdraw consent:** **Settings > Withdraw Consent** (this deletes the account), turn off reminders, or leave the waitlist.",
+            "**Withdraw consent:** **Settings > Withdraw Consent** (this deletes the account), or turn off reminders.",
             "**Copies and anything else:** email us, ideally from the account's email address so we can confirm it's yours. You may also be able to complain to your local data protection authority.",
           ],
         },

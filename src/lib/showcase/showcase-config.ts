@@ -38,6 +38,6 @@ export const showcaseStops: ShowcaseStop[] = [
   { selector: "#features", label: "Everything in the app" },
   { selector: "#story", label: "Our story" },
   { selector: "#faq", label: "FAQ" },
-  { selector: "#waitlist", label: "Waitlist" },
+  { selector: "#coming-soon", label: "Coming soon" },
   { selector: "footer", label: "Footer" },
 ];
