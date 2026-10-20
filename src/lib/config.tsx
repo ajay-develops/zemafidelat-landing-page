@@ -33,7 +33,8 @@ export const siteConfig = {
   description: "Learn to read & write Tigrinya fidel in 10 minutes a day.",
   /* For search results and link previews; the hero shows `hero.lead`. */
   heroDescription:
-    "Bite-sized lessons, letter tracing, word games and a new puzzle every day — so you or your kids can finally read Tigrinya. Free on Android and iPhone.",
+    // Switch the last sentence back to "Free on Android and iPhone." on launch day.
+    "Bite-sized lessons, letter tracing, word games and a new puzzle every day, so you or your kids can finally read Tigrinya. Coming soon, free, to Android and iPhone.",
   /*
    * One label for the one action. The header button and the hero's submit
    * are on screen together, so two spellings of it ("Get early access" in the
@@ -97,7 +98,7 @@ export const siteConfig = {
 
   howItWorks: {
     eyebrow: "How it works",
-    title: "From your first letter to your first sentence",
+    title: "From your first letter to your first words",
     steps: [
       {
         title: "Learn",
@@ -165,7 +166,7 @@ export const siteConfig = {
       id: "hear-it",
       eyebrow: "Hear it",
       title: "Hear every letter and word, said out loud",
-      text: "Tap the speaker on any letter or word to hear it — recorded by a real voice, never a robot.",
+      text: "Tap the speaker on any letter or word to hear it, recorded by a real Tigrinya speaker.",
       bullets: [
         "A pronunciation guide under every word",
         "Pictures that show what each word means",
@@ -253,7 +254,7 @@ export const siteConfig = {
     text: "Every child gets their own profile, with their own progress, goals and badges — and you stay in charge.",
     bullets: [
       "A profile for every learner, each with a friendly animal avatar",
-      "Parent lock: kids can't switch profiles or open settings without you",
+      "Parent lock: kids can't change profiles, share, or open settings without you",
       "Start as a guest straight away; add a free account to back up progress",
       "Reminders that nudge you when it's time to practise",
     ],
@@ -268,7 +269,7 @@ export const siteConfig = {
     items: [
       { icon: "lessons", title: `${lessonCount} step-by-step lessons`, text: "One fidel family at a time, in order, from ሀ to ቨ." },
       { icon: "letters", title: `All ${fidelCount} fidelat, with sound`, text: "A full letter chart — tap any letter to hear it." },
-      { icon: "voice", title: "Real recorded voices", text: "Every letter and word is spoken by a person, never a robot." },
+      { icon: "voice", title: "Real recorded voices", text: "Letters and words are recorded by a real Tigrinya speaker." },
       { icon: "flashcards", title: "Picture flashcards", text: "Word on the front, picture and meaning on the back." },
       { icon: "tracing", title: "Letter tracing", text: "Follow the path stroke by stroke to learn to write." },
       { icon: "games", title: "Word games", text: "See the picture, pick the right Tigrinya word." },
@@ -279,7 +280,7 @@ export const siteConfig = {
       { icon: "streaks", title: "Streaks & daily goals", text: "Pick 5 to 25 minutes a day and keep the streak alive." },
       { icon: "reminders", title: "Learning reminders", text: "A gentle nudge when it's time to practise." },
       { icon: "profiles", title: "Family profiles", text: "A profile for every learner, each with its own progress." },
-      { icon: "lock", title: "Parent lock", text: "Kids can't switch profiles or open settings without you." },
+      { icon: "lock", title: "Parent lock", text: "Kids can't change profiles, share, or open settings without you." },
       { icon: "guest", title: "No account needed", text: "Start as a guest; add a free account to back up progress." },
       { icon: "share", title: "Share progress", text: "Share your learning journey and new badges." },
     ],
@@ -304,6 +305,7 @@ export const siteConfig = {
 
   faqEyebrow: "FAQ",
   faqTitle: "Questions? We've got answers.",
+  faqFooter: { text: "Still have a question? Email", email: "hello@zemafidelat.com" },
   faqs: [
     {
       question: "Is Zema Fidelat really free?",
@@ -318,12 +320,12 @@ export const siteConfig = {
     {
       question: "Is it good for kids?",
       answer:
-        "Yes. Letter tracing, picture clues and short games are made for young learners, and each child gets their own profile with their own progress.",
+        "Yes. It's designed for ages 4 and up, and adults use it too. Letter tracing, picture clues and short games are made for young learners, and each child gets their own profile with their own progress.",
     },
     {
       question: "Can my child hear how words are said?",
       answer:
-        "Yes. Every letter and word has a real recording — tap the speaker to hear it.",
+        "Yes. Letters and words are recorded by a real Tigrinya speaker. Tap the speaker to hear them.",
     },
     {
       question: "How do family profiles work?",
@@ -331,9 +333,33 @@ export const siteConfig = {
         "One account holds a profile for every learner at home. Each profile keeps its own lessons, goals, streaks and badges.",
     },
     {
-      question: "When is it coming to iPhone?",
+      question: "Is my child's information safe?",
       answer:
-        "At about the same time as Android. Join the waitlist and we'll email you the day it's out.",
+        "Yes. We collect only a nickname, an optional age and learning progress for each child, and only after a parent agrees. There are no ads, no chat and no tracking, and we never sell data. Read our Privacy Policy at zemafidelat.com/privacy.",
+    },
+    {
+      question: "Does it work offline?",
+      answer:
+        "Yes. Lessons, games and audio work without internet. You need a connection to back up progress to your account.",
+    },
+    {
+      question: "Is this Tigrinya or Amharic?",
+      answer:
+        "Tigrinya. Both languages use the Ge'ez script, so many letters look the same, but Zema Fidelat teaches Tigrinya sounds, words and pronunciation.",
+    },
+    {
+      question: "Does it teach every letter?",
+      answer: "It teaches all 32 core letter families: 224 fidelat, seven forms each.",
+    },
+    {
+      question: "How do I delete my account or my child's data?",
+      answer:
+        "You can delete a profile or your whole account in the app's Settings, on the web at app.zemafidelat.com, or by emailing us. See zemafidelat.com/delete-account for the steps.",
+    },
+    {
+      question: "When does the app launch?",
+      answer:
+        "We're aiming for November 2026 on Google Play and the App Store at the same time. Join the waitlist and we'll send one email the day it's out.",
     },
   ],
 

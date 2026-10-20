@@ -31,6 +31,16 @@ export function FAQ() {
           </AccordionItem>
         ))}
       </Accordion>
+      <p className="mx-auto mt-8 max-w-3xl text-center text-base text-muted-foreground">
+        {siteConfig.faqFooter.text}{" "}
+        <a
+          href={`mailto:${siteConfig.faqFooter.email}`}
+          className="font-semibold text-foreground underline underline-offset-4"
+        >
+          {siteConfig.faqFooter.email}
+        </a>
+        .
+      </p>
     </Section>
   );
 }
