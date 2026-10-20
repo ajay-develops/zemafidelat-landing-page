@@ -63,7 +63,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is operated by Zien Solutions LLC (\"we\", \"us\"), 8401 Mayland Dr, Richmond, VA 23294, USA, phone +1 (202) 937-9321, email **hello@zemafidelat.com**. This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com.",
+            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is operated by Zien Tech Solutions LLC (\"we\", \"us\"), 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA, phone +1 (202) 937-9321, email **hello@zemafidelat.com**. This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com.",
         },
       ],
     },
@@ -359,7 +359,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "**UK and European Economic Area.** Zien Solutions LLC is the data controller. We use information on the legal bases in section 10. Our providers may process information in the United States; where required, we rely on the EU-US Data Privacy Framework or the European Commission's standard contractual clauses. You can complain to your local data protection authority.",
+            "**UK and European Economic Area.** Zien Tech Solutions LLC is the data controller. We use information on the legal bases in section 10. Our providers may process information in the United States; where required, we rely on the EU-US Data Privacy Framework or the European Commission's standard contractual clauses. You can complain to your local data protection authority.",
         },
         {
           type: "paragraph",
@@ -395,7 +395,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Email **hello@zemafidelat.com**, call +1 (202) 937-9321, or write to Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA.",
+            "Email **hello@zemafidelat.com**, call +1 (202) 937-9321, or write to Zien Tech Solutions LLC, 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA.",
         },
       ],
     },

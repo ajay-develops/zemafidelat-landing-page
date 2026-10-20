@@ -31,7 +31,7 @@ export const termsAndConditions = {
         {
           type: "paragraph",
           text:
-            "In the app, these terms may also be called the Terms of Service. 'We' and 'us' mean Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA.",
+            "In the app, these terms may also be called the Terms of Service. 'We' and 'us' mean Zien Tech Solutions LLC, 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA.",
         },
         {
           type: "paragraph",
@@ -293,7 +293,7 @@ export const termsAndConditions = {
         {
           type: "paragraph",
           text:
-            "These terms are governed by the laws of the Commonwealth of Virginia, USA, without regard to its conflict-of-law rules. Before filing a claim, please email us so we can try to resolve it informally within 30 days. Any claim must be brought in the state or federal courts located in the City of Richmond, Virginia, unless the law where you live gives you the right to bring it in your local courts. If you live in the EU, UK or another country with mandatory consumer protections, you keep those rights, and nothing in these terms limits them.",
+            "These terms are governed by the laws of the Commonwealth of Virginia, USA, without regard to its conflict-of-law rules. Before filing a claim, please email us so we can try to resolve it informally within 30 days. Any claim must be brought in the state or federal courts located in the City of Alexandria, Virginia, unless the law where you live gives you the right to bring it in your local courts. If you live in the EU, UK or another country with mandatory consumer protections, you keep those rights, and nothing in these terms limits them.",
         },
       ],
     },
@@ -315,7 +315,7 @@ export const termsAndConditions = {
         {
           type: "paragraph",
           text:
-            "Questions about these terms: **hello@zemafidelat.com**, or write to Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA, or call +1 (202) 937-9321.",
+            "Questions about these terms: **hello@zemafidelat.com**, or write to Zien Tech Solutions LLC, 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA, or call +1 (202) 937-9321.",
         },
       ],
     },
