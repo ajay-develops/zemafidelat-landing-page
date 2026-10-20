@@ -3,6 +3,8 @@ import type { LegalDocument } from "@/lib/legal/types";
 /*
  * Keep in step with the in-app copy in
  * zema-frontend/src/constants/privacy-content.ts. Change both together.
+ * When what we collect about children changes, also bump
+ * CONSENT_POLICY_VERSION in zema-backend/src/lib/parental-consent.ts.
  *
  * Text may contain **bold** markup. Full URLs and email addresses in the text
  * become links when rendered (src/components/legal/legal-rich-text.tsx).
@@ -10,8 +12,8 @@ import type { LegalDocument } from "@/lib/legal/types";
 export const privacyPolicy = {
   title: "Zema Fidelat Privacy Policy",
   effectiveDate: "18 September 2026",
-  lastUpdated: "13 October 2026",
-  updatedAt: "2026-09-18",
+  lastUpdated: "20 October 2026",
+  updatedAt: "2026-10-20",
   intro: [
     {
       type: "paragraph",
@@ -28,11 +30,28 @@ export const privacyPolicy = {
           type: "bullets",
           items: [
             "Zema Fidelat is an app for learning the Tigrinya alphabet.",
-            "An account needs the account holder's full name, email address and password. Each learner profile has a name, a picture and an optional age.",
+            "An account is for a parent or guardian and needs their full name, email address and password. Each learner profile has a name, a built-in avatar and an optional age.",
+            "We ask a parent for consent before saving any information about a child, and confirm it by email (section 13).",
             "Account progress is copied to our servers. Guest data stays on the device.",
-            "No ads, purchases, chat or contact between users, analytics or tracking. We do not sell personal information. The app does not record audio or use the camera.",
-            "**Uploaded photos:** only your account can see them, but anyone who is given a photo's unpublished web address can open it. Built-in pictures upload nothing (section 6).",
-            "You can delete a profile or your account in the app, or ask us by email.",
+            "No ads, purchases, chat or contact between users, analytics or tracking. We never sell or share children's information. The app doesn't use the camera or microphone, and pictures are built-in avatars only.",
+            "Accounts nobody has used for 24 months are deleted (section 12). You can delete a profile or your account in the app or on the web, or ask us by email.",
+          ],
+        },
+      ],
+    },
+    {
+      id: "for-young-learners",
+      title: "For young learners",
+      blocks: [
+        {
+          type: "bullets",
+          items: [
+            "Your grown-up made your account and said it's OK for us to keep your learning.",
+            "We keep your name, your age if you told us, the animal you picked, and how much you've learned.",
+            "We use it only so you can keep learning, even on another phone.",
+            "No one else can see it. We never show you ads or sell it.",
+            "Your grown-up can change it or delete it any time.",
+            "Some buttons ask a grown-up's question first, to keep you safe.",
           ],
         },
       ],
@@ -44,7 +63,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is run by the Zema Fidelat team (\"we\", \"us\"). This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com. Privacy questions and requests: **hello@zemafidelat.com**.",
+            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is operated by Zien Solutions LLC (\"we\", \"us\"), 8401 Mayland Dr, Richmond, VA 23294, USA, phone +1 (202) 937-9321, email **hello@zemafidelat.com**. This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com.",
         },
       ],
     },
@@ -55,14 +74,15 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "**Full name and email address** (required): to run the account, log in and send password-reset emails.",
+            "**Full name and email address** (required): to run the account, log in and send account emails such as password resets and consent confirmation.",
             "**Password** (required): stored only as a salted hash.",
+            "**Parental consent:** that you confirmed you are 18 or older and the parent or legal guardian, when you consented, which version of this policy you agreed to, and when you confirmed by email.",
           ],
         },
         {
           type: "paragraph",
           text:
-            "Our server also records account dates, login sessions, recent failed logins and password-reset codes.",
+            "Our server also records account dates, when the account was last used, login sessions, recent failed logins and password-reset codes.",
         },
       ],
     },
@@ -78,8 +98,8 @@ export const privacyPolicy = {
           type: "bullets",
           items: [
             "**name** (a nickname works);",
-            "**age** (optional when creating a profile, but **Edit Profile** needs one to save changes; once saved, email us to remove it);",
-            "**picture:** built-in or a photo (section 6);",
+            "**age** (optional; you can clear it at any time in **Edit Profile**);",
+            "**avatar:** which built-in picture you chose (section 6);",
             "**daily learning goal** (optional);",
             "**learning progress**, such as XP, streaks, scores and achievements.",
           ],
@@ -109,8 +129,8 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "**Never sent to us:** your place in a lesson, sound and notification settings, guest data, temporary picture copies, and letter-tracing drawings (checked in the app; only the result is saved). Your device's own text-to-speech may read lesson words.",
-            "Login details and guest profiles are kept in the device's secure storage. After logging out or deleting your account, progress, settings, picture copies and any reminder stay on the device until the app is uninstalled.",
+            "**Never sent to us:** your place in a lesson, sound and notification settings, guest data, and letter-tracing drawings (checked in the app; only the result is saved). If a recording is missing, your device's built-in text-to-speech voice may read the word. This happens on your device and sends nothing to us.",
+            "Login details and guest profiles are kept in the device's secure storage. After logging out, progress and settings stay on the device until the app is uninstalled. Deleting your account also removes every learner's progress and the app's saved pictures from the device.",
             "**iPhone and iPad:** guest profiles, and your login if you didn't log out, may survive removing the app and be reused on reinstall, so log out first.",
           ],
         },
@@ -118,29 +138,12 @@ export const privacyPolicy = {
     },
     {
       id: "photos",
-      title: "6. Photos",
+      title: "6. Pictures",
       blocks: [
         {
           type: "paragraph",
           text:
-            "With your permission, the app uses only the one photo you pick from your library, never the camera. Account photos are stored in the United States by UploadThing, as received, so they may include details such as where the photo was taken. Guest photos stay on the device.",
-        },
-        {
-          type: "paragraph",
-          text: "**Who can see uploaded photos**",
-        },
-        {
-          type: "bullets",
-          items: [
-            "Only your account, and our administrators, can see your uploaded photos through our server. Other accounts, and people who are not logged in, cannot list them or look them up.",
-            "Each photo file is stored at a long, random web address and is not protected by a password. We don't publish or share these addresses, but anyone who is given one can open that photo.",
-            "A built-in picture uploads nothing: we only save which picture you chose.",
-          ],
-        },
-        {
-          type: "paragraph",
-          text:
-            "**Photos no longer used** (replaced or never saved) stay in storage, even after deleting a profile or account. Email us which profile used one and roughly when, and we will try to find it.",
+            "Learner pictures are chosen from built-in animal avatars. We save only which picture you chose. The app does not access your photo library or camera, and doesn't upload photos.",
         },
       ],
     },
@@ -151,7 +154,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "No feature uses the microphone or camera, and the app never asks for access. The app's technical setup still lists these permissions, so your device or an app store may mention them.",
+            "The app does not use the microphone or camera and does not ask for access to them.",
         },
       ],
     },
@@ -162,7 +165,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Reminders are optional: a daily 7:00 pm reminder set on your device, without a learner's name. We send no push notifications. Turn reminders off in **Settings > Notifications** or device settings; logging out or deleting your account does not cancel one already set.",
+            "Reminders are optional and off until a parent turns them on (behind the parent question): a daily 7:00 pm reminder set on your device, without a learner's name. We send no push notifications. Turn reminders off in **Settings > Notifications** or device settings. Logging out or deleting your account also cancels the reminder.",
         },
       ],
     },
@@ -173,7 +176,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "**Share** buttons make an image that can show a learner's name, picture or photo and progress, add a link to zemafidelat.com, and open your device's share menu. The **View Profile** image also shows the account's email address. A learner can use Share without the parent question. We don't receive what you share and can't delete it.",
+            "**Share** buttons, protected by the parent question, make an image showing a learner's profile name, built-in avatar and progress, with a link to zemafidelat.com. It never includes an email address or photo. You choose where to send it from your device's share menu; choosing **Save Image** saves it to your photo library. We don't receive what you share and can't delete it.",
         },
       ],
     },
@@ -184,7 +187,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "We use information to run Zema Fidelat: accounts, logins and password resets; profiles and progress sync; reminders; share images; replying to emails; security, such as locking an account after failed logins; and emailing the website waitlist when the Android app is ready.",
+            "We use information to run Zema Fidelat: accounts, logins and password resets; recording and confirming parental consent; profiles and progress sync; reminders; share images; replying to emails; security, such as locking an account after failed logins; warning account holders before an inactive account is deleted; and emailing the website waitlist once when the app is available on Android and iPhone.",
         },
         {
           type: "paragraph",
@@ -194,7 +197,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Where the law requires a legal reason, we rely on providing the service you asked for, your consent (photos, notifications, optional details), which you can withdraw at any time, and our legitimate interest in security and replying to you.",
+            "Where the law requires a legal reason, we rely on providing the service you asked for; your consent, including a parent's consent for each learner, which you can withdraw at any time; and our legitimate interest in security and replying to you.",
         },
       ],
     },
@@ -203,24 +206,14 @@ export const privacyPolicy = {
       title: "11. Who handles information for us",
       blocks: [
         {
-          type: "bullets",
-          items: [
-            "**Vercel:** hosts our server and website. It stored uploaded photos until September 2026.",
-            "**MongoDB Atlas (MongoDB, Inc.):** database for accounts, password hashes, profiles, progress and photo records.",
-            "**UploadThing:** stores uploaded photos.",
-            "**Network Solutions:** our email, including password-reset emails.",
-            "**Supabase:** the website waitlist.",
-          ],
+          type: "paragraph",
+          text:
+            "We use a small number of service providers to run Zema Fidelat: cloud hosting, a database, email delivery and the website waitlist. They process information only on our instructions, under contracts that limit their use of it. They may log technical details such as your IP address and device type, and may process information in the United States and other countries, whose laws may differ from yours.",
         },
         {
           type: "paragraph",
           text:
-            "Our administrators can see account and learner records. On iPhone and iPad, the app may contact Google to check you are online, sending no account information. We may disclose information if the law requires it.",
-        },
-        {
-          type: "paragraph",
-          text:
-            "Providers may log your IP address and user agent, and may process information in the United States and other countries, whose laws may differ from yours.",
+            "Our administrators can see account and learner records. We don't sell or share children's information with anyone else. We may disclose information if the law requires it. Email us for a current list of our service providers.",
         },
       ],
     },
@@ -231,11 +224,11 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "**Account, profiles, progress and current photos:** until you delete them or the account. We don't currently delete inactive accounts automatically.",
-            "**Login sessions:** removed when the account is deleted. Password-reset links expire after 1 hour.",
-            "**Unused photos:** not deleted automatically (section 6).",
-            "**Hosting logs:** currently at most one day. **Email records and backups:** our providers' own retention periods.",
-            "**Emails you send us:** until deleted. **Waitlist sign-ups:** until you ask us to remove yours.",
+            "**Account, profiles and progress:** until you delete them, or after 24 months without the account being used (signing in or syncing progress). We email the account holder 30 days before deleting an inactive account; signing in keeps it.",
+            "**Login sessions:** 30 days after last use, or immediately on logout. Password-reset links expire after 1 hour.",
+            "**Hosting logs:** at most one day. **Database backups:** kept only for a short period under our provider's settings, then overwritten.",
+            "**Waitlist sign-ups:** until the launch email is sent plus 12 months, or sooner if you ask.",
+            "**Emails you send us:** up to 24 months.",
           ],
         },
       ],
@@ -247,11 +240,14 @@ export const privacyPolicy = {
         {
           type: "bullets",
           items: [
-            "Learners can be any age, but **accounts are for adults**: a parent, guardian or other adult should create the account and manage profiles. The app does not check age.",
-            "We collect about a learner only what section 3 lists, never an email address, phone number or location.",
+            "Learners can be any age, but **accounts are for adults**: the account holder confirms they are 18 or older and the parent or legal guardian of the children who will use it.",
+            "Before any learner information is saved to our servers, we give the account holder this notice and ask for their consent. We email a confirmation, which the parent confirms with a button on the linked page.",
+            "We collect about a learner only what section 3 lists, never an email address, phone number, photo or location.",
             "Children cannot chat, add friends, contact other users, appear on leaderboards, see ads or make purchases.",
-            "**The parent question** (a simple sum) guards **Settings** and switching, adding and deleting profiles. It is **not a strong lock**. It does not cover Share, **Create free account**, or **EDIT PROFILE**, where a learner can change the name, age and picture, including choosing a photo.",
-            "Parents can edit or delete a learner's information, or email us for a copy or to stop collection. If a child created an account without a parent, email us and we will delete it.",
+            "**The parent question** protects Settings, adding, switching, editing and deleting profiles, sharing, creating an account or logging in, and turning reminders on. It helps keep young children out of these areas but is not a security lock.",
+            "Parents can review, edit or delete a learner's information in the app, ask us for a copy, or withdraw consent at any time (**Settings > Withdraw Consent**, or by email). Withdrawing consent deletes the account and every learner's information.",
+            "We keep a written information security program and data retention policy for children's information.",
+            "If a child created an account without a parent, email us and we will delete it.",
           ],
         },
       ],
@@ -268,7 +264,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Tap the profile picture on the Home screen, then **Switch Profile** > **Manage Profiles** > the profile > **Delete profile**, answering the parent question. For the current profile, you can also use **View Profile > EDIT PROFILE > Delete profile**. This deletes the profile, its progress and current photo from our servers. In the app, an account must keep at least one profile.",
+            "Tap the profile picture on the Home screen, then **Switch Profile** > **Manage Profiles** > the profile > **Delete profile**, answering the parent question. For the current profile, you can also use **View Profile > EDIT PROFILE > Delete profile**. This deletes the profile and its progress from our servers. An account keeps at least one profile; to remove everything, delete the account.",
         },
         {
           type: "subheading",
@@ -280,14 +276,14 @@ export const privacyPolicy = {
           items: [
             "On the Home screen, tap the profile picture at the top right and choose **Settings**.",
             "Answer the parent question.",
-            "Under **Danger Zone**, tap **Delete Account**.",
+            "Under **Danger Zone**, tap **Delete Account** (or **Withdraw Consent**, which does the same).",
             "Enter your password under **Confirm your password**, then tap **DELETE MY ACCOUNT**.",
           ],
         },
         {
           type: "paragraph",
           text:
-            "Deletion is immediate and permanent. If you see an error, retry, then email us. Forgot your password? Use **Forgot Password?** or email us.",
+            "Deletion is permanent. It normally happens at once; if anything stops it partway, it finishes automatically within 24 hours and the account can't be signed in to meanwhile. Forgot your password? Use **Forgot Password?** or email us.",
         },
         {
           type: "subheading",
@@ -297,7 +293,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Email **hello@zemafidelat.com** from the account's email address. https://zemafidelat.com/delete-account explains what to include and what is deleted.",
+            "Log in at app.zemafidelat.com, choose **Delete Account** on the dashboard and answer the parent question. Or email **hello@zemafidelat.com** from the account's email address. https://zemafidelat.com/delete-account explains what to include and what is deleted.",
         },
         {
           type: "subheading",
@@ -307,7 +303,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Data on your device (section 5), unused photos (section 6), provider logs and backups (section 12), and anything already shared. Uninstalling the app removes guest data.",
+            "Settings on your device until the app is uninstalled (section 5), provider logs and backups until they expire (section 12), and anything already shared. Uninstalling the app removes guest data.",
         },
       ],
     },
@@ -318,7 +314,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "We use HTTPS, salted password hashes, secure device storage for your sign-in token, a 10-minute lock after 5 failed logins, and a password check before account deletion. Login sessions expire 60 days after they were last renewed; logging out does not end the session on our server. No system is completely secure, and we cannot guarantee security.",
+            "We use HTTPS, salted password hashes, secure device storage for your sign-in token, a 10-minute lock after 5 failed logins, and a password check before account deletion. Login sessions expire 30 days after last use and end on our server when you log out, change your password or delete your account. No system is completely secure, and we cannot guarantee security.",
         },
       ],
     },
@@ -329,12 +325,12 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "**zemafidelat.com** sets no cookies, uses no analytics or advertising tools, and embeds nothing from other companies. The waitlist stores your email address, optional name and sign-up date with Supabase; email us to be removed.",
+            "**zemafidelat.com** sets no cookies, uses no analytics or advertising tools, and embeds nothing from other companies. The waitlist stores your email address, a name if you give one, and the sign-up date with our waitlist provider; email us to be removed.",
         },
         {
           type: "paragraph",
           text:
-            "**app.zemafidelat.com** (still named 'Zema Language Learning', as are password-reset emails) collects the same kinds of information as the app, uses a login cookie, and has no parent question.",
+            "**app.zemafidelat.com** collects the same kinds of information as the app and uses one login cookie that is needed to keep you signed in. It asks the same consent at sign-up and the parent question before profile changes and account deletion.",
         },
       ],
     },
@@ -352,9 +348,33 @@ export const privacyPolicy = {
           items: [
             "**Correct:** **Settings > Edit Account Info**, **Change Password**, **Daily Goal**, or **Edit Profile**.",
             "**Delete:** section 14.",
-            "**Withdraw consent:** turn off reminders, remove photo access in device settings, or leave the waitlist.",
+            "**Withdraw consent:** **Settings > Withdraw Consent** (this deletes the account), turn off reminders, or leave the waitlist.",
             "**Copies and anything else:** email us, ideally from the account's email address so we can confirm it's yours. You may also be able to complain to your local data protection authority.",
           ],
+        },
+        {
+          type: "paragraph",
+          text:
+            "**Where you live.** Zema Fidelat is available worldwide, and we give everyone the same protections. We ask a parent's consent for every learner profile, whatever the child's age or country.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "**UK and European Economic Area.** Zien Solutions LLC is the data controller. We use information on the legal bases in section 10. Our providers may process information in the United States; where required, we rely on the EU-US Data Privacy Framework or the European Commission's standard contractual clauses. You can complain to your local data protection authority.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "**Brazil.** You have the rights in Article 18 of the LGPD, including confirmation, access, correction, deletion and information about sharing. Contact us at hello@zemafidelat.com.",
+        },
+        {
+          type: "paragraph",
+          text:
+            "**Canada.** For children under 13, or under 14 in Quebec, we collect information only with a parent's consent.",
+        },
+        {
+          type: "paragraph",
+          text: "**Response time.** We reply to privacy requests within 30 days.",
         },
       ],
     },
@@ -365,7 +385,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "We will change the 'Last updated' date when we update this policy, and tell account holders, for example by email or in the app, before significant changes take effect.",
+            "We will change the 'Last updated' date when we update this policy, and tell account holders, for example by email or in the app, before significant changes take effect. If a change affects what we collect about children, we will ask for consent again.",
         },
       ],
     },
@@ -375,7 +395,8 @@ export const privacyPolicy = {
       blocks: [
         {
           type: "paragraph",
-          text: "Email: **hello@zemafidelat.com**",
+          text:
+            "Email **hello@zemafidelat.com**, call +1 (202) 937-9321, or write to Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA.",
         },
       ],
     },

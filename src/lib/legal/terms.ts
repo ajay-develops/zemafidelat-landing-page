@@ -10,8 +10,8 @@ import type { LegalDocument } from "@/lib/legal/types";
 export const termsAndConditions = {
   title: "Zema Fidelat Terms & Conditions",
   effectiveDate: "18 September 2026",
-  lastUpdated: "18 September 2026",
-  updatedAt: "2026-09-18",
+  lastUpdated: "20 October 2026",
+  updatedAt: "2026-10-20",
   sections: [
     {
       id: "about-these-terms",
@@ -31,7 +31,7 @@ export const termsAndConditions = {
         {
           type: "paragraph",
           text:
-            "In the app, these terms may also be called the Terms of Service. 'We' and 'us' mean the Zema Fidelat team.",
+            "In the app, these terms may also be called the Terms of Service. 'We' and 'us' mean Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA.",
         },
         {
           type: "paragraph",
@@ -78,6 +78,7 @@ export const termsAndConditions = {
             "An account must be created by a parent, guardian or other adult. That person is the account holder and manages the account and its learner profiles.",
             "Children should use Zema Fidelat with the permission and supervision of a parent or guardian.",
             "The account holder is responsible for how learners use the profiles on their account.",
+            "When you create an account and add a learner profile for a child, you confirm you are that child's parent or legal guardian, or have their permission, and you consent to our collection of the child's information as described in the Privacy Policy.",
           ],
         },
       ],
@@ -112,15 +113,14 @@ export const termsAndConditions = {
             "try to get into someone else's account, our servers, or any data you are not allowed to access, or try to get around our security;",
             "disrupt or overload the service, for example with automated requests or scraping;",
             "copy, sell or share the lessons, audio, images or software outside the app, or reverse-engineer the app, except where the law allows it;",
-            "upload a photo you do not have the right to use;",
-            "add a photo or profile name that is offensive or unsuitable for children;",
+            "add a profile name that is offensive or unsuitable for children;",
             "use Zema Fidelat for commercial purposes without our written permission.",
           ],
         },
         {
           type: "paragraph",
           text:
-            "If a profile name, photo or account breaks these rules, we may change the name or picture, or delete the account.",
+            "If a profile name or account breaks these rules, we may change the name, or delete the account.",
         },
       ],
     },
@@ -141,8 +141,7 @@ export const termsAndConditions = {
                 "can be withdrawn by us.",
               ],
             },
-            "**Your content.** Names and photos you add stay yours. You allow us to store and display them as needed to run Zema Fidelat for you, for example to show a learner's picture and to restore it on another device.",
-            "**Uploaded photos.** Only your account can see your uploaded photos in Zema Fidelat, but each photo file can be opened by anyone who has its web address, as the Privacy Policy explains. If you'd rather not upload one, use a built-in picture.",
+            "**Your content.** Names you add stay yours. You allow us to store and display them as needed to run Zema Fidelat for you, for example to show a learner's name and to restore it on another device.",
             "**Feedback.** If you send us ideas or suggestions, we may use them without owing you anything.",
           ],
         },
@@ -186,9 +185,27 @@ export const termsAndConditions = {
           type: "bullets",
           items: [
             "**Apple App Store or Google Play:** if you downloaded Zema Fidelat from one of these stores, that store's terms also apply. For the App Store, this includes Apple's standard Licensed Application End User License Agreement.",
-            "Apple and Google are not responsible for Zema Fidelat or its content.",
-            "**Other sources:** if you got the app another way, for example directly from zemafidelat.com, these terms apply.",
           ],
+        },
+        {
+          type: "paragraph",
+          text: "If you got Zema Fidelat from the Apple App Store, you and we agree that:",
+        },
+        {
+          type: "bullets",
+          items: [
+            "these terms are between you and us only, not Apple, and we, not Apple, are responsible for the app and its content;",
+            "Apple has no duty to provide maintenance or support for the app;",
+            "if the app fails to meet any warranty, you may notify Apple, and Apple will refund any price paid (the app is free); Apple has no other warranty obligation;",
+            "we, not Apple, are responsible for handling any claims about the app, including product liability, legal or regulatory compliance, and consumer protection claims;",
+            "we, not Apple, are responsible for investigating and defending any claim that the app infringes someone's intellectual property;",
+            "you confirm you are not in a country under a US government embargo and are not on a US government list of restricted parties;",
+            "Apple and its subsidiaries are third-party beneficiaries of these terms and may enforce them against you.",
+          ],
+        },
+        {
+          type: "paragraph",
+          text: "Google is not responsible for Zema Fidelat or its content.",
         },
       ],
     },
@@ -200,7 +217,7 @@ export const termsAndConditions = {
           type: "bullets",
           items: [
             "You can stop using Zema Fidelat at any time.",
-            "To delete your account, go to **Settings > Danger Zone > Delete Account** in the app, or follow the steps at https://zemafidelat.com/delete-account. You cannot delete an account on the app.zemafidelat.com web pages.",
+            "To delete your account, go to **Settings > Danger Zone > Delete Account** in the app, or follow the steps at https://zemafidelat.com/delete-account. You can also delete your account at app.zemafidelat.com: log in and choose **Delete Account** on the dashboard.",
             {
               text: "Deleting your account permanently removes these from our servers:",
               items: [
@@ -210,7 +227,8 @@ export const termsAndConditions = {
               ],
             },
             "Some information may remain, as the Privacy Policy explains.",
-            "We may delete an account that breaks these terms, or when the law requires it.",
+            "We may delete an account that breaks these terms, or when the law requires it. Accounts nobody has used for 24 months are deleted, after an email warning, as the Privacy Policy explains.",
+            "When your account is deleted or we end your access, your permission to use Zema Fidelat under section 6 ends.",
           ],
         },
       ],
@@ -231,6 +249,7 @@ export const termsAndConditions = {
                 "losses caused by using Zema Fidelat, or by being unable to use it.",
               ],
             },
+            "To the extent permitted by law, our total liability to you for all claims about Zema Fidelat is limited to US$50.",
             {
               text: "Nothing in these terms limits:",
               items: [
@@ -257,12 +276,46 @@ export const termsAndConditions = {
       ],
     },
     {
-      id: "contact",
-      title: "13. Contact",
+      id: "indemnity",
+      title: "13. Indemnity",
       blocks: [
         {
           type: "paragraph",
-          text: "Questions about these terms: **hello@zemafidelat.com**",
+          text:
+            "To the extent permitted by law, you agree to cover our reasonable costs, including legal fees, from claims caused by your breach of these terms or by content you add. This does not apply to consumers where the law does not allow it.",
+        },
+      ],
+    },
+    {
+      id: "governing-law-and-disputes",
+      title: "14. Governing law and disputes",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "These terms are governed by the laws of the Commonwealth of Virginia, USA, without regard to its conflict-of-law rules. Before filing a claim, please email us so we can try to resolve it informally within 30 days. Any claim must be brought in the state or federal courts located in the City of Richmond, Virginia, unless the law where you live gives you the right to bring it in your local courts. If you live in the EU, UK or another country with mandatory consumer protections, you keep those rights, and nothing in these terms limits them.",
+        },
+      ],
+    },
+    {
+      id: "general",
+      title: "15. General",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "These terms and the Privacy Policy are the whole agreement between you and us about Zema Fidelat. If any part is found unenforceable, the rest still applies. If we don't enforce a term right away, we can still enforce it later. You may not transfer these terms; we may transfer them as part of a merger, sale or reorganization, and we'll tell account holders if we do.",
+        },
+      ],
+    },
+    {
+      id: "contact",
+      title: "16. Contact",
+      blocks: [
+        {
+          type: "paragraph",
+          text:
+            "Questions about these terms: **hello@zemafidelat.com**, or write to Zien Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA, or call +1 (202) 937-9321.",
         },
       ],
     },

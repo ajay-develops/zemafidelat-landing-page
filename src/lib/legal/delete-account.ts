@@ -10,13 +10,13 @@ import type { LegalDocument } from "@/lib/legal/types";
  */
 export const deleteAccountGuide = {
   title: "Delete your Zema Fidelat account",
-  lastUpdated: "18 September 2026",
-  updatedAt: "2026-09-18",
+  lastUpdated: "20 October 2026",
+  updatedAt: "2026-10-20",
   intro: [
     {
       type: "paragraph",
       text:
-        "This page is for Zema Fidelat: Learn Tigrinya, an app for learning the Tigrinya alphabet. It explains how to delete a Zema Fidelat account and the information linked to it. You can do it in the app, or by email if you no longer have the app.",
+        "This page is for Zema Fidelat: Learn Tigrinya, an app for learning the Tigrinya alphabet. It explains how to delete a Zema Fidelat account and the information linked to it. You can do it in the app, on the web at app.zemafidelat.com, or by email if you no longer have the app.",
     },
   ],
   sections: [
@@ -44,20 +44,21 @@ export const deleteAccountGuide = {
           type: "steps",
           items: [
             "On the Home screen, tap the profile picture at the top right and choose **Settings**.",
-            "Answer the parent question ('Ask a parent to solve this simple question to continue').",
-            "Under **Danger Zone**, tap **Delete Account**.",
+            "Answer the parent question ('Ask a parent to solve this question to continue').",
+            "Under **Danger Zone**, tap **Delete Account** (or **Withdraw Consent**, which does the same).",
             "Enter your password under **Confirm your password**.",
             "Tap **DELETE MY ACCOUNT**.",
           ],
         },
         {
           type: "paragraph",
-          text: "The account is deleted straight away, and this cannot be undone.",
+          text:
+            "The account is deleted straight away, and this cannot be undone. Deleting it also cancels the daily reminder and removes every learner's progress and the app's saved pictures from the device.",
         },
         {
           type: "paragraph",
           text:
-            "**If the app shows an error,** check your password and try again. If it still fails, use Option 2, because the account may have been only partly deleted.",
+            "**If the app shows an error,** check your password and try again. If it still fails, use Option 2 and we'll finish the deletion for you. If a deletion stops partway, it finishes automatically within 24 hours, and the account can't be signed in to meanwhile.",
         },
         {
           type: "paragraph",
@@ -78,11 +79,7 @@ export const deleteAccountGuide = {
         {
           type: "paragraph",
           text:
-            "**Before you delete:** deleting the account does not cancel daily reminders. Turn them off first in **Settings > Notifications**.",
-        },
-        {
-          type: "paragraph",
-          text: "The web pages at app.zemafidelat.com do not have an option to delete an account.",
+            "**On the web:** you can also delete your account at app.zemafidelat.com. Log in, choose **Delete Account** on the dashboard, answer the parent question and enter your password.",
         },
       ],
     },
@@ -99,8 +96,7 @@ export const deleteAccountGuide = {
           items: [
             "the subject line **Delete my account**;",
             "the **email address of the Zema Fidelat account** you want deleted;",
-            "if you also joined the waitlist on zemafidelat.com and want that sign-up removed, a note saying so;",
-            "if you want photos removed that a profile no longer uses, which profile used them and roughly when they were uploaded.",
+            "if you also joined the waitlist on zemafidelat.com and want that sign-up removed, a note saying so.",
           ],
         },
         {
@@ -118,7 +114,7 @@ export const deleteAccountGuide = {
         {
           type: "paragraph",
           text:
-            "A person handles email requests, so they are not immediate. Option 1, in the app, is the fastest way. We will reply to the account's email address when the account has been deleted.",
+            "A person handles email requests, so they are not immediate. We complete email requests within 7 days. Option 1, in the app, is the fastest way. We will reply to the account's email address when the account has been deleted.",
         },
       ],
     },
@@ -133,10 +129,9 @@ export const deleteAccountGuide = {
         {
           type: "bullets",
           items: [
-            "**The account:** full name, email address, phone number (if one was added), password hash and login session records.",
+            "**The account:** full name, email address, password hash, parental consent record and login session records.",
             "**Every learner profile on the account:** name, age, picture choice and daily goal.",
             "**Learning progress:** all progress saved to our servers for those profiles.",
-            "**Current photos:** the photo each profile is using at the time, from our database and from our photo storage provider.",
           ],
         },
       ],
@@ -148,35 +143,14 @@ export const deleteAccountGuide = {
         {
           type: "bullets",
           items: [
-            {
-              text:
-                "**On your device.** Deleting the account logs you out, but these stay in the app on that device until you uninstall it:",
-              items: [
-                "learning progress;",
-                "app settings;",
-                "temporary copies of pictures;",
-                "any daily reminder.",
-              ],
-            },
-            {
-              text:
-                "**Photos no longer used by a profile.** Deleting the account does not remove photos that were:",
-              items: [
-                "replaced by another photo;",
-                "swapped for a built-in picture;",
-                "uploaded but never saved to a profile.",
-              ],
-              trailingParagraph:
-                "These photos are not linked to your account in our records, so we may not be able to find them. Tell us what you can about them in your email.",
-            },
-            "**Photo files that failed to delete.** If our photo storage provider fails to delete a file, the file can stay in storage.",
+            "**On your device.** Deleting the account logs you out and cancels reminders, and removes learning progress and saved pictures. App settings, such as sound, stay until you uninstall the app.",
             {
               text:
                 "**Our providers' records.** Our providers keep some copies under their own rules:",
               items: [
                 "password-reset emails already sent stay in your inbox and in our email provider's records;",
                 "hosting request logs for our server are currently kept for no more than one day;",
-                "any backups our database and storage providers keep.",
+                "database backups, which are overwritten after a short period under our provider's settings.",
               ],
             },
             "**Emails you sent us.** They stay in our mailbox unless you ask us to delete them.",
@@ -198,7 +172,7 @@ export const deleteAccountGuide = {
         {
           type: "bullets",
           items: [
-            "**Delete a single guest profile:** go to **View Profile > EDIT PROFILE > Delete profile**. This works for any guest profile except the last one. A copy of the profile's photo may stay in the app's temporary files.",
+            "**Delete a single guest profile:** go to **View Profile > EDIT PROFILE > Delete profile**, answering the parent question. This works for any guest profile except the last one.",
             "**Remove all guest data:** uninstall the app.",
             "**iPhone and iPad:** guest profile details kept in the device's secure storage may stay on the device after the app is removed. They may reappear if the app is installed again.",
           ],
@@ -225,18 +199,17 @@ export const deleteAccountGuide = {
         {
           type: "paragraph",
           text:
-            "For the profile you are using now, you can also go to **View Profile > EDIT PROFILE > Delete profile**.",
+            "For the profile you are using now, you can also go to **View Profile > EDIT PROFILE > Delete profile**, answering the parent question.",
         },
         {
           type: "paragraph",
           text:
-            "**What this deletes:** that profile, its progress and its current uploaded photo, from our servers. Progress saved in the app on that device stays until you uninstall the app.",
+            "**What this deletes:** that profile and its progress, from our servers. Progress saved in the app on that device stays until you uninstall the app.",
         },
         {
           type: "bullets",
           items: [
-            "**In the app,** an account must keep at least one profile.",
-            "**On the web pages at app.zemafidelat.com,** you can delete any profile, including the last one.",
+            "An account keeps at least one profile, in the app and on the web. To remove everything, delete the account.",
           ],
         },
       ],
