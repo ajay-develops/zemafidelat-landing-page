@@ -13,7 +13,7 @@ const lessonCount = 32;
 const levelCount = 32;
 const badgeCount = 18;
 
-// Kept for when the app ships; the page shows a launch notice until then.
+// Kept for a direct APK link; the page links to Google Play instead.
 const apkDownloadUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ?? "";
 
 export const siteConfig = {
@@ -33,11 +33,10 @@ export const siteConfig = {
   description: "Learn to read & write Tigrinya fidel in 10 minutes a day.",
   /* For search results and link previews; the hero shows `hero.lead`. */
   heroDescription:
-    // Switch the last sentence back to "Free on Android and iPhone." on launch day.
-    "Bite-sized lessons, letter tracing, word games and a new puzzle every day, so you or your kids can finally read Tigrinya. Coming soon, free, to Android and iPhone.",
-  /* The header button. It scrolls to the launch notice; on launch day it
-     becomes the store links. */
-  cta: "Coming soon",
+    // Switch the last sentence to "Free on Android and iPhone." once the App Store is live.
+    "Bite-sized lessons, letter tracing, word games and a new puzzle every day, so you or your kids can finally read Tigrinya. Free on Google Play now, and coming soon to iPhone.",
+  /* The header button. It scrolls to the store band at the bottom. */
+  cta: "Get the app",
   url: process.env.NEXT_PUBLIC_APP_URL || "https://zemafidelat.com",
   keywords: [
     "Tigrinya",
@@ -54,7 +53,8 @@ export const siteConfig = {
   links: {
     email: "hello@zemafidelat.com",
     download: apkDownloadUrl,
-    launch: "#coming-soon",
+    launch: "#get-the-app",
+    playStore: "https://play.google.com/store/apps/details?id=com.zemafidelat.app",
   },
   navLinks: [
     { href: "#how-it-works", text: "How it works" },
@@ -72,7 +72,7 @@ export const siteConfig = {
 
   hero: {
     /* Two parts, so a narrow screen wraps at the dot, not mid-phrase. */
-    badge: ["Coming soon to Android & iPhone", "100% free"],
+    badge: ["Now on Google Play", "100% free"],
     /* The headline is split so the Tigrinya word can carry its own colour. */
     titleStart: "Learn to read & write",
     titleFidel: "ፊደል",
@@ -355,15 +355,16 @@ export const siteConfig = {
     {
       question: "When does the app launch?",
       answer:
-        "We're aiming for November 2026, on Google Play and the App Store at the same time.",
+        "It's out now on Google Play. The iPhone version is with Apple for review and will follow soon on the App Store.",
     },
   ],
 
-  /* The bottom band until launch day, when it becomes the store buttons. */
+  /* The bottom band: the Google Play button, and the App Store until it is live. */
   launch: {
-    title: "Coming November 2026.",
-    text: "Zema Fidelat lands on Android and iPhone at the same time, free for the whole family.",
-    stores: "Google Play & the App Store",
+    title: "Out now on Android.",
+    text: "Zema Fidelat is free for the whole family on Google Play. The iPhone version is coming soon.",
+    playLabel: "Get it on Google Play",
+    appStore: "App Store: coming soon",
   },
 };
 

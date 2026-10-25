@@ -1,12 +1,14 @@
 import { DecorGlyph } from "@/components/decor-glyph";
 import { siteConfig } from "@/lib/config";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 
 const { launch } = siteConfig;
 
 export function CTA() {
   return (
-    <section id="coming-soon" className="scroll-mt-16 px-4 pb-16 sm:px-6 md:pb-24">
+    <section id="get-the-app" className="scroll-mt-16 px-4 pb-16 sm:px-6 md:pb-24">
       <div className="relative mx-auto max-w-[var(--max-container-width)] overflow-hidden rounded-[2rem] bg-leaf px-6 py-16 text-center md:py-20">
         <DecorGlyph
           glyph="ፊ"
@@ -27,14 +29,23 @@ export function CTA() {
           <p className="mx-auto mt-4 max-w-md text-lg text-pretty text-forest">
             {launch.text}
           </p>
-          {/* Words, not a badge: a store badge that goes nowhere reads as a
-              broken button. */}
-          <p className="mt-8 flex items-center justify-center gap-2 text-sm font-semibold text-forest">
-            <span className="flex shrink-0 gap-1">
-              <FaGooglePlay className="size-4" aria-hidden />
-              <FaApple className="size-4" aria-hidden />
-            </span>
-            <span className="text-balance">{launch.stores}</span>
+          <a
+            href={siteConfig.links.playStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "mt-8 h-12 gap-2 rounded-full px-6 text-base font-bold"
+            )}
+          >
+            <FaGooglePlay className="size-5" aria-hidden />
+            {launch.playLabel}
+          </a>
+          {/* Words, not a badge: an App Store badge that goes nowhere reads
+              as a broken button. */}
+          <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-forest">
+            <FaApple className="size-4 shrink-0" aria-hidden />
+            <span className="text-balance">{launch.appStore}</span>
           </p>
         </div>
       </div>

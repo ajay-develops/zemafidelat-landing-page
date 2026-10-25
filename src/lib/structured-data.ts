@@ -14,7 +14,7 @@ export function getStructuredData() {
     "@type": "MobileApplication",
     "@id": `${siteConfig.url}/#app`,
     name: siteConfig.name,
-    operatingSystem: "Android, iOS",
+    operatingSystem: "Android",
     applicationCategory: "EducationalApplication",
     offers: {
       "@type": "Offer",
@@ -22,9 +22,9 @@ export function getStructuredData() {
       priceCurrency: "USD",
     },
     description: siteConfig.heroDescription,
+    // Add the App Store link once the iPhone version is live.
+    downloadUrl: siteConfig.links.playStore,
   };
-
-  // downloadUrl omitted until the app is in the stores.
 
   const faqPage = {
     "@type": "FAQPage",
