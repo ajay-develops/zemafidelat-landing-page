@@ -12,7 +12,7 @@ import type { LegalDocument } from "@/lib/legal/types";
 export const privacyPolicy = {
   title: "Zema Fidelat Privacy Policy",
   effectiveDate: "18 September 2026",
-  lastUpdated: "20 October 2026",
+  lastUpdated: "25 October 2026",
   updatedAt: "2026-10-20",
   intro: [
     {
@@ -63,7 +63,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is operated by Zien Tech Solutions LLC (\"we\", \"us\"), 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA, phone +1 (202) 937-9321, email **hello@zemafidelat.com**. This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com.",
+            "Zema Fidelat (Zema Fidelat: Learn Tigrinya) is operated by Zien Tech Solutions LLC (\"we\", \"us\"), 8401 Mayland Dr, Richmond, VA 23294, USA, phone +1 (202) 937-9321, email **hello@zemafidelat.com**. This policy covers the app, our account web pages at app.zemafidelat.com, and our website, zemafidelat.com.",
         },
       ],
     },
@@ -395,7 +395,7 @@ export const privacyPolicy = {
         {
           type: "paragraph",
           text:
-            "Email **hello@zemafidelat.com**, call +1 (202) 937-9321, or write to Zien Tech Solutions LLC, 2555 Windbreak Dr, Alexandria, VA 22306-2608, USA.",
+            "Email **hello@zemafidelat.com**, call +1 (202) 937-9321, or write to Zien Tech Solutions LLC, 8401 Mayland Dr, Richmond, VA 23294, USA.",
         },
       ],
     },
